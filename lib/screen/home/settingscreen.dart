@@ -451,12 +451,12 @@ class SettingScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
                                   Text(
-                                                                      "ایمیل",
-                                                                      textAlign: TextAlign.center,
-                                                                      style: TextStyle(
-                                    color: MyThemes.primaryColor,
-                                    fontSize: 23),
-                                                                    ),
+                                    "ایمیل",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: MyThemes.primaryColor,
+                                        fontSize: 23),
+                                  ),
                                   Container(
                                       margin: const EdgeInsets.only(
                                           top: 10, bottom: 10),
@@ -657,11 +657,8 @@ class SettingScreen extends StatelessWidget {
                                       Expanded(
                                         child: ElevatedButton(
                                           onPressed: () {
-                                            _mainController.prefs
-                                                .remove("token");
-                                            _mainController.init();
-                                            _mainController.initToken();
-                                            Get.offAllNamed("/splash");
+                                            _mainController.setToken("");
+                                            toMain();
                                           },
                                           style: ButtonStyle(
                                             shape: MaterialStateProperty.all<

@@ -24,40 +24,28 @@ final _mainController = GET.Get.put(MainController());
 class ServiceGenerator {
   Dio _dio = Dio();
   var msg = "بروز خطا";
+
   updateDio(Map<String, String> header) {
     BaseOptions options = BaseOptions(
-      headers: {
-        "accept": 'application/json',
-        "content-type": 'application/json; charset=UTF-8',
-        "Authorization": "Bearer ${_mainController.token}"
-      }.obs,
+      headers: header,
       baseUrl: ServerConfig.url,
-      followRedirects: false,
       receiveTimeout: const Duration(seconds: 60),
       connectTimeout: const Duration(seconds: 60),
       // contentType: ContentType.json.toString(),
     );
     _dio = Dio(options);
     _dio.interceptors.add(LoggingInterceptor());
-    // if (!kIsWeb) {
-    //   (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-    //       (HttpClient dioClient) {
-    //     dioClient.badCertificateCallback =
-    //         ((X509Certificate cert, String host, int port) => true);
-    //     return dioClient;
-    //   };
-    // }
   }
 
   ResponseModel _getError<T>(dynamic error) {
     if (error is DioException) {
       DioException e = error;
       return ResponseModel(
-          status: true,
+          status: false,
           errorCode: e.response?.statusCode ?? 0,
           message: handleError(error));
     } else {
-      return ResponseModel(status: true, errorCode: 0, message: msg);
+      return ResponseModel(status: false, errorCode: 0, message: msg);
     }
   }
 
@@ -89,20 +77,20 @@ class ServiceGenerator {
       return LoginModel.fromJson(response.data);
     } catch (error, stacktrace) {
       loggerNoStack.e("Exception occured: $error stackTrace: $stacktrace");
-      return LoginModel.withError(_getError(error).toJson());
+      return LoginModel.withError(_getError(error));
     }
   }
 
   Future<ResponseModel> reqOtp() async {
     try {
-      Response response = await _dio
-          .post(ServerConfig.reqotp);
+      Response response = await _dio.post(ServerConfig.reqotp);
       return ResponseModel.fromJson(response.data);
     } catch (error, stacktrace) {
       loggerNoStack.e("Exception occured: $error stackTrace: $stacktrace");
       return ResponseModel.withError(_getError(error).toJson());
     }
-  }  
+  }
+
   Future<OtpModel> postOtp(String phone, String otp) async {
     try {
       Response response = await _dio
@@ -137,8 +125,6 @@ class ServiceGenerator {
     }
   }
 
-
-
   Future<GetCityModel> getCity() async {
     try {
       Response response =
@@ -161,8 +147,6 @@ class ServiceGenerator {
     }
   }
 
-
-
   // Future<SplashModel> splash(String token, int appId) async {
   //   try {
   //     Response response = await _dio
@@ -173,7 +157,6 @@ class ServiceGenerator {
   //     return SplashModel.withError(_getError(error).toJson());
   //   }
   // }
-
 
   // Future<ResponseModel> rateReqApp(String content, int id, int rate) async {
   //   try {
@@ -197,15 +180,15 @@ class ServiceGenerator {
   //   }
   // }
 
-  Future<ResponseModel> postProfile(
-      String name, String fname,String dname, String email, String addres) async {
+  Future<ResponseModel> postProfile(String name, String fname, String dname,
+      String email, String addres) async {
     try {
       Response response = await _dio.post(
         ServerConfig.profile,
         data: {
           "first_name": name,
           "last_name": fname,
-          "display_name":dname,
+          "display_name": dname,
           "email": email,
           "address": addres
         },
@@ -273,10 +256,10 @@ class ServiceGenerator {
   //     return ResponseModel.withError(_getError(error).toJson());
   //   }
   // }
-  Future<ResponseModel> changePassword(String old ,String neww) async {
+  Future<ResponseModel> changePassword(String old, String neww) async {
     try {
-      Response response =
-          await _dio.post(ServerConfig.changePassword, data: {"old_password": old,"new_password": neww });
+      Response response = await _dio.post(ServerConfig.changePassword,
+          data: {"old_password": old, "new_password": neww});
       return ResponseModel.fromJson(response.data);
     } catch (error, stacktrace) {
       loggerNoStack.e("Exception occured: $error stackTrace: $stacktrace");

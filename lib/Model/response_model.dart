@@ -2,6 +2,8 @@ class BaseResponseModel {
   String message;
   bool status;
   bool isloading;
+  int errorCode = 0;
+  bool isLoading = false;
 
   BaseResponseModel({
     this.message = "",
@@ -10,18 +12,25 @@ class BaseResponseModel {
   });
   factory BaseResponseModel.fromJson(Map<String, dynamic> json) {
     return BaseResponseModel(
-        status: json["status"],
-        message: json["message"],);
+      status: json["status"],
+      message: json["message"],
+    );
   }
 }
 
 class ResponseModel extends BaseResponseModel {
   ResponseModel({
-    message = "",
-    status = false,
-    errorCode = 200,
-    isloading = false,
-  });
+    bool status = false,
+    String message = "",
+    int errorCode = 0,
+    bool isLoading = false,
+  }) {
+    this.status = status;
+    this.message = message;
+    this.errorCode = errorCode;
+    this.isLoading = isLoading;
+  }
+
   factory ResponseModel.fromJson(Map<String, dynamic> json) {
     return ResponseModel(
         status: json["status"],

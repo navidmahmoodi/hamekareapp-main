@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_localizations/flutter_localizations.dart' as localized;
+// import 'package:flutter_localizations/flutter_localizations.dart' as localized;
 import 'package:hamekare_app/screen/Intro/intro.dart';
 import 'package:hamekare_app/controller/main_controller.dart';
 import 'package:hamekare_app/screen/Login/city.dart';
+import 'package:hamekare_app/screen/Login/login_phone.dart';
 import 'package:hamekare_app/screen/Login/video_screen.dart';
 import 'package:hamekare_app/screen/home.dart';
 import 'package:hamekare_app/screen/home/cartpage.dart';
@@ -27,16 +28,18 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Hamekare',
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: const [
-        localized.GlobalMaterialLocalizations.delegate,
-        localized.GlobalWidgetsLocalizations.delegate,
-        localized.GlobalCupertinoLocalizations.delegate,
-      ],
+      locale: const Locale('fa', 'IR'),
+      fallbackLocale: const Locale('fa', 'IR'),
+      // localizationsDelegates: const [
+      //   localized.GlobalMaterialLocalizations.delegate,
+      //   localized.GlobalWidgetsLocalizations.delegate,
+      //   localized.GlobalCupertinoLocalizations.delegate,
+      // ],
       getPages: [
-        GetPage(name: '/home', page: () => const HomeScreen()),
+        GetPage(name: '/home', page: () => HomeScreen()),
         GetPage(name: '/intro', page: () => IntroScreen()),
         GetPage(name: '/splash', page: () => Splash()),
-        // GetPage(name: '/login', page: () => PhoneNumber()),
+        GetPage(name: '/login', page: () => LoginScreen()),
         // GetPage(name: '/otp', page: () => OtpScreen()),
         GetPage(name: '/cart', page: () => CartPage()),
         GetPage(name: '/setting', page: () => SettingScreen()),

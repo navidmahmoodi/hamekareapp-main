@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
 
 String handleError(DioException error) {
-  String errorDescription = "";
+  String errorDescription =
+      "Connection to API server failed due to internet connection";
   switch (error.type) {
     case DioExceptionType.cancel:
       errorDescription = "Request to API server was cancelled";
@@ -27,6 +28,9 @@ String handleError(DioException error) {
       errorDescription = "Received badCertificate";
       break;
     case DioExceptionType.connectionError:
+      errorDescription = "Received connectionError";
+      break;
+    default:
       errorDescription = "Received connectionError";
       break;
   }

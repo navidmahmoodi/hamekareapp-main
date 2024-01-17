@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:hamekare_app/controller/main_controller.dart';
 import 'package:intl/intl.dart';
 import 'package:shamsi_date/shamsi_date.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -63,19 +64,20 @@ pop([dynamic data]) {
   route.navigatePop(data);
 }
 
-// toMain() {
-//   final MainController mainController = Get.find();
-//   var p = "/main";
-//   // if (!mainBloc.isUserLogin()) p = "/register";
-//   // if (!mainBloc.showIntro())
-//   //   p = "/intro";
-//   // else if (!mainBloc.isUserLogin())
-//   //   p = "/verifyPhone";
-//   if (!mainController.isUserFilledProfile())
-//     p = "/profile";
-//   else if (!mainController.showIntro()) p = "/intro";
-//   toCPage(p);
-// }
+toMain() {
+  var p = "/home";
+  try {
+    final MainController mainController = Get.find();
+    if (mainController.showIntro()) {
+      p = "/intro";
+    } else if (!mainController.isUserLogin()) {
+      p = "/login";
+    }
+  } catch (e) {
+    p = "/login";
+  }
+  toCPage(p);
+}
 
 bool isPhone(String tel) {
   if (tel.length == 11 && isNumeric(tel)) {
@@ -94,22 +96,26 @@ bool isNumeric(String? s) {
 class ShowMSG {
   ShowMSG();
   void error(String title, String msg) {
-    Get.snackbar(
-      title,
-      msg,
-      animationDuration: const Duration(milliseconds: 400),
-      duration: const Duration(seconds: 3),
-      backgroundColor: Colors.red,
-    );
+    if (msg.isNotEmpty) {
+      Get.snackbar(
+        title,
+        msg,
+        animationDuration: const Duration(milliseconds: 400),
+        duration: const Duration(seconds: 3),
+        backgroundColor: Colors.red,
+      );
+    }
   }
 
   void info(String title, String msg) {
-    Get.snackbar(
-      title,
-      msg,
-      animationDuration: const Duration(milliseconds: 400),
-      duration: const Duration(seconds: 3),
-    );
+    if (msg.isNotEmpty) {
+      Get.snackbar(
+        title,
+        msg,
+        animationDuration: const Duration(milliseconds: 400),
+        duration: const Duration(seconds: 3),
+      );
+    }
   }
 
   void errorWithButton(
@@ -117,29 +123,31 @@ class ShowMSG {
       String msg = "",
       required Widget btn,
       Function? onClose}) {
-    Get.showSnackbar(
-      GetSnackBar(
-        title: title,
-        message: msg,
-        isDismissible: false,
-        animationDuration: const Duration(milliseconds: 400),
-        mainButton: btn,
-        snackPosition: SnackPosition.BOTTOM,
-      ),
-    ).future.then(
-      (_) {
-        onClose!.call();
-      },
-    );
-    // return Get.snackbar(
-    //   title,
-    //   msg,
-    //   animationDuration: Duration(milliseconds: 400),
-    //   // backgroundColor: Colors.black54,
-    //   mainButton: btn,
-    //   isDismissible: false,
-    //   snackPosition: SnackPosition.BOTTOM,
-    // );
+    if (msg.isNotEmpty) {
+      Get.showSnackbar(
+        GetSnackBar(
+          title: title,
+          message: msg,
+          isDismissible: false,
+          animationDuration: const Duration(milliseconds: 400),
+          mainButton: btn,
+          snackPosition: SnackPosition.BOTTOM,
+        ),
+      ).future.then(
+        (_) {
+          onClose!.call();
+        },
+      );
+      // return Get.snackbar(
+      //   title,
+      //   msg,
+      //   animationDuration: Duration(milliseconds: 400),
+      //   // backgroundColor: Colors.black54,
+      //   mainButton: btn,
+      //   isDismissible: false,
+      //   snackPosition: SnackPosition.BOTTOM,
+      // );
+    }
   }
 
   void showBar(GetSnackBar bar) {
@@ -148,6 +156,9 @@ class ShowMSG {
 
   GetSnackBar snackBarWidget(
       {String title = "", String msg = "", required Widget btn}) {
+    if (msg.isEmpty) {
+      msg = "no Message";
+    }
     return GetSnackBar(
       title: title,
       message: msg,
@@ -159,6 +170,9 @@ class ShowMSG {
   }
 
   showSnackBar(String msg) {
+    if (msg.isEmpty) {
+      msg = "no Message";
+    }
     Get.showSnackbar(GetSnackBar(
       duration: const Duration(seconds: 2),
       message: msg,

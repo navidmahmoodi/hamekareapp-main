@@ -16,9 +16,11 @@ class CityScreen extends StatelessWidget {
   init() async {
     await _cityController.getCity();
   }
+
   init2(int id) async {
     await _cityController.getSubCity(id);
   }
+
   @override
   Widget build(BuildContext context) {
     init();
@@ -97,147 +99,130 @@ class CityScreen extends StatelessWidget {
                                   _cityController.getcityModel.cities![i];
                               return ElevatedButton(
                                 onPressed: () {
-                                   init2(item0.id);
-                                                // top
-                                                Get.dialog(
-                                                  Scaffold(
-                                                    backgroundColor:
-                                                        const Color.fromARGB(0, 39, 35, 35),
-                                                    body: Container(
-                                                      padding: const EdgeInsets
-                                                          .symmetric(
-                                                          vertical: 20,
-                                                          horizontal: 20),
-                                                      decoration: BoxDecoration(
-                                                          color: Colors.white,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      30)),
+                                  init2(item0.id);
+                                  // top
+                                  Get.dialog(
+                                    Scaffold(
+                                      backgroundColor:
+                                          const Color.fromARGB(0, 39, 35, 35),
+                                      body: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 20, horizontal: 20),
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(30)),
+                                        margin: const EdgeInsets.symmetric(
+                                            vertical: 70, horizontal: 30),
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 15),
+                                              child: Text(
+                                                "انتخاب شهر",
+                                                style: TextStyle(
+                                                    fontSize: 28,
+                                                    color:
+                                                        MyThemes.primaryColor),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: Obx(() {
+                                                if (_cityController
+                                                    .getSubcityModel
+                                                    .isloading) {
+                                                  return simpleLoading();
+                                                }
+                                                if (_postcityController
+                                                    .getcityResponse
+                                                    .isloading) {
+                                                  return Container(
                                                       margin: const EdgeInsets
                                                           .symmetric(
-                                                          vertical: 70,
-                                                          horizontal: 30),
-                                                      child: Column(
-                                                        children: [
-                                                          Container(
-                                                            margin:
-                                                                const EdgeInsets
-                                                                    .symmetric(
-                                                                    vertical:
-                                                                        15),
-                                                            child: Text(
-                                                              "انتخاب شهر",
-                                                              style: TextStyle(
-                                                                  fontSize: 28,
-                                                                  color: MyThemes
+                                                          vertical: 4),
+                                                      child: simpleLoading());
+                                                }
+                                                var item = _cityController
+                                                    .getSubcityModel.cities;
+                                                if (item == null) {
+                                                  return const Center(
+                                                    child: Text("یافت نشد"),
+                                                  );
+                                                }
+                                                return ListView.builder(
+                                                  // physics: ScrollPhysics(),
+                                                  shrinkWrap: true,
+                                                  itemCount: _cityController
+                                                      .getSubcityModel
+                                                      .cities!
+                                                      .length,
+                                                  itemBuilder: (c, i) {
+                                                    var item0 = _cityController
+                                                        .getSubcityModel
+                                                        .cities![i];
+
+                                                    return ElevatedButton(
+                                                      onPressed: () {
+                                                        _mainController
+                                                            .setCityid(item0.id!
+                                                                .toInt());
+                                                        _mainController
+                                                            .setCityName(item0
+                                                                .name
+                                                                .toString());
+
+                                                        Get.to(LawScreen());
+                                                      },
+                                                      style: ButtonStyle(
+                                                          shadowColor:
+                                                              MaterialStateProperty
+                                                                  .all(MyThemes
                                                                       .primaryColor),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
+                                                          shape: MaterialStateProperty
+                                                              .all<
+                                                                  RoundedRectangleBorder>(
+                                                            RoundedRectangleBorder(
+                                                              side: BorderSide(
+                                                                color: MyThemes
+                                                                    .primaryColor,
+                                                                width: 2,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10),
                                                             ),
                                                           ),
-                                                          Expanded(
-                                                            child: Obx(() {
-                                                              if (_cityController
-                                                                  .getSubcityModel
-                                                                  .isloading) {
-                                                                return simpleLoading();
-                                                              }
-                                                              if (_postcityController
-                                                                  .getcityResponse
-                                                                  .isloading) {
-                                                                return Container(
-                                                                    margin: const EdgeInsets
-                                                                        .symmetric(
-                                                                        vertical:
-                                                                            4),
-                                                                    child:
-                                                                        simpleLoading());
-                                                              }
-                                                              var item =
-                                                                  _cityController
-                                                                      .getSubcityModel
-                                                                      .cities;
-                                                              if (item ==
-                                                                  null) {
-                                                                return const Center(
-                                                                  child: Text(
-                                                                      "یافت نشد"),
-                                                                );
-                                                              }
-                                                              return ListView
-                                                                  .builder(
-                                                                // physics: ScrollPhysics(),
-                                                                shrinkWrap:
-                                                                    true,
-                                                                itemCount:
-                                                                    _cityController
-                                                                        .getSubcityModel
-                                                                        .cities!
-                                                                        .length,
-                                                                itemBuilder:
-                                                                    (c, i) {
-                                                                  var item0 = _cityController
-                                                                      .getSubcityModel
-                                                                      .cities![i];
-
-                                                                  return ElevatedButton(
-                                                                    onPressed:
-                                                                        () {
-                                                                      _mainController.setCityid(item0
-                                                                          .id!
-                                                                          .toInt());
-                                                                      _mainController.setCityName(item0
-                                                                          .name
-                                                                          .toString());
-                                                                      _mainController
-                                                                          .init();
-                                                                          
-                                  Get.to(LawScreen());
-                                                                    },
-                                                                    style: ButtonStyle(
-                                                                        shadowColor: MaterialStateProperty.all(MyThemes.primaryColor),
-                                                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                                                          RoundedRectangleBorder(
-                                                                            side:
-                                                                                BorderSide(
-                                                                              color: MyThemes.primaryColor,
-                                                                              width: 2,
-                                                                            ),
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(10),
-                                                                          ),
-                                                                        ),
-                                                                        backgroundColor: MaterialStateProperty.all(MyThemes.secondryColor)),
-                                                                    child:
-                                                                        Container(
-                                                                      margin: const EdgeInsets
-                                                                          .symmetric(
-                                                                          vertical:
-                                                                              3),
-                                                                      child:
-                                                                          Text(
-                                                                        item0
-                                                                            .name
-                                                                            .toString(),
-                                                                        style: TextStyle(
-                                                                            color:
-                                                                                MyThemes.primaryColor,
-                                                                            fontSize: 17),
-                                                                      ),
-                                                                    ),
-                                                                  );
-                                                                },
-                                                              );
-                                                            }),
-                                                          ),
-                                                        ],
+                                                          backgroundColor:
+                                                              MaterialStateProperty
+                                                                  .all(MyThemes
+                                                                      .secondryColor)),
+                                                      child: Container(
+                                                        margin: const EdgeInsets
+                                                            .symmetric(
+                                                            vertical: 3),
+                                                        child: Text(
+                                                          item0.name.toString(),
+                                                          style: TextStyle(
+                                                              color: MyThemes
+                                                                  .primaryColor,
+                                                              fontSize: 17),
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ),
+                                                    );
+                                                  },
                                                 );
-                                                //end
+                                              }),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                  //end
                                 },
                                 style: ButtonStyle(
                                     shadowColor: MaterialStateProperty.all(

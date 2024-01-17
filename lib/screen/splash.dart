@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hamekare_app/controller/splash_controller.dart';
-import 'package:hamekare_app/screen/Intro/intro.dart';
 import 'package:hamekare_app/tools/tools.dart';
 
 class Splash extends StatelessWidget {
@@ -12,7 +11,8 @@ class Splash extends StatelessWidget {
   final _splashController = Get.put(SplashController());
 
   init() async {
-    // await _splashController.getSplash();
+    await _splashController.getSplash();
+    toMain();
 
     // if (_splashController.splashResponse.isError) {
     //   Get.offNamed("/intro");
@@ -44,10 +44,7 @@ class Splash extends StatelessWidget {
                 margin: const EdgeInsets.only(bottom: 130),
                 child: Center(
                   child: ElevatedButton(
-                      onPressed: () {
-                        Get.to(IntroScreen());
-                      },
-                      child: const Text("ادامه")),
+                      onPressed: init, child: const Text("ادامه")),
                 ))
           ],
         ),

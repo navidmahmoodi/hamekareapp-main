@@ -2,47 +2,36 @@ import 'dart:io';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:get/get.dart';
 import 'package:hamekare_app/screen/home/cartpage.dart';
+import 'package:hamekare_app/screen/home/dashboard_screen.dart';
 import 'package:hamekare_app/screen/home/settingscreen.dart';
 import 'package:hamekare_app/tools/tools.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
+  HomeScreen({super.key});
 
-  @override
-  HomeState createState() => HomeState();
-}
-
-class HomeState extends State<HomeScreen> {
   final _controller = Get.put(HomeController());
 
   final List<Widget> _pages = [
-    const HomeScreen(),
+    DashboardScreen(),
     CartPage(),
     SettingScreen(),
   ];
-  int currentIndex = 0;
 
-  openDialPad(String phoneNumber) async {
-    Uri url = Uri(scheme: "tel", path: phoneNumber);
-    if (await canLaunchUrl(url)) {
-      await launchUrl(url);
-    } else {
-      print("Can't open dial pad.");
-    }
-  }
+  // openDialPad(String phoneNumber) async {
+  //   Uri url = Uri(scheme: "tel", path: phoneNumber);
+  //   if (await canLaunchUrl(url)) {
+  //     await launchUrl(url);
+  //   }
+  // }
 
-  DateTime? currentBackPressTime;
   bool onWillPop(bool v) {
     DateTime now = DateTime.now();
-    if (currentBackPressTime == null ||
-        now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
-      currentBackPressTime = now;
+    if (_controller.currentBackPressTime == null ||
+        now.difference(_controller.currentBackPressTime!) >
+            const Duration(seconds: 2)) {
+      _controller.currentBackPressTime = now;
       Fluttertoast.showToast(msg: "برای خروج دوباره برگشت را بفشارید");
       return false;
     }
@@ -62,7 +51,7 @@ class HomeState extends State<HomeScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          openDialPad("09179456585");
+          launchURL("tel:09179456585");
         },
         backgroundColor: MyThemes.secondryColor,
         child: Container(
@@ -71,43 +60,46 @@ class HomeState extends State<HomeScreen> {
             ),
             child: const Icon(Icons.call)),
       ),
-      bottomNavigationBar: BottomNavyBar(
-        selectedIndex: currentIndex,
-        backgroundColor: MyThemes.primaryColor,
-        iconSize: 29,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        animationDuration: const Duration(milliseconds: 150),
-        curve: Curves.ease,
-        onItemSelected: (index) {
-          setState(() {
-            currentIndex = index;
-          });
-          onAddButtonTapped(index);
-        },
-        items: <BottomNavyBarItem>[
-          BottomNavyBarItem(
-            icon: const Icon(Icons.home),
-            title: const Text('خانه'),
-            activeColor: MyThemes.secondryColor,
-            textAlign: TextAlign.center,
-            inactiveColor: Colors.white,
-          ),
-          BottomNavyBarItem(
-            icon: const Icon(Icons.shopping_cart_rounded),
-            textAlign: TextAlign.center,
-            title: const Text('سفارشات شما'),
-            activeColor: MyThemes.secondryColor,
-            inactiveColor: Colors.white,
-          ),
-          BottomNavyBarItem(
-            icon: const Icon(Icons.person),
-            title: const Text('ناحیه کاربری'),
-            textAlign: TextAlign.center,
-            activeColor: MyThemes.secondryColor,
-            inactiveColor: Colors.white,
-          ),
-        ],
-      ),
+      bottomNavigationBar: Obx(() {
+        return BottomNavyBar(
+          selectedIndex: _controller.currentIndex,
+          backgroundColor: MyThemes.primaryColor,
+          iconSize: 29,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          animationDuration: const Duration(milliseconds: 150),
+          curve: Curves.ease,
+          onItemSelected: (index) {
+            // setState(() {
+            //   currentIndex = index;
+            // });
+            _controller.currentIndex = index;
+            onAddButtonTapped(index);
+          },
+          items: <BottomNavyBarItem>[
+            BottomNavyBarItem(
+              icon: const Icon(Icons.home),
+              title: const Text('خانه'),
+              activeColor: MyThemes.secondryColor,
+              textAlign: TextAlign.center,
+              inactiveColor: Colors.white,
+            ),
+            BottomNavyBarItem(
+              icon: const Icon(Icons.shopping_cart_rounded),
+              textAlign: TextAlign.center,
+              title: const Text('سفارشات شما'),
+              activeColor: MyThemes.secondryColor,
+              inactiveColor: Colors.white,
+            ),
+            BottomNavyBarItem(
+              icon: const Icon(Icons.person),
+              title: const Text('ناحیه کاربری'),
+              textAlign: TextAlign.center,
+              activeColor: MyThemes.secondryColor,
+              inactiveColor: Colors.white,
+            ),
+          ],
+        );
+      }),
       body: PopScope(
         onPopInvoked: onWillPop,
         child: Stack(
@@ -136,4 +128,6 @@ class HomeController extends GetxController {
   final _currentIndex = 0.obs;
   int get currentIndex => _currentIndex.value;
   set currentIndex(int val) => _currentIndex.value = val;
+
+  DateTime? currentBackPressTime;
 }

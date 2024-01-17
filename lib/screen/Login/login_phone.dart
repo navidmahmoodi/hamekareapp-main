@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hamekare_app/controller/login_contoller.dart';
 import 'package:hamekare_app/screen/Login/information_screen.dart';
-import 'package:hamekare_app/screen/home.dart';
 
 import '../../tools/tools.dart';
 
@@ -151,14 +150,19 @@ class LoginScreen extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () async {
                           if (_mobilecontroller.text.length == 11) {
-                            await _loginController.postLogin(
+                            var response = await _loginController.postLogin(
                                 _controller.text, _mobilecontroller.text);
+                            if (response.status) {
+                              toMain();
 
-                            await _loginController.getToken();
-                            Get.to(() => const HomeScreen());
-
-                            ShowMSG().showSnackBar(
-                                _loginController.loginResponse.message);
+                              // ShowMSG().showSnackBar(
+                              //     _loginController.loginResponse.message);
+                            } else if (response.errorCode == 406) {
+                              ShowMSG().error("خطا",
+                                  "نام کاربری یا رمز عبور صحیح نمی باشد");
+                            } else {
+                              ShowMSG().error("خطا", response.message);
+                            }
                           } else {
                             ShowMSG().showSnackBar(
                                 _loginController.loginResponse.message);

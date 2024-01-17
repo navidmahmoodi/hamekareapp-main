@@ -1,19 +1,18 @@
 import 'package:hamekare_app/Model/response_model.dart';
 
-class RegisterModel extends BaseResponseModel{
+class RegisterModel extends BaseResponseModel {
   RegisterModel({
     this.data,
   });
   late bool isSuccess;
-  late Data ?data;
-  
-  RegisterModel.fromJson(Map<String, dynamic> json){
-    status = json['status'];
-    isSuccess = json['isSuccess'];
-    data = Data.fromJson(json['data']);
+  RegisterDataModel? data;
+
+  RegisterModel.fromJson(Map<String, dynamic> json) {
+    data = RegisterDataModel.fromJson(json['data']);
+    status = true;
     message = json['message'];
   }
-    factory RegisterModel.withError(Map<String, dynamic> json) {
+  factory RegisterModel.withError(Map<String, dynamic> json) {
     RegisterModel item = RegisterModel();
     item.status = json["status"];
     item.message = json["message"];
@@ -21,8 +20,8 @@ class RegisterModel extends BaseResponseModel{
   }
 }
 
-class Data {
-  Data({
+class RegisterDataModel {
+  RegisterDataModel({
     required this.id,
     required this.firstName,
     required this.lastName,
@@ -40,8 +39,8 @@ class Data {
   late String? apiToken;
   late String? avatar;
   late String? loginType;
-  
-  Data.fromJson(Map<String, dynamic> json){
+
+  RegisterDataModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     firstName = json['first_name'];
     lastName = json['last_name'];
@@ -51,6 +50,4 @@ class Data {
     avatar = json['avatar'];
     loginType = json['login_type'];
   }
-
-
 }

@@ -30,16 +30,6 @@ class OtpScreen extends StatelessWidget {
     _mainController.api.reqOtp();
   }
 
-  // snackBar Widget
-  snackBar(String? message) {
-    return ScaffoldMessenger.of(Get.context!).showSnackBar(
-      SnackBar(
-        content: Text(message!),
-        duration: const Duration(seconds: 2),
-      ),
-    );
-  }
-
   // void init() async {
   //   final _loginController = Get.put(LoginController());
   //   await _loginController.postLogin();

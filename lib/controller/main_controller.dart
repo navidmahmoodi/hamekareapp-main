@@ -23,6 +23,10 @@ class MainController extends GetxController {
   String cityname = "";
   bool isInit = false, isInitRunning = false;
 
+  bool isUserLogin() {
+    return !(token == "");
+  }
+
   var headers = {
     "accept": 'application/json',
     "content-type": 'application/json; charset=UTF-8',
@@ -64,12 +68,13 @@ class MainController extends GetxController {
   set profileImage(XFile? v) =>
       _profileResponse.update((val) => val!.image = v);
 
-  Future<ProfileResponse> postPofile(String name, String fname,String dname, String email, String addres) async {
+  Future<ProfileResponse> postPofile(String name, String fname, String dname,
+      String email, String addres) async {
     _profileResponse.update((val) {
       val!.isloading = true;
     });
 
-    await api.postProfile(name, fname,dname, email, addres);
+    await api.postProfile(name, fname, dname, email, addres);
 
     _profileResponse.update((val) {
       val!.isloading = false;
@@ -144,22 +149,29 @@ class MainController extends GetxController {
     cityname = prefs.getString("cityname") ?? "1";
     setToken(token);
   }
-  setCityid(int t) async{
-    prefs = await SharedPreferences.getInstance();
+
+  setCityid(int t) async {
     cityid = t;
-    prefs.setInt("cityid", t);
+    await prefs.setInt("cityid", t);
   }
-    setCityName(String t) async{
-    prefs = await SharedPreferences.getInstance();
+
+  setCityName(String t) async {
     cityname = t;
-    prefs.setString("cityname", t);
+    await prefs.setString("cityname", t);
   }
-  setToken(String t) async{
-    prefs = await SharedPreferences.getInstance();
+
+  setToken(String t) async {
     token = t;
-    prefs.setString("token", t);
+    await prefs.setString("token", t);
     headers["Authorization"] = "Bearer $t";
     headers["token"] = t;
   }
+
+  bool showIntro() {
+    return prefs.getBool("intro") ?? true;
+  }
+
+  Future doneIntro() async {
+    await prefs.setBool("intro", false);
+  }
 }
-                

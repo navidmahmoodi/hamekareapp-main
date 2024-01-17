@@ -8,8 +8,8 @@ import 'package:hamekare_app/controller/main_slider_controller.dart';
 import 'package:hamekare_app/controller/post_city_controller.dart';
 import 'package:hamekare_app/tools/tools.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key}) : super(key: key);
+class DashboardScreen extends StatelessWidget {
+  DashboardScreen({Key? key}) : super(key: key);
 
   final _controller = Get.put(SliderController());
   final MainController _mainController = Get.find();
@@ -234,8 +234,6 @@ class HomeScreen extends StatelessWidget {
                                                                           .toString());
                                                                       Get.back();
                                                                       Get.back();
-                                                                      _mainController
-                                                                          .init();
                                                                     },
                                                                     style: ButtonStyle(
                                                                         shadowColor: MaterialStateProperty.all(MyThemes.primaryColor),

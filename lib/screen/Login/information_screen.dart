@@ -42,18 +42,19 @@ class RegisterScreen extends StatelessWidget {
                   _passwordController.text.length < 8) {
                 ShowMSG().showSnackBar("اطلاعات خود را صحیح وارد کنید !");
               } else {
-                await _controller.postSignUp(
+                var response = await _controller.postSignUp(
                     _namController.text,
                     _khanevadegiController.text,
                     _emailController.text,
                     _mobileController.text,
                     _passwordController.text,
                     _usernameController.text);
-                Get.to(OtpScreen(phone: _mobileController.text));
 
-                if (_controller.postExpertController.status == true) {
-                  ShowMSG()
-                      .showSnackBar(_controller.postExpertController.message);
+                ShowMSG()
+                    .showSnackBar(_controller.postExpertController.message);
+
+                if (response.status) {
+                  Get.to(() => OtpScreen(phone: _mobileController.text));
                 }
               }
             },

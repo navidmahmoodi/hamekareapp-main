@@ -2,17 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hamekare_app/Model/intro_slider_model.dart';
 import 'package:hamekare_app/Model/temp/introslidertemp.dart';
-import 'package:hamekare_app/Theme/theme2.dart';
-import 'package:hamekare_app/screen/Login/login_phone.dart';
+import 'package:hamekare_app/controller/main_controller.dart';
+import 'package:hamekare_app/tools/tools.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class IntroScreen extends StatelessWidget {
   IntroScreen({Key? key}) : super(key: key);
   List<IntroImageTextModel> get _list => introImageTextList;
   final _controller = PageController();
+  final MainController _mainController = Get.find();
+
+  void init() async {
+    await _mainController.doneIntro();
+  }
 
   @override
   Widget build(BuildContext context) {
+    init();
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -70,8 +76,8 @@ class IntroScreen extends StatelessWidget {
                                       width: 2.5, color: Colors.black)),
                               margin: const EdgeInsets.symmetric(
                                   horizontal: 32, vertical: 32),
-                              child: Image.asset(item.image,
-                                  fit: BoxFit.fitWidth),
+                              child:
+                                  Image.asset(item.image, fit: BoxFit.fitWidth),
                             ),
                           ),
                         ),
@@ -131,7 +137,7 @@ class IntroScreen extends StatelessWidget {
               decoration: const BoxDecoration(),
               child: ElevatedButton(
                 onPressed: () {
-                  Get.to(LoginScreen());
+                  toMain();
                 },
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(

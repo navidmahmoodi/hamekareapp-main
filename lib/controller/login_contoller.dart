@@ -29,19 +29,21 @@ class LoginController extends GetxController {
   }
 
   Future<LoginModel> postLogin(String password, String mobile) async {
-    _loginResponse.update((val) {
-      val!.isloading = true;
-    });
+    isloading = true;
 
-    _loginResponse.value =
-        await _mainController.api.postLogin(mobile, password);
+    var response = await _mainController.api.postLogin(mobile, password);
 
-    await _mainController.setToken(loginResponse.data!.apiToken.toString());
-    _loginResponse.update((val) {
-      val!.isloading = false;
-    });
+    if (response.data == null) {
+      response.status = false;
+    }
 
-    return _loginResponse.value;
+    if (response.status) {
+      _loginResponse.value = response;
+      await _mainController.setToken(response.data!.apiToken.toString());
+    }
+
+    isloading = false;
+    return response;
   }
 
   Future<OtpModel> postOtp(String otp, String mobile) async {
@@ -51,7 +53,6 @@ class LoginController extends GetxController {
     if (otp.length == 4) {
       _otpResponse.value = await _mainController.api.postOtp(mobile, otp);
       _mainController.setToken(otpResponse.data!.apiToken.toString());
-      _mainController.init();
       otpResponse.message = "احراز هویت شما موفقیت آمیز بود";
     } else {
       otpResponse.message = "رمز یکبار مصرف صحیح نمی باشد";
