@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hamekare_app/controller/main_controller.dart';
-import 'package:hamekare_app/screen/home/service/service_page.dart';
 import 'package:hamekare_app/tools/tools.dart';
 
 import '../screen/home/choosetimepage/choosetime.dart';

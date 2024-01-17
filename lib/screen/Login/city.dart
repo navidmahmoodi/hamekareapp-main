@@ -4,9 +4,7 @@ import 'package:hamekare_app/controller/city_controller.dart';
 import 'package:hamekare_app/controller/main_controller.dart';
 import 'package:hamekare_app/controller/post_city_controller.dart';
 import 'package:hamekare_app/screen/Login/law_page.dart';
-import 'package:hamekare_app/screen/Login/video_screen.dart';
 import 'package:hamekare_app/tools/tools.dart';
-import 'package:persian/persian.dart';
 
 class CityScreen extends StatelessWidget {
   CityScreen({Key? key}) : super(key: key);

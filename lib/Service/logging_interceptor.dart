@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:hamekare_app/tools/logger.dart';
+
+import '../tools/logger.dart';
 
 class LoggingInterceptor extends Interceptor {
   @override
@@ -18,8 +19,15 @@ class LoggingInterceptor extends Interceptor {
   }
 
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
+  void onError(DioException err, ErrorInterceptorHandler handler) {
     loggerNoStack.e("<-- Error --> \n ${err.error} \n ${err.message}");
     return super.onError(err, handler);
+  }
+
+  void printWrapped(String text) {
+    final pattern = RegExp('.{1,800}'); // 800 is the size of each chunk
+    pattern
+        .allMatches(text)
+        .forEach((match) => loggerNoStack.i(match.group(0)));
   }
 }

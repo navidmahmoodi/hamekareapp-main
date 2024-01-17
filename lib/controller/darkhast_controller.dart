@@ -3,7 +3,6 @@ import 'package:hamekare_app/Model/darkhast_model.dart';
 import 'package:hamekare_app/Model/get_darkhast_model.dart';
 import 'package:hamekare_app/Model/response_model.dart';
 import 'package:hamekare_app/controller/main_controller.dart';
-import 'package:shamsi_date/shamsi_date.dart';
 
 class DarkhastController extends GetxController {
   final _postDarkhast = PostDarkhast().obs;

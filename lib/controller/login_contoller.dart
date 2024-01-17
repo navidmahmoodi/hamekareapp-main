@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:hamekare_app/Model/check_otp_model.dart';
 import 'package:hamekare_app/Model/login_model.dart';
-import 'package:hamekare_app/Model/response_model.dart';
 import 'package:hamekare_app/controller/main_controller.dart';
 
 class LoginController extends GetxController {

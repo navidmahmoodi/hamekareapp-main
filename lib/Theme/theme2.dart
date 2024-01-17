@@ -23,13 +23,13 @@ class MyThemes {
   static Color settingGrey = "9f9fa1".toColor();
 
   static final TextTheme textTheme1 = TextTheme(
-    bodyText1: bodyText1,
-    bodyText2: bodyText2,
-    subtitle1: subtitle1,
-    headline1: headline1,
-    headline2: headline2,
-    headline3: headline3,
-    button: TextStyle(fontSize: 16, color: textColor1),
+    bodyLarge: bodyText1,
+    bodyMedium: bodyText2,
+    titleMedium: subtitle1,
+    displayLarge: headline1,
+    displayMedium: headline2,
+    displaySmall: headline3,
+    labelLarge: TextStyle(fontSize: 16, color: textColor1),
   );
   static TextStyle subtitle1 = TextStyle(
       fontSize: 12.7, color: settingGrey, fontWeight: FontWeight.w100);
@@ -83,7 +83,10 @@ class MyThemes {
 
   static final elevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      foregroundColor: Colors.white, backgroundColor: primaryColor, disabledForegroundColor: primaryColor.withOpacity(.2).withOpacity(0.38), disabledBackgroundColor: primaryColor.withOpacity(.2).withOpacity(0.12),
+      foregroundColor: Colors.white,
+      backgroundColor: primaryColor,
+      disabledForegroundColor: primaryColor.withOpacity(.2).withOpacity(0.38),
+      disabledBackgroundColor: primaryColor.withOpacity(.2).withOpacity(0.12),
       padding: buttonPadding,
     ),
   );
@@ -91,13 +94,15 @@ class MyThemes {
   static final textButtonTheme = TextButtonThemeData(
     style: TextButton.styleFrom(
       // onPrimary: Colors.yellow,
-      foregroundColor: primaryColor, padding: buttonPadding, disabledForegroundColor: primaryColor.withOpacity(.2).withOpacity(0.38),
+      foregroundColor: primaryColor, padding: buttonPadding,
+      disabledForegroundColor: primaryColor.withOpacity(.2).withOpacity(0.38),
     ),
   );
 
   static final outlinedButtonTheme = OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
-      foregroundColor: primaryColor, padding: buttonPadding, disabledForegroundColor: primaryColor.withOpacity(.2).withOpacity(0.38),
+      foregroundColor: primaryColor, padding: buttonPadding,
+      disabledForegroundColor: primaryColor.withOpacity(.2).withOpacity(0.38),
       backgroundColor: Colors.white,
       side: BorderSide(width: 1, color: primaryColor),
       // backgroundColor: pink,

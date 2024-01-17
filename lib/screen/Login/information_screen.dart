@@ -1,8 +1,8 @@
-import 'package:flutter/widgets.dart';
+// ignore_for_file: unused_field
+
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:hamekare_app/controller/register_moshtari_controller.dart';
-import 'package:hamekare_app/screen/Login/law_page.dart';
 import 'package:hamekare_app/screen/Login/otp.dart';
 import 'package:hamekare_app/tools/tools.dart';
 import 'package:persian/persian.dart';

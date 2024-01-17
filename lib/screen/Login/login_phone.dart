@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hamekare_app/controller/login_contoller.dart';
 import 'package:hamekare_app/controller/main_controller.dart';
-import 'package:hamekare_app/screen/Login/city.dart';
 import 'package:hamekare_app/screen/Login/information_screen.dart';
-import 'package:hamekare_app/screen/Login/law_page.dart';
-import 'package:hamekare_app/screen/Login/otp.dart';
 import 'package:hamekare_app/screen/home.dart';
 
 import '../../tools/tools.dart';

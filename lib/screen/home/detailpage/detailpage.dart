@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hamekare_app/controller/darkhast_controller.dart';
 import 'package:hamekare_app/tools/tools.dart';
-import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shamsi_date/shamsi_date.dart';
 import 'package:persian/persian.dart';
@@ -36,7 +35,7 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var date = Jalali.now();
-    var now1 = DateFormat.jm().toString();
+    // var now1 = DateFormat.jm().toString();
     DateTime now = DateTime.now();
     DateTime dateOnly = now.getDateOnly();
     return Scaffold(

@@ -1,10 +1,8 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' as GET;
 import 'package:hamekare_app/Config/server_config.dart';
 import 'package:hamekare_app/Model/category_model.dart';
-import 'package:hamekare_app/Model/get_cityname_model.dart';
 import 'package:hamekare_app/Model/get_subcity.dart';
 import 'package:hamekare_app/Model/profile_model.dart';
 import 'package:hamekare_app/Model/darkhast_model.dart';
@@ -18,8 +16,6 @@ import 'package:hamekare_app/Service/error.dart';
 import 'package:hamekare_app/controller/main_controller.dart';
 import 'package:hamekare_app/response/slider_response.dart';
 import 'package:hamekare_app/tools/logger.dart';
-import 'package:shamsi_date/shamsi_date.dart';
-import '../Model/splash_model.dart';
 import '../Service/logging_interceptor.dart';
 
 final _mainController = GET.Get.put(MainController());
@@ -52,9 +48,9 @@ class ServiceGenerator {
     // }
   }
 
-  ResponseModel _getError(dynamic error) {
-    if (error is DioError) {
-      DioError e = error;
+  ResponseModel _getError<T>(dynamic error) {
+    if (error is DioException) {
+      DioException e = error;
       return ResponseModel(
           status: true,
           errorCode: e.response?.statusCode ?? 0,
@@ -63,7 +59,6 @@ class ServiceGenerator {
       return ResponseModel(status: true, errorCode: 0, message: msg);
     }
   }
-
 
   Future<CategoryModel> getCategory(String token) async {
     try {

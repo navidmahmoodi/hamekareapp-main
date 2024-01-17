@@ -1,5 +1,4 @@
 import 'package:hamekare_app/Model/response_model.dart';
-import '../Model/get_city_model.dart';
 
 class GetCityResponse extends BaseResponseModel {
   List<GetCityResponse> getcity = [];

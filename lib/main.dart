@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web_frame/flutter_web_frame.dart';
 import 'package:get/get.dart';
 import 'package:flutter_localizations/flutter_localizations.dart' as localized;
 import 'package:hamekare_app/screen/Intro/intro.dart';
 import 'package:hamekare_app/controller/main_controller.dart';
 import 'package:hamekare_app/screen/Login/city.dart';
-import 'package:hamekare_app/screen/Login/login_phone.dart';
-import 'package:hamekare_app/screen/Login/otp.dart';
 import 'package:hamekare_app/screen/Login/video_screen.dart';
 import 'package:hamekare_app/screen/home.dart';
 import 'package:hamekare_app/screen/home/cartpage.dart';
@@ -63,7 +60,7 @@ class MyApp extends StatelessWidget {
                   builder: (BuildContext context) {
                     return MediaQuery(
                       data:
-                          MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                          MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.0)),
                       child: child ?? Container(),
                     );
                   },

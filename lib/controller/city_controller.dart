@@ -1,8 +1,6 @@
-import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:hamekare_app/Model/get_city_model.dart';
-import 'package:hamekare_app/Model/get_cityname_model.dart';
 import 'package:hamekare_app/Model/get_subcity.dart';
 import 'package:hamekare_app/controller/main_controller.dart';
 

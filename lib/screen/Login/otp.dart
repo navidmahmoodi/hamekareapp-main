@@ -15,7 +15,7 @@ class OtpScreen extends StatelessWidget {
     required this.phone,
     this.errorController,
   }) : super(key: key);
-  String phone;
+  final String phone;
   final LoginController _controller = Get.find();
   final MainController _mainController = Get.find();
 

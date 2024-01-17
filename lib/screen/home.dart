@@ -39,13 +39,13 @@ class _HomeState extends State<Home> {
   }
 
   DateTime? currentBackPressTime;
-  Future<bool> onWillPop() {
+  bool onWillPop(bool v) {
     DateTime now = DateTime.now();
     if (currentBackPressTime == null ||
         now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
       currentBackPressTime = now;
       Fluttertoast.showToast(msg: "برای خروج دوباره برگشت را بفشارید");
-      return Future.value(false);
+      return false;
     }
     return exit(0);
   }
@@ -109,8 +109,8 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-      body: WillPopScope(
-        onWillPop: onWillPop,
+      body: PopScope(
+        onPopInvoked: onWillPop,
         child: Stack(
           children: [
             PageView.builder(

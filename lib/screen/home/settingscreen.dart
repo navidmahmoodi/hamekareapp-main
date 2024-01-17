@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:hamekare_app/controller/main_controller.dart';
 import 'package:hamekare_app/controller/password_controller.dart';
 import 'package:hamekare_app/tools/tools.dart';
-import 'dart:ui' as ui;
 
 import 'package:persian/persian.dart';
 
@@ -235,7 +233,6 @@ class SettingScreen extends StatelessWidget {
                           RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)))),
                   onPressed: () {
-                    var rating1 = 0;
                     Get.dialog(Dialog(
                       backgroundColor: Colors.transparent,
                       child: Container(
