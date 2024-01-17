@@ -44,7 +44,7 @@ class GetDarkhastModel {
   late int? serviceId;
   late int? providerId;
   late int? price;
-  late String? date;
+  late DateTime? date;
   late String? type;
   late String? status;
   late String? statusLabel;
@@ -53,6 +53,7 @@ class GetDarkhastModel {
   late String? customerName;
   late String? serviceName;
   late List<dynamic>? handyman;
+  late int bookingId;
 
   GetDarkhastModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -60,7 +61,7 @@ class GetDarkhastModel {
     customerId = json['customer_id'];
     serviceId = json['service_id'];
     providerId = json['provider_id'];
-    date = json['date'];
+    date = DateTime.tryParse(json['date']);
     price = json['price'];
     type = json['type'];
     status = json['status'];
@@ -69,6 +70,7 @@ class GetDarkhastModel {
     providerName = json['provider_name'];
     customerName = json['customer_name'];
     serviceName = json['service_name'];
+    bookingId = json['booking_id'] ?? 0;
     handyman = List.castFrom<dynamic, dynamic>(json['handyman']);
   }
 }

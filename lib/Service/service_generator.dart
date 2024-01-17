@@ -266,6 +266,17 @@ class ServiceGenerator {
       return ResponseModel.withError(_getError(error).toJson());
     }
   }
+
+  Future<ResponseModel> rateReqApp(param) async {
+    try {
+      Response response =
+          await _dio.post(ServerConfig.urlPostRating, data: param);
+      return ResponseModel.fromJson(response.data);
+    } catch (error, stacktrace) {
+      loggerNoStack.e("Exception occured: $error stackTrace: $stacktrace");
+      return ResponseModel.withError(_getError(error).toJson());
+    }
+  }
   // Future<void> getDarkhast(String token){
   //   try {
 

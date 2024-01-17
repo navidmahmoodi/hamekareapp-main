@@ -236,6 +236,10 @@ extension MDateTime on DateTime {
         return '${f.wN} ${f.d} ${f.mN} ${f.yyyy} - ${this.hour}:${this.minute}';
       case 7:
         return '${f.yyyy}/${f.mm}/${f.dd}';
+      case 8:
+        return f.wN;
+      case 9:
+        return '${this.hour}:${this.minute}';
       default:
         return '${f.wN} ${f.d} ${f.mN} ${f.yy}';
     }

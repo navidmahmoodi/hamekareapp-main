@@ -33,9 +33,9 @@ class ResponseModel extends BaseResponseModel {
 
   factory ResponseModel.fromJson(Map<String, dynamic> json) {
     return ResponseModel(
-        status: json["status"],
+        status: json["status"] ?? true,
         message: json["message"],
-        errorCode: json["errorCode"]);
+        errorCode: json["errorCode"] ?? 200);
   }
   factory ResponseModel.withError(Map<String, dynamic> json) {
     return ResponseModel(

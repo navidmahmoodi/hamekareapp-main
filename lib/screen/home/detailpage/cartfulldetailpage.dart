@@ -3,10 +3,61 @@ import 'package:get/get.dart';
 import 'package:hamekare_app/Model/get_darkhast_model.dart';
 import 'package:hamekare_app/tools/tools.dart';
 import 'package:persian/persian.dart';
+import 'package:shamsi_date/shamsi_date.dart';
 
 class CartFullDetail extends StatelessWidget {
   CartFullDetail({Key? key}) : super(key: key);
   final GetDarkhastModel item = Get.arguments;
+
+  Widget _badgeTitle(String value) {
+    return Text(
+      value,
+      textAlign: TextAlign.center,
+    );
+  }
+
+  Widget _badgeBox(String value) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      margin: const EdgeInsets.only(
+        top: 5,
+        right: 5,
+        left: 5,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.5),
+            spreadRadius: 1,
+            offset: const Offset(1, 1),
+            blurRadius: 4,
+          ),
+        ],
+        borderRadius: BorderRadius.circular(15),
+        border: Border.all(color: MyThemes.secondryColor, width: 2),
+      ),
+      child: Text(
+        value,
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
+
+  Widget _rowBox(List<Widget> children) {
+    return Expanded(
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        padding: const EdgeInsets.symmetric(vertical: 5),
+        decoration: BoxDecoration(
+            color: Colors.white, borderRadius: BorderRadius.circular(15)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: children,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -311,210 +362,22 @@ class CartFullDetail extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 10),
-                        padding: const EdgeInsets.symmetric(vertical: 5),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15)),
-                        child: Column(
-                          children: [
-                            const Text("ثبت کننده درخواست"),
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.5),
-                                    spreadRadius: 1,
-                                    offset: const Offset(1, 1),
-                                    blurRadius: 4,
-                                  ),
-                                ],
-                                border: Border.all(
-                                    color: MyThemes.secondryColor, width: 2),
-                              ),
-                              padding: const EdgeInsets.symmetric(vertical: 5),
-                              margin: const EdgeInsets.only(
-                                  top: 5, right: 5, left: 5),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Flexible(
-                                      child: Text(
-                                    item.customerName.toString(),
-                                    overflow: TextOverflow.ellipsis,
-                                  )),
-                                ],
-                              ),
-                            ),
-                            const Text("روز"),
-                            Container(
-                              margin: const EdgeInsets.only(
-                                  top: 5, right: 5, left: 5),
-                              padding: const EdgeInsets.symmetric(vertical: 5),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.5),
-                                    spreadRadius: 1,
-                                    offset: const Offset(1, 1),
-                                    blurRadius: 4,
-                                  ),
-                                ],
-                                borderRadius: BorderRadius.circular(15),
-                                border: Border.all(
-                                    color: MyThemes.secondryColor, width: 2),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Text(item.date.toString().withPersianNumbers()),
-                                ],
-                              ),
-                            ),
-                            const Text("تاریخ"),
-                            Container(
-                              padding: const EdgeInsets.symmetric(vertical: 5),
-                              margin: const EdgeInsets.only(
-                                top: 5,
-                                right: 5,
-                                left: 5,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.5),
-                                    spreadRadius: 1,
-                                    offset: const Offset(1, 1),
-                                    blurRadius: 4,
-                                  ),
-                                ],
-                                borderRadius: BorderRadius.circular(15),
-                                border: Border.all(
-                                    color: MyThemes.secondryColor, width: 2),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Text(item.date.toString().withPersianNumbers()),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 10),
-                        padding: const EdgeInsets.symmetric(vertical: 5),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15)),
-                        child: Column(
-                          children: [
-                            const Text("کار درخواستی"),
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.5),
-                                    spreadRadius: 1,
-                                    offset: const Offset(1, 1),
-                                    blurRadius: 4,
-                                  ),
-                                ],
-                                border: Border.all(
-                                    color: MyThemes.secondryColor, width: 2),
-                              ),
-                              padding: const EdgeInsets.symmetric(vertical: 5),
-                              margin: const EdgeInsets.only(
-                                  top: 5, right: 5, left: 5),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Flexible(
-                                      child: Text(
-                                    item.serviceName.toString(),
-                                    overflow: TextOverflow.ellipsis,
-                                  )),
-                                ],
-                              ),
-                            ),
-                            const Text("شماره تماس"),
-                            Container(
-                              margin: const EdgeInsets.only(
-                                  top: 5, right: 5, left: 5),
-                              padding: const EdgeInsets.symmetric(vertical: 5),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.5),
-                                    spreadRadius: 1,
-                                    offset: const Offset(1, 1),
-                                    blurRadius: 4,
-                                  ),
-                                ],
-                                borderRadius: BorderRadius.circular(15),
-                                border: Border.all(
-                                    color: MyThemes.secondryColor, width: 2),
-                              ),
-                              child: const Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Text("item.mobile.withPersianNumbers()"),
-                                ],
-                              ),
-                            ),
-                            const Text("ساعت"),
-                            Container(
-                              padding: const EdgeInsets.symmetric(vertical: 5),
-                              margin: const EdgeInsets.only(
-                                top: 5,
-                                right: 5,
-                                left: 5,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.5),
-                                    spreadRadius: 1,
-                                    offset: const Offset(1, 1),
-                                    blurRadius: 4,
-                                  ),
-                                ],
-                                borderRadius: BorderRadius.circular(15),
-                                border: Border.all(
-                                    color: MyThemes.secondryColor, width: 2),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Text(item.date.toString()),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    _rowBox([
+                      _badgeTitle("ثبت کننده درخواست"),
+                      _badgeBox(item.customerName.toString()),
+                      _badgeTitle("روز"),
+                      _badgeBox(item.date!.toJalali().cDate(8)),
+                      _badgeTitle("تاریخ"),
+                      _badgeBox(item.date!.toJalali().cDate(7)),
+                    ]),
+                    _rowBox([
+                      _badgeTitle("کار درخواستی"),
+                      _badgeBox(item.serviceName!),
+                      _badgeTitle("شماره تماس"),
+                      _badgeBox("item.mobile"),
+                      _badgeTitle("ساعت"),
+                      _badgeBox(item.date!.toJalali().cDate(9)),
+                    ]),
                   ],
                 ),
                 Container(
