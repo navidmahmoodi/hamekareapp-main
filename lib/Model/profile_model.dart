@@ -19,10 +19,10 @@ class ProfileResponse extends BaseResponseModel{
   }
 
   factory ProfileResponse.withError(Map<String, dynamic> json) {
-    ProfileResponse _item = ProfileResponse();
-    _item.status = json["status"];
-    _item.message = json["Message"];
-    return _item;
+    ProfileResponse item = ProfileResponse();
+    item.status = json["status"];
+    item.message = json["Message"];
+    return item;
   }
 }
 

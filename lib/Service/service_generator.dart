@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
+// ignore: library_prefixes
 import 'package:get/get.dart' as GET;
 import 'package:hamekare_app/Config/server_config.dart';
 import 'package:hamekare_app/Model/category_model.dart';
@@ -32,8 +33,8 @@ class ServiceGenerator {
       }.obs,
       baseUrl: ServerConfig.url,
       followRedirects: false,
-      receiveTimeout: Duration(seconds: 60),
-      connectTimeout: Duration(seconds: 60),
+      receiveTimeout: const Duration(seconds: 60),
+      connectTimeout: const Duration(seconds: 60),
       // contentType: ContentType.json.toString(),
     );
     _dio = Dio(options);
@@ -74,7 +75,6 @@ class ServiceGenerator {
   Future<SliderResponse> getSlider() async {
     try {
       Response response = await _dio.get(ServerConfig.getSlider);
-      print(response);
       return SliderResponse.fromJson(response.data);
     } catch (error, stacktrace) {
       loggerNoStack.e("Exception occured: $error stackTrace: $stacktrace");
@@ -86,7 +86,6 @@ class ServiceGenerator {
     try {
       Response response = await _dio.post(ServerConfig.login,
           data: {"mobile": phone, "password": password});
-      print(response);
       return LoginModel.fromJson(response.data);
     } catch (error, stacktrace) {
       loggerNoStack.e("Exception occured: $error stackTrace: $stacktrace");
@@ -131,7 +130,6 @@ class ServiceGenerator {
             "username": username,
             "password": password
           });
-      print(response.data);
       return RegisterModel.fromJson(response.data);
     } catch (error, stacktrace) {
       loggerNoStack.e("Exception occured: $error stackTrace: $stacktrace");

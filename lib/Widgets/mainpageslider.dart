@@ -30,13 +30,13 @@ class MainPageMainSlider extends StatelessWidget {
           return CarouselSlider.builder(
             itemCount: _controller.sliderResponse.data?.length,
             itemBuilder: (context, index, i) {
-              var _item = _controller.sliderResponse.data![index];
+              var item = _controller.sliderResponse.data![index];
 
               return InkWell(
                 onTap: () {
                   Get.to( () => ChooseTime(
-                        reqName: _item.title.toString(),
-                        id: _item.id!.toInt(),
+                        reqName: item.title.toString(),
+                        id: item.id!.toInt(),
                       ));
                 },
                 child: Container(
@@ -64,7 +64,7 @@ class MainPageMainSlider extends StatelessWidget {
                               topLeft: Radius.circular(20),
                               topRight: Radius.circular(20),
                             ),
-                            child: Image.network(_item.sliderImage.toString(),
+                            child: Image.network(item.sliderImage.toString(),
                               fit: BoxFit.fill,
                               width: size,
                             ),
@@ -75,7 +75,7 @@ class MainPageMainSlider extends StatelessWidget {
                         margin: const EdgeInsets.symmetric(
                             horizontal: 15, vertical: 10),
                         child: Text(
-                          _item.title.toString(),
+                          item.title.toString(),
                           style:
                               TextStyle(color: MyThemes.brown2, fontSize: 18),
                           textAlign: TextAlign.right,

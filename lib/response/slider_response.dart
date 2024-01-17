@@ -10,10 +10,10 @@ class SliderResponse extends BaseResponseModel {
     data = List.from(json['data']).map((e) => Data.fromJson(e)).toList();
   }
    factory SliderResponse.withError(Map<String, dynamic> json) {
-    SliderResponse _item = SliderResponse();
-    _item.status = json["status"];
-    _item.message = json["message"];
-    return _item;
+    SliderResponse item = SliderResponse();
+    item.status = json["status"];
+    item.message = json["message"];
+    return item;
   }
 }
 

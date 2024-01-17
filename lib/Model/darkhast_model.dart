@@ -12,10 +12,10 @@ class PostDarkhast extends BaseResponseModel{
     bookingId = json['booking_id'];
   }
   factory PostDarkhast.withError(Map<String, dynamic> json) {
-    PostDarkhast _item = PostDarkhast();
-    _item.status = json["status"];
-    _item.message = json["Message"];
-    return _item;
+    PostDarkhast item = PostDarkhast();
+    item.status = json["status"];
+    item.message = json["Message"];
+    return item;
   }
 
 }

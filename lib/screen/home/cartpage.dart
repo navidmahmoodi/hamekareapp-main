@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
@@ -55,9 +57,7 @@ class CartPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.max,
             children: [
-              Container(
-                  // margin: const EdgeInsets.only(top: 100),
-                  child: Image.asset(imagePath("nodata.png"), scale: 2)),
+              Image.asset(imagePath("nodata.png"), scale: 2),
               Center(
                 child: Container(
                   margin: const EdgeInsets.only(bottom: 100),
@@ -242,13 +242,13 @@ class CartPage extends StatelessWidget {
                                         fit: BoxFit.fill,
                                       ),
                                     ),
-                                    Text(
+                                    const Text(
                                       "item.mUserName",
                                       style: TextStyle(
                                           fontSize: 13,
                                           fontWeight: FontWeight.bold),
                                     ),
-                                    Text(
+                                    const Text(
                                       "item.mTakhasos",
                                       style: TextStyle(fontSize: 12.5),
                                     ),
@@ -521,6 +521,23 @@ class CartPage extends StatelessWidget {
                                                                         //       .clear();
                                                                         // }
                                                                       },
+                                                                      style:
+                                                                          ButtonStyle(
+                                                                        shape: MaterialStateProperty.all<
+                                                                            RoundedRectangleBorder>(
+                                                                          RoundedRectangleBorder(
+                                                                            side:
+                                                                                BorderSide(
+                                                                              color: MyThemes.primaryColor,
+                                                                              width: 2.7,
+                                                                            ),
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(50),
+                                                                          ),
+                                                                        ),
+                                                                        backgroundColor:
+                                                                            MaterialStateProperty.all(MyThemes.secondryColor),
+                                                                      ),
                                                                       child: Obx(
                                                                           () {
                                                                         if (_rateReqController
@@ -543,23 +560,6 @@ class CartPage extends StatelessWidget {
                                                                           ),
                                                                         );
                                                                       }),
-                                                                      style:
-                                                                          ButtonStyle(
-                                                                        shape: MaterialStateProperty.all<
-                                                                            RoundedRectangleBorder>(
-                                                                          RoundedRectangleBorder(
-                                                                            side:
-                                                                                BorderSide(
-                                                                              color: MyThemes.primaryColor,
-                                                                              width: 2.7,
-                                                                            ),
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(50),
-                                                                          ),
-                                                                        ),
-                                                                        backgroundColor:
-                                                                            MaterialStateProperty.all(MyThemes.secondryColor),
-                                                                      ),
                                                                     ),
                                                                   ),
                                                                 ],
@@ -669,16 +669,6 @@ class CartPage extends StatelessWidget {
                                                                             //   ShowMSG().showSnackBar("خطا!");
                                                                             // }
                                                                           },
-                                                                          child:
-                                                                              Container(
-                                                                            margin:
-                                                                                const EdgeInsets.symmetric(vertical: 2),
-                                                                            child:
-                                                                                Text(
-                                                                              "انصراف",
-                                                                              style: TextStyle(color: MyThemes.primaryColor, fontSize: 25, fontWeight: FontWeight.normal),
-                                                                            ),
-                                                                          ),
                                                                           style:
                                                                               ButtonStyle(
                                                                             shape:
@@ -694,6 +684,16 @@ class CartPage extends StatelessWidget {
                                                                             backgroundColor:
                                                                                 MaterialStateProperty.all(MyThemes.red),
                                                                           ),
+                                                                          child:
+                                                                              Container(
+                                                                            margin:
+                                                                                const EdgeInsets.symmetric(vertical: 2),
+                                                                            child:
+                                                                                Text(
+                                                                              "انصراف",
+                                                                              style: TextStyle(color: MyThemes.primaryColor, fontSize: 25, fontWeight: FontWeight.normal),
+                                                                            ),
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                       const SizedBox(
@@ -707,16 +707,6 @@ class CartPage extends StatelessWidget {
                                                                               () {
                                                                             Get.back();
                                                                           },
-                                                                          child:
-                                                                              Container(
-                                                                            margin:
-                                                                                const EdgeInsets.symmetric(vertical: 2),
-                                                                            child:
-                                                                                Text(
-                                                                              "برگشت",
-                                                                              style: TextStyle(color: MyThemes.primaryColor, fontSize: 25, fontWeight: FontWeight.normal),
-                                                                            ),
-                                                                          ),
                                                                           style:
                                                                               ButtonStyle(
                                                                             shape:
@@ -731,6 +721,16 @@ class CartPage extends StatelessWidget {
                                                                             ),
                                                                             backgroundColor:
                                                                                 MaterialStateProperty.all(Colors.white),
+                                                                          ),
+                                                                          child:
+                                                                              Container(
+                                                                            margin:
+                                                                                const EdgeInsets.symmetric(vertical: 2),
+                                                                            child:
+                                                                                Text(
+                                                                              "برگشت",
+                                                                              style: TextStyle(color: MyThemes.primaryColor, fontSize: 25, fontWeight: FontWeight.normal),
+                                                                            ),
                                                                           ),
                                                                         ),
                                                                       ),

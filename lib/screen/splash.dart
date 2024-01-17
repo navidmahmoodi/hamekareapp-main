@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hamekare_app/controller/splash_controller.dart';
@@ -19,6 +21,7 @@ class Splash extends StatelessWidget {
     // }
   }
 
+  @override
   Widget build(BuildContext context) {
     // init();
 
@@ -36,7 +39,7 @@ class Splash extends StatelessWidget {
                 scale: 2.5,
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Container(
                 margin: const EdgeInsets.only(bottom: 130),
                 child: Center(
@@ -44,7 +47,7 @@ class Splash extends StatelessWidget {
                       onPressed: () {
                         Get.to(IntroScreen());
                       },
-                      child: Text("ادامه")),
+                      child: const Text("ادامه")),
                 ))
           ],
         ),

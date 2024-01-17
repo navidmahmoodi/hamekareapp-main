@@ -12,10 +12,8 @@ import 'package:shamsi_date/shamsi_date.dart';
 import 'package:hamekare_app/tools/tools.dart';
 
 class ChooseTime extends StatelessWidget {
-  ChooseTime({
-    Key? key,
-    required this.id,required this.reqName
-  }) : super(key: key);
+  ChooseTime({Key? key, required this.id, required this.reqName})
+      : super(key: key);
   int id;
   String reqName;
 
@@ -45,33 +43,22 @@ class ChooseTime extends StatelessWidget {
               Expanded(
                 child: ElevatedButton(
                   onPressed: () {
-                    if (_adressController.text.length == 0 ||
+                    if (_adressController.text.isEmpty ||
                         _mobileController.text.length <= 10 ||
-                        _nameController.text.length == 0) {
+                        _nameController.text.isEmpty) {
                       ShowMSG().showSnackBar("اطلاعات خود را درست وارد کنید");
                     } else {
-                      Get.to(() => DetailPage(
+                      DetailPageModel model = DetailPageModel(
                           adress: _adressController.text,
-                          name: _nameController.text,
-                          phoneNumber: _mobileController.text,
-                          reqhour: dayController.selectedTime,
+                          selectedTime: dayController.selectedTime,
                           reqname: reqName,
-                          roz: dayController.day,
-                          tarikh: monthday,
+                          date: dayController.selectedDateTime,
                           tozih: _tozihController.text,
-                          titleid: id));
+                          titleid: id);
+
+                      Get.to(() => DetailPage(model: model));
                     }
                   },
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(vertical: 2),
-                    child: Text(
-                      "تایید",
-                      style: TextStyle(
-                          color: MyThemes.primaryColor,
-                          fontSize: 25,
-                          fontWeight: FontWeight.normal),
-                    ),
-                  ),
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
@@ -84,6 +71,16 @@ class ChooseTime extends StatelessWidget {
                     ),
                     backgroundColor:
                         MaterialStateProperty.all(MyThemes.secondryColor),
+                  ),
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(vertical: 2),
+                    child: Text(
+                      "تایید",
+                      style: TextStyle(
+                          color: MyThemes.primaryColor,
+                          fontSize: 25,
+                          fontWeight: FontWeight.normal),
+                    ),
                   ),
                 ),
               ),
@@ -124,10 +121,6 @@ class ChooseTime extends StatelessWidget {
                                 _colorContainer = MyThemes.secondryColor;
                               }
                             },
-                            child: Text(
-                              "تایید",
-                              style: TextStyle(color: MyThemes.primaryColor),
-                            ),
                             style: ButtonStyle(
                               backgroundColor:
                                   MaterialStateProperty.all(Colors.white),
@@ -137,6 +130,10 @@ class ChooseTime extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
+                            ),
+                            child: Text(
+                              "تایید",
+                              style: TextStyle(color: MyThemes.primaryColor),
                             ),
                           ),
                         ],
@@ -184,15 +181,13 @@ class ChooseTime extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
-                            child: Text(
-                              reqName,
-                              softWrap: false,
-                              textAlign: TextAlign.center,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                  color: MyThemes.secondryColor, fontSize: 17),
-                            ),
+                          Text(
+                            reqName,
+                            softWrap: false,
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                color: MyThemes.secondryColor, fontSize: 17),
                           ),
                         ],
                       ),
@@ -360,7 +355,7 @@ class ChooseTime extends StatelessWidget {
                           TextStyle(color: MyThemes.primaryColor, fontSize: 18),
                       keyboardType: TextInputType.multiline,
                       inputFormatters: [
-                        FilteringTextInputFormatter.deny(new RegExp(r"\n"))
+                        FilteringTextInputFormatter.deny(RegExp(r"\n"))
                       ],
                       textAlign: TextAlign.center,
                       decoration: const InputDecoration(
@@ -395,7 +390,7 @@ class ChooseTime extends StatelessWidget {
                       maxLines: 5,
                       maxLength: 1000,
                       inputFormatters: [
-                        FilteringTextInputFormatter.deny(new RegExp(r"\n"))
+                        FilteringTextInputFormatter.deny(RegExp(r"\n"))
                       ],
                       style:
                           TextStyle(color: MyThemes.primaryColor, fontSize: 18),

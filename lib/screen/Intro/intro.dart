@@ -54,7 +54,7 @@ class IntroScreen extends StatelessWidget {
                   controller: _controller,
                   itemCount: _list.length,
                   itemBuilder: (c, i) {
-                    var _item = _list[i];
+                    var item = _list[i];
                     return Column(
                       children: [
                         Expanded(
@@ -70,7 +70,7 @@ class IntroScreen extends StatelessWidget {
                                       width: 2.5, color: Colors.black)),
                               margin: const EdgeInsets.symmetric(
                                   horizontal: 32, vertical: 32),
-                              child: Image.asset(_item.image,
+                              child: Image.asset(item.image,
                                   fit: BoxFit.fitWidth),
                             ),
                           ),
@@ -79,7 +79,7 @@ class IntroScreen extends StatelessWidget {
                           margin: const EdgeInsets.symmetric(horizontal: 4),
                           child: FittedBox(
                             child: Text(
-                              _item.title,
+                              item.title,
                               style: MyThemes.headline2,
                             ),
                           ),
@@ -89,7 +89,7 @@ class IntroScreen extends StatelessWidget {
                           margin: const EdgeInsets.only(
                               top: 5, bottom: 10, left: 5, right: 5),
                           child: Text(
-                            _item.text,
+                            item.text,
                             maxLines: 3,
                             style: MyThemes.bodyText3,
                             textAlign: TextAlign.center,
@@ -133,10 +133,6 @@ class IntroScreen extends StatelessWidget {
                 onPressed: () {
                   Get.to(LoginScreen());
                 },
-                child: Text(
-                  "ورود به برنامه",
-                  style: MyThemes.headline1,
-                ),
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
@@ -146,6 +142,10 @@ class IntroScreen extends StatelessWidget {
                   ),
                   backgroundColor:
                       MaterialStateProperty.all(Colors.transparent),
+                ),
+                child: Text(
+                  "ورود به برنامه",
+                  style: MyThemes.headline1,
                 ),
               ),
             )

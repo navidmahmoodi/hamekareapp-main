@@ -7,23 +7,22 @@ import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:hamekare_app/screen/home/cartpage.dart';
-import 'package:hamekare_app/screen/home/home_screen.dart';
 import 'package:hamekare_app/screen/home/settingscreen.dart';
 import 'package:hamekare_app/tools/tools.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  _HomeState createState() => _HomeState();
+  HomeState createState() => HomeState();
 }
 
-class _HomeState extends State<Home> {
+class HomeState extends State<HomeScreen> {
   final _controller = Get.put(HomeController());
 
   final List<Widget> _pages = [
-    HomeScreen(),
+    const HomeScreen(),
     CartPage(),
     SettingScreen(),
   ];
@@ -70,7 +69,7 @@ class _HomeState extends State<Home> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
             ),
-            child: Icon(Icons.call)),
+            child: const Icon(Icons.call)),
       ),
       bottomNavigationBar: BottomNavyBar(
         selectedIndex: currentIndex,

@@ -37,7 +37,6 @@ class LoginController extends GetxController {
         await _mainController.api.postLogin(mobile, password);
 
     await _mainController.setToken(loginResponse.data!.apiToken.toString());
-    print(loginResponse.data!.apiToken.toString());
     _loginResponse.update((val) {
       val!.isloading = false;
     });
@@ -52,9 +51,7 @@ class LoginController extends GetxController {
     if (otp.length == 4) {
       _otpResponse.value = await _mainController.api.postOtp(mobile, otp);
       _mainController.setToken(otpResponse.data!.apiToken.toString());
-      print(otpResponse.data!.apiToken.toString());
       _mainController.init();
-      print(_otpResponse.value);
       otpResponse.message = "احراز هویت شما موفقیت آمیز بود";
     } else {
       otpResponse.message = "رمز یکبار مصرف صحیح نمی باشد";

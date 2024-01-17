@@ -11,7 +11,6 @@ class RateReqController extends GetxController {
     });
 
     // await _mainController.api.rateReqApp(comment, id, rate);
-    print(rate);
 
     _rateReqController.update((val) {
       val!.isloading = false;

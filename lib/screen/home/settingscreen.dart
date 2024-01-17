@@ -13,6 +13,8 @@ class SettingScreen extends StatelessWidget {
   final mailBody = TextEditingController();
   final mailSubject = TextEditingController();
   final MainController controller = Get.find();
+
+  SettingScreen({super.key});
   mail(String suject, String body) async {
     final Email email = Email(
       body: body,
@@ -63,7 +65,7 @@ class SettingScreen extends StatelessWidget {
             init();
           },
           child: ListView(
-            padding: EdgeInsets.only(bottom: 70),
+            padding: const EdgeInsets.only(bottom: 70),
             children: [
               Container(
                 width: Get.width,
@@ -71,7 +73,7 @@ class SettingScreen extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 7),
                 decoration: BoxDecoration(
                   color: MyThemes.secondryColor,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(35),
                       bottomRight: Radius.circular(35)),
                 ),
@@ -101,7 +103,7 @@ class SettingScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Text(
                         item.displayName.toString(),
-                        style: TextStyle(
+                        style: const TextStyle(
                           // color: MyThemes.primaryColor,
                           fontSize: 23,
                         ),
@@ -342,6 +344,22 @@ class SettingScreen extends StatelessWidget {
                                       oldPassController.clear();
                                       newPassController.clear();
                                     },
+                                    style: ButtonStyle(
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          side: BorderSide(
+                                            color: MyThemes.primaryColor,
+                                            width: 2.7,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                        ),
+                                      ),
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              MyThemes.secondryColor),
+                                    ),
                                     child: Obx(() {
                                       if (_mainController
                                           .profileResponse.isloading) {
@@ -362,22 +380,6 @@ class SettingScreen extends StatelessWidget {
                                         ),
                                       );
                                     }),
-                                    style: ButtonStyle(
-                                      shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                        RoundedRectangleBorder(
-                                          side: BorderSide(
-                                            color: MyThemes.primaryColor,
-                                            width: 2.7,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                        ),
-                                      ),
-                                      backgroundColor:
-                                          MaterialStateProperty.all(
-                                              MyThemes.secondryColor),
-                                    ),
                                   ),
                                 ),
                               ],
@@ -448,14 +450,13 @@ class SettingScreen extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
-                                  Container(
-                                      child: Text(
-                                    "ایمیل",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: MyThemes.primaryColor,
-                                        fontSize: 23),
-                                  )),
+                                  Text(
+                                                                      "ایمیل",
+                                                                      textAlign: TextAlign.center,
+                                                                      style: TextStyle(
+                                    color: MyThemes.primaryColor,
+                                    fontSize: 23),
+                                                                    ),
                                   Container(
                                       margin: const EdgeInsets.only(
                                           top: 10, bottom: 10),
@@ -532,36 +533,34 @@ class SettingScreen extends StatelessWidget {
                                           ),
                                         ),
                                       )),
-                                  Container(
-                                    child: ElevatedButton(
-                                        style: ButtonStyle(
-                                            backgroundColor:
-                                                MaterialStateProperty.all(
-                                                    MyThemes.secondryColor),
-                                            shape: MaterialStateProperty.all(
-                                                RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(15),
-                                              side: BorderSide(
-                                                color: MyThemes.primaryColor,
-                                                width: 2.0,
-                                              ),
-                                            ))),
-                                        onPressed: () {
-                                          mail(mailSubject.text, mailBody.text);
-                                          Get.back();
-                                        },
-                                        child: Container(
-                                          margin: const EdgeInsets.symmetric(
-                                              vertical: 2),
-                                          child: Text(
-                                            "ارسال",
-                                            style: TextStyle(
-                                                color: MyThemes.primaryColor,
-                                                fontSize: 17),
-                                          ),
-                                        )),
-                                  ),
+                                  ElevatedButton(
+                                      style: ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all(
+                                                  MyThemes.secondryColor),
+                                          shape: MaterialStateProperty.all(
+                                              RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            side: BorderSide(
+                                              color: MyThemes.primaryColor,
+                                              width: 2.0,
+                                            ),
+                                          ))),
+                                      onPressed: () {
+                                        mail(mailSubject.text, mailBody.text);
+                                        Get.back();
+                                      },
+                                      child: Container(
+                                        margin: const EdgeInsets.symmetric(
+                                            vertical: 2),
+                                        child: Text(
+                                          "ارسال",
+                                          style: TextStyle(
+                                              color: MyThemes.primaryColor,
+                                              fontSize: 17),
+                                        ),
+                                      )),
                                 ],
                               ),
                             ),
@@ -664,18 +663,6 @@ class SettingScreen extends StatelessWidget {
                                             _mainController.initToken();
                                             Get.offAllNamed("/splash");
                                           },
-                                          child: Container(
-                                            margin: const EdgeInsets.symmetric(
-                                                vertical: 2),
-                                            child: Text(
-                                              "تایید",
-                                              style: TextStyle(
-                                                  color: MyThemes.primaryColor,
-                                                  fontSize: 25,
-                                                  fontWeight:
-                                                      FontWeight.normal),
-                                            ),
-                                          ),
                                           style: ButtonStyle(
                                             shape: MaterialStateProperty.all<
                                                 RoundedRectangleBorder>(
@@ -692,6 +679,18 @@ class SettingScreen extends StatelessWidget {
                                                 MaterialStateProperty.all(
                                                     MyThemes.secondryColor),
                                           ),
+                                          child: Container(
+                                            margin: const EdgeInsets.symmetric(
+                                                vertical: 2),
+                                            child: Text(
+                                              "تایید",
+                                              style: TextStyle(
+                                                  color: MyThemes.primaryColor,
+                                                  fontSize: 25,
+                                                  fontWeight:
+                                                      FontWeight.normal),
+                                            ),
+                                          ),
                                         ),
                                       ),
                                       const SizedBox(
@@ -702,18 +701,6 @@ class SettingScreen extends StatelessWidget {
                                           onPressed: () {
                                             Get.back();
                                           },
-                                          child: Container(
-                                            margin: const EdgeInsets.symmetric(
-                                                vertical: 2),
-                                            child: Text(
-                                              "انصراف",
-                                              style: TextStyle(
-                                                  color: MyThemes.primaryColor,
-                                                  fontSize: 25,
-                                                  fontWeight:
-                                                      FontWeight.normal),
-                                            ),
-                                          ),
                                           style: ButtonStyle(
                                             shape: MaterialStateProperty.all<
                                                 RoundedRectangleBorder>(
@@ -729,6 +716,18 @@ class SettingScreen extends StatelessWidget {
                                             backgroundColor:
                                                 MaterialStateProperty.all(
                                                     Colors.white),
+                                          ),
+                                          child: Container(
+                                            margin: const EdgeInsets.symmetric(
+                                                vertical: 2),
+                                            child: Text(
+                                              "انصراف",
+                                              style: TextStyle(
+                                                  color: MyThemes.primaryColor,
+                                                  fontSize: 25,
+                                                  fontWeight:
+                                                      FontWeight.normal),
+                                            ),
                                           ),
                                         ),
                                       ),

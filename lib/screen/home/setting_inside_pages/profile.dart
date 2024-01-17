@@ -16,6 +16,8 @@ class ProfileScreen extends StatelessWidget {
   final mobilecontroller = TextEditingController();
   final mailcontroller = TextEditingController();
   final addrescontroller = TextEditingController();
+
+  ProfileScreen({super.key});
   ProfileModel get profile => _controller.profileResponse.data!;
 
   init() {
@@ -136,13 +138,6 @@ class ProfileScreen extends StatelessWidget {
               }
               ShowMSG().showSnackBar("اطلاعات شما با موفقیت ثبت شد");
             },
-            child: Container(
-              margin: const EdgeInsets.symmetric(vertical: 3),
-              child: Text(
-                'تایید',
-                style: TextStyle(color: MyThemes.primaryColor, fontSize: 20),
-              ),
-            ),
             style: ButtonStyle(
               shadowColor: MaterialStateProperty.all(MyThemes.primaryColor),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -156,6 +151,13 @@ class ProfileScreen extends StatelessWidget {
               ),
               backgroundColor:
                   MaterialStateProperty.all(MyThemes.secondryColor),
+            ),
+            child: Container(
+              margin: const EdgeInsets.symmetric(vertical: 3),
+              child: Text(
+                'تایید',
+                style: TextStyle(color: MyThemes.primaryColor, fontSize: 20),
+              ),
             ),
           ),
         ),
@@ -205,12 +207,15 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
                 Positioned(
+                  right: 125,
+                  bottom: 15,
                   child: FloatingActionButton(
                     splashColor: MyThemes.primaryColor,
                     backgroundColor: MyThemes.secondryColor,
                     onPressed: () async {
-                      if (await checkGalleryPermission(context))
+                      if (await checkGalleryPermission(context)) {
                         _controller.imagefromgallery();
+                      }
                     },
                     child: Icon(
                       Icons.camera_alt,
@@ -218,8 +223,6 @@ class ProfileScreen extends StatelessWidget {
                       size: 28,
                     ),
                   ),
-                  right: 125,
-                  bottom: 15,
                 )
               ],
             ),

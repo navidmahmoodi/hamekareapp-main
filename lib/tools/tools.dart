@@ -196,7 +196,7 @@ extension MDateTime on DateTime {
       Jalali.fromDateTime(this).addDays(days).toDateTime();
 
   String toDate() => dateTimeFormatter.format(this);
-  Jalali toJalali() => Jalali.fromDateTime(this);
+  // Jalali get toJalali => Jalali.fromDateTime(this);
 
   String formatter(String format) => DateFormat(format).format(this);
   int getTimeDuration() {
@@ -575,8 +575,8 @@ class ColumnBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Column(
-      children: new List.generate(
+    return Column(
+      children: List.generate(
           this.itemCount, (index) => this.itemBuilder(context, index)).toList(),
     );
   }

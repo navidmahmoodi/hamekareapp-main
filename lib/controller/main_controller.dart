@@ -91,7 +91,7 @@ class MainController extends GetxController {
   }
 
   Future<XFile?> getImage() async {
-    final ImagePicker _imagePicker = ImagePicker();
+    final ImagePicker imagePicker = ImagePicker();
     var result = await Get.defaultDialog(
       title: "انتخاب عکس",
       content: Column(
@@ -111,9 +111,9 @@ class MainController extends GetxController {
     );
     if (result is int) {
       if (result == 1) {
-        return _imagePicker.pickImage(source: ImageSource.gallery);
+        return imagePicker.pickImage(source: ImageSource.gallery);
       } else {
-        return _imagePicker.pickImage(source: ImageSource.camera);
+        return imagePicker.pickImage(source: ImageSource.camera);
       }
     }
     return null;

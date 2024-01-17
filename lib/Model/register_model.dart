@@ -14,10 +14,10 @@ class RegisterModel extends BaseResponseModel{
     message = json['message'];
   }
     factory RegisterModel.withError(Map<String, dynamic> json) {
-    RegisterModel _item = RegisterModel();
-    _item.status = json["status"];
-    _item.message = json["message"];
-    return _item;
+    RegisterModel item = RegisterModel();
+    item.status = json["status"];
+    item.message = json["message"];
+    return item;
   }
 }
 

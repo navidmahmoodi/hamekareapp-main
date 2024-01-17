@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'package:get/get.dart';
 import 'package:hamekare_app/Model/response_model.dart';
 import 'main_controller.dart';
@@ -13,7 +15,6 @@ class CancleReqController extends GetxController {
     });
 
     // await _mainController.api.postCancel(id);
-    print(cancleReqController.message);
 
     _cancleReqController.update((val) {
       val!.isloading = false;

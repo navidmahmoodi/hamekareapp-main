@@ -5,6 +5,7 @@ import 'package:hamekare_app/controller/main_controller.dart';
 class PostCityController extends GetxController {
   final _postCityResponse = ResponseModel().obs;
   ResponseModel get getcityResponse => _postCityResponse.value;
+  // ignore: unused_field
   final MainController _mainController = Get.find();
 
   Future<ResponseModel> postCity(int cityId) async {

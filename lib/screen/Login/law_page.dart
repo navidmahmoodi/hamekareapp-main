@@ -14,7 +14,7 @@ class LawScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         body: Container(
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white,
           ),
           child: Column(
@@ -34,7 +34,7 @@ class LawScreen extends StatelessWidget {
                   children: [
                     Container(
                       margin: const EdgeInsets.only(right: 15),
-                      child: Text("آیا قوانین را قبول دارید ؟"),
+                      child: const Text("آیا قوانین را قبول دارید ؟"),
                     ),
                     Container(
                       decoration: BoxDecoration(
@@ -66,17 +66,9 @@ class LawScreen extends StatelessWidget {
                         if (acceptt.v.value == false) {
                           ShowMSG().showSnackBar("لطفا قوانین را قبول کنید.");
                         } else {
-                          Get.to(VideoScreen());
+                          Get.to(const VideoScreen());
                         }
                       },
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(vertical: 3),
-                        child: Text(
-                          'تایید',
-                          style: TextStyle(
-                              color: MyThemes.primaryColor, fontSize: 20),
-                        ),
-                      ),
                       style: ButtonStyle(
                           shadowColor:
                               MaterialStateProperty.all(MyThemes.primaryColor),
@@ -92,6 +84,14 @@ class LawScreen extends StatelessWidget {
                           ),
                           backgroundColor: MaterialStateProperty.all(
                               MyThemes.secondryColor)),
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(vertical: 3),
+                        child: Text(
+                          'تایید',
+                          style: TextStyle(
+                              color: MyThemes.primaryColor, fontSize: 20),
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -103,7 +103,7 @@ class LawScreen extends StatelessWidget {
 }
 
 class Navid2 extends GetxController {
-  var _responseObs = Accept().obs;
+  final _responseObs = Accept().obs;
   Accept get response => _responseObs.value;
 
   RxBool v = false.obs;

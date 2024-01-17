@@ -38,7 +38,6 @@ class RegisterScreen extends StatelessWidget {
           ]),
           child: ElevatedButton(
             onPressed: () async {
-              print("object");
               if (_mobileController.text.length < 11 ||
                   _passwordController.text.length < 8) {
                 ShowMSG().showSnackBar("اطلاعات خود را صحیح وارد کنید !");
@@ -51,7 +50,6 @@ class RegisterScreen extends StatelessWidget {
                     _passwordController.text,
                     _usernameController.text);
                 Get.to(OtpScreen(phone: _mobileController.text));
-                print(_controller.postExpertController.message);
 
                 if (_controller.postExpertController.status == true) {
                   ShowMSG()
@@ -59,13 +57,6 @@ class RegisterScreen extends StatelessWidget {
                 }
               }
             },
-            child: Container(
-              margin: const EdgeInsets.symmetric(vertical: 3),
-              child: Text(
-                'تایید',
-                style: TextStyle(color: MyThemes.primaryColor, fontSize: 20),
-              ),
-            ),
             style: ButtonStyle(
                 shadowColor: MaterialStateProperty.all(MyThemes.primaryColor),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -79,6 +70,13 @@ class RegisterScreen extends StatelessWidget {
                 ),
                 backgroundColor:
                     MaterialStateProperty.all(MyThemes.secondryColor)),
+            child: Container(
+              margin: const EdgeInsets.symmetric(vertical: 3),
+              child: Text(
+                'تایید',
+                style: TextStyle(color: MyThemes.primaryColor, fontSize: 20),
+              ),
+            ),
           ),
         ),
       ),
@@ -129,7 +127,7 @@ class RegisterScreen extends StatelessWidget {
                         )
                       ]),
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 15),
+                  style: const TextStyle(fontSize: 15),
                 ),
               ),
               Container(
@@ -165,11 +163,11 @@ class RegisterScreen extends StatelessWidget {
                   textAlign: TextAlign.right,
                   decoration: InputDecoration(
                     counterText: "",
-                    contentPadding: EdgeInsets.only(right: 5),
+                    contentPadding: const EdgeInsets.only(right: 5),
                     border: InputBorder.none,
                     hintTextDirection: TextDirection.ltr,
                     hintText: "نام".withPersianNumbers(),
-                    hintStyle: TextStyle(
+                    hintStyle: const TextStyle(
                       fontSize: 16,
                     ),
                   ),
@@ -248,8 +246,8 @@ class RegisterScreen extends StatelessWidget {
                     border: InputBorder.none,
                     counterText: "",
                     hintText: "نام خانوادگی".withPersianNumbers(),
-                    contentPadding: EdgeInsets.only(right: 5),
-                    hintStyle: TextStyle(fontSize: 16),
+                    contentPadding: const EdgeInsets.only(right: 5),
+                    hintStyle: const TextStyle(fontSize: 16),
                   ),
                   onChanged: (value) {},
                 ),
@@ -287,11 +285,11 @@ class RegisterScreen extends StatelessWidget {
                   textAlign: TextAlign.right,
                   decoration: InputDecoration(
                     counterText: "",
-                    contentPadding: EdgeInsets.only(right: 5),
+                    contentPadding: const EdgeInsets.only(right: 5),
                     border: InputBorder.none,
                     hintTextDirection: TextDirection.ltr,
                     hintText: "نام کاربری".withPersianNumbers(),
-                    hintStyle: TextStyle(
+                    hintStyle: const TextStyle(
                       fontSize: 16,
                     ),
                   ),
@@ -331,8 +329,8 @@ class RegisterScreen extends StatelessWidget {
                     border: InputBorder.none,
                     counterText: "",
                     hintText: "hamekare@gmail.com".withPersianNumbers(),
-                    contentPadding: EdgeInsets.only(left: 5),
-                    hintStyle: TextStyle(fontSize: 16),
+                    contentPadding: const EdgeInsets.only(left: 5),
+                    hintStyle: const TextStyle(fontSize: 16),
                   ),
                   onChanged: (value) {},
                 ),
@@ -450,8 +448,8 @@ class RegisterScreen extends StatelessWidget {
                     border: InputBorder.none,
                     counterText: "",
                     hintText: "09109998888".withPersianNumbers(),
-                    contentPadding: EdgeInsets.only(left: 5),
-                    hintStyle: TextStyle(fontSize: 16),
+                    contentPadding: const EdgeInsets.only(left: 5),
+                    hintStyle: const TextStyle(fontSize: 16),
                   ),
                   maxLength: 11,
                   onChanged: (value) {},
@@ -492,8 +490,8 @@ class RegisterScreen extends StatelessWidget {
                     border: InputBorder.none,
                     counterText: "",
                     hintText: "رمز ورود".withPersianNumbers(),
-                    contentPadding: EdgeInsets.only(left: 5),
-                    hintStyle: TextStyle(fontSize: 16),
+                    contentPadding: const EdgeInsets.only(left: 5),
+                    hintStyle: const TextStyle(fontSize: 16),
                   ),
                   onChanged: (value) {},
                 ),

@@ -22,7 +22,6 @@ class CityScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     init();
-    print(_mainController.token);
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Container(
@@ -94,12 +93,11 @@ class CityScreen extends StatelessWidget {
                             itemCount:
                                 _cityController.getcityModel.cities!.length,
                             itemBuilder: (c, i) {
-                              var _item =
+                              var item0 =
                                   _cityController.getcityModel.cities![i];
                               return ElevatedButton(
                                 onPressed: () {
-                                   init2(_item.id);
-                                                print(_item.id);
+                                   init2(item0.id);
                                                 // top
                                                 Get.dialog(
                                                   Scaffold(
@@ -163,7 +161,7 @@ class CityScreen extends StatelessWidget {
                                                                       .cities;
                                                               if (item ==
                                                                   null) {
-                                                                return Center(
+                                                                return const Center(
                                                                   child: Text(
                                                                       "یافت نشد"),
                                                                 );
@@ -180,44 +178,24 @@ class CityScreen extends StatelessWidget {
                                                                         .length,
                                                                 itemBuilder:
                                                                     (c, i) {
-                                                                  var _item = _cityController
+                                                                  var item0 = _cityController
                                                                       .getSubcityModel
                                                                       .cities![i];
 
                                                                   return ElevatedButton(
                                                                     onPressed:
                                                                         () {
-                                                                      _mainController.setCityid(_item
+                                                                      _mainController.setCityid(item0
                                                                           .id!
                                                                           .toInt());
-                                                                      print(_mainController
-                                                                          .cityid);
-                                                                      _mainController.setCityName(_item
+                                                                      _mainController.setCityName(item0
                                                                           .name
                                                                           .toString());
                                                                       _mainController
                                                                           .init();
                                                                           
-                                  print(_mainController.cityid);
                                   Get.to(LawScreen());
                                                                     },
-                                                                    child:
-                                                                        Container(
-                                                                      margin: const EdgeInsets
-                                                                          .symmetric(
-                                                                          vertical:
-                                                                              3),
-                                                                      child:
-                                                                          Text(
-                                                                        _item
-                                                                            .name
-                                                                            .toString(),
-                                                                        style: TextStyle(
-                                                                            color:
-                                                                                MyThemes.primaryColor,
-                                                                            fontSize: 17),
-                                                                      ),
-                                                                    ),
                                                                     style: ButtonStyle(
                                                                         shadowColor: MaterialStateProperty.all(MyThemes.primaryColor),
                                                                         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -232,6 +210,23 @@ class CityScreen extends StatelessWidget {
                                                                           ),
                                                                         ),
                                                                         backgroundColor: MaterialStateProperty.all(MyThemes.secondryColor)),
+                                                                    child:
+                                                                        Container(
+                                                                      margin: const EdgeInsets
+                                                                          .symmetric(
+                                                                          vertical:
+                                                                              3),
+                                                                      child:
+                                                                          Text(
+                                                                        item0
+                                                                            .name
+                                                                            .toString(),
+                                                                        style: TextStyle(
+                                                                            color:
+                                                                                MyThemes.primaryColor,
+                                                                            fontSize: 17),
+                                                                      ),
+                                                                    ),
                                                                   );
                                                                 },
                                                               );
@@ -244,16 +239,6 @@ class CityScreen extends StatelessWidget {
                                                 );
                                                 //end
                                 },
-                                child: Container(
-                                  margin:
-                                      const EdgeInsets.symmetric(vertical: 3),
-                                  child: Text(
-                                    _item.name.toString(),
-                                    style: TextStyle(
-                                        color: MyThemes.primaryColor,
-                                        fontSize: 17),
-                                  ),
-                                ),
                                 style: ButtonStyle(
                                     shadowColor: MaterialStateProperty.all(
                                         MyThemes.primaryColor),
@@ -269,6 +254,16 @@ class CityScreen extends StatelessWidget {
                                     ),
                                     backgroundColor: MaterialStateProperty.all(
                                         MyThemes.secondryColor)),
+                                child: Container(
+                                  margin:
+                                      const EdgeInsets.symmetric(vertical: 3),
+                                  child: Text(
+                                    item0.name.toString(),
+                                    style: TextStyle(
+                                        color: MyThemes.primaryColor,
+                                        fontSize: 17),
+                                  ),
+                                ),
                               );
 
                               // return Container(

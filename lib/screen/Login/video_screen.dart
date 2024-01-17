@@ -5,7 +5,6 @@ import 'package:hamekare_app/screen/home.dart';
 import 'package:hamekare_app/tools/tools.dart';
 import 'package:video_player/video_player.dart';
 
-
 class VideoScreen extends StatefulWidget {
   const VideoScreen({Key? key}) : super(key: key);
 
@@ -14,7 +13,7 @@ class VideoScreen extends StatefulWidget {
 }
 
 class _VideoScreenState extends State<VideoScreen> {
-    late VideoPlayerController videoPlayerController;
+  late VideoPlayerController videoPlayerController;
   late ChewieController chewieController;
   Widget? chewie;
 
@@ -34,7 +33,7 @@ class _VideoScreenState extends State<VideoScreen> {
     videoPlayerController.addListener(() {
       if (videoPlayerController.value.position ==
           videoPlayerController.value.duration) {
-        Get.offAll(Home());
+        Get.offAll(() => const HomeScreen());
       }
     });
 
@@ -57,6 +56,7 @@ class _VideoScreenState extends State<VideoScreen> {
     chewieController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,5 +68,5 @@ class _VideoScreenState extends State<VideoScreen> {
             ),
       ),
     );
-   }
+  }
 }

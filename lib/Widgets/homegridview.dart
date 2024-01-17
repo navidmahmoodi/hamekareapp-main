@@ -32,7 +32,7 @@ class HomeGridView extends StatelessWidget {
           childAspectRatio: .5,
         ),
         itemBuilder: (context, i) {
-          var _item = _controller.categoryResponse.data![i];
+          var item = _controller.categoryResponse.data![i];
           return Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -42,8 +42,8 @@ class HomeGridView extends StatelessWidget {
                   //   Get.to(() => ServicePage(sub: _item.subCategories));
                   // } else {
                   Get.to(() => ChooseTime(
-                        reqName: _item.name.toString(),
-                        id: _item.id!,
+                        reqName: item.name.toString(),
+                        id: item.id!,
                       ));
                   // }
                 },
@@ -71,7 +71,7 @@ class HomeGridView extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.only(top: 1.5),
                 child: Text(
-                  _item.name.toString(),
+                  item.name.toString(),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.center,

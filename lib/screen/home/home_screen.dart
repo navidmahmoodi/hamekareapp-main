@@ -123,7 +123,7 @@ class HomeScreen extends StatelessWidget {
                                         var item =
                                             _cityController.getcityModel.cities;
                                         if (item == null) {
-                                          return Center(
+                                          return const Center(
                                             child: Text("یافت نشد"),
                                           );
                                         }
@@ -133,13 +133,12 @@ class HomeScreen extends StatelessWidget {
                                           itemCount: _cityController
                                               .getcityModel.cities!.length,
                                           itemBuilder: (c, i) {
-                                            var _item = _cityController
+                                            var item0 = _cityController
                                                 .getcityModel.cities![i];
 
                                             return ElevatedButton(
                                               onPressed: () {
-                                                init5(_item.id);
-                                                print(_item.id);
+                                                init5(item0.id);
                                                 // top
                                                 Get.dialog(
                                                   Scaffold(
@@ -203,7 +202,7 @@ class HomeScreen extends StatelessWidget {
                                                                       .cities;
                                                               if (item ==
                                                                   null) {
-                                                                return Center(
+                                                                return const Center(
                                                                   child: Text(
                                                                       "یافت نشد"),
                                                                 );
@@ -220,19 +219,17 @@ class HomeScreen extends StatelessWidget {
                                                                         .length,
                                                                 itemBuilder:
                                                                     (c, i) {
-                                                                  var _item = _cityController
+                                                                  var item0 = _cityController
                                                                       .getSubcityModel
                                                                       .cities![i];
 
                                                                   return ElevatedButton(
                                                                     onPressed:
                                                                         () {
-                                                                      _mainController.setCityid(_item
+                                                                      _mainController.setCityid(item0
                                                                           .id!
                                                                           .toInt());
-                                                                      print(_mainController
-                                                                          .cityid);
-                                                                      _mainController.setCityName(_item
+                                                                      _mainController.setCityName(item0
                                                                           .name
                                                                           .toString());
                                                                       Get.back();
@@ -240,23 +237,6 @@ class HomeScreen extends StatelessWidget {
                                                                       _mainController
                                                                           .init();
                                                                     },
-                                                                    child:
-                                                                        Container(
-                                                                      margin: const EdgeInsets
-                                                                          .symmetric(
-                                                                          vertical:
-                                                                              3),
-                                                                      child:
-                                                                          Text(
-                                                                        _item
-                                                                            .name
-                                                                            .toString(),
-                                                                        style: TextStyle(
-                                                                            color:
-                                                                                MyThemes.primaryColor,
-                                                                            fontSize: 17),
-                                                                      ),
-                                                                    ),
                                                                     style: ButtonStyle(
                                                                         shadowColor: MaterialStateProperty.all(MyThemes.primaryColor),
                                                                         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -271,6 +251,23 @@ class HomeScreen extends StatelessWidget {
                                                                           ),
                                                                         ),
                                                                         backgroundColor: MaterialStateProperty.all(MyThemes.secondryColor)),
+                                                                    child:
+                                                                        Container(
+                                                                      margin: const EdgeInsets
+                                                                          .symmetric(
+                                                                          vertical:
+                                                                              3),
+                                                                      child:
+                                                                          Text(
+                                                                        item0
+                                                                            .name
+                                                                            .toString(),
+                                                                        style: TextStyle(
+                                                                            color:
+                                                                                MyThemes.primaryColor,
+                                                                            fontSize: 17),
+                                                                      ),
+                                                                    ),
                                                                   );
                                                                 },
                                                               );
@@ -283,18 +280,6 @@ class HomeScreen extends StatelessWidget {
                                                 );
                                                 //end
                                               },
-                                              child: Container(
-                                                margin:
-                                                    const EdgeInsets.symmetric(
-                                                        vertical: 3),
-                                                child: Text(
-                                                  _item.name.toString(),
-                                                  style: TextStyle(
-                                                      color:
-                                                          MyThemes.primaryColor,
-                                                      fontSize: 17),
-                                                ),
-                                              ),
                                               style: ButtonStyle(
                                                   shadowColor:
                                                       MaterialStateProperty.all(
@@ -318,6 +303,18 @@ class HomeScreen extends StatelessWidget {
                                                       MaterialStateProperty.all(
                                                           MyThemes
                                                               .secondryColor)),
+                                              child: Container(
+                                                margin:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 3),
+                                                child: Text(
+                                                  item0.name.toString(),
+                                                  style: TextStyle(
+                                                      color:
+                                                          MyThemes.primaryColor,
+                                                      fontSize: 17),
+                                                ),
+                                              ),
                                             );
 
                                             // return Container(

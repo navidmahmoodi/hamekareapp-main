@@ -18,7 +18,6 @@ class CityController extends GetxController {
 
     _getcityModel.value = await _mainController.api.getCity();
 
-    print(getcityModel.message);
     _getcityModel.update((val) {
       val!.isloading = false;
     });
@@ -32,7 +31,6 @@ class CityController extends GetxController {
 
     _getSubcityModel.value = await _mainController.api.getSubCity(id);
 
-    print(getSubcityModel.message);
     _getSubcityModel.update((val) {
       val!.isloading = false;
     });

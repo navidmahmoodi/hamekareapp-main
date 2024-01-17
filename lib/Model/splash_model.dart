@@ -13,10 +13,10 @@ class SplashModel extends BaseResponseModel {
     result = Result.fromJson(json['result']);
   }
  factory SplashModel.withError(Map<String, dynamic> json) {
-    SplashModel _item = SplashModel();
-    _item.status = json["status"];
-    _item.message = json["message"];
-    return _item;
+    SplashModel item = SplashModel();
+    item.status = json["status"];
+    item.message = json["message"];
+    return item;
   }
 }
 

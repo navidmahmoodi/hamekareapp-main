@@ -10,10 +10,10 @@ class LoginModel extends BaseResponseModel{
     data = Data.fromJson(json['data']);
   }
  factory LoginModel.withError(Map<String, dynamic> json) {
-    LoginModel _item = LoginModel();
-    _item.status = json["status"];
-    _item.message = json["message"];
-    return _item;
+    LoginModel item = LoginModel();
+    item.status = json["status"];
+    item.message = json["message"];
+    return item;
   }
 }
 

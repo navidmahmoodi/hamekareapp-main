@@ -13,10 +13,10 @@ class GetDarkhastResponse extends BaseResponseModel {
   }
 
   factory GetDarkhastResponse.withError(Map<String, dynamic> json) {
-    GetDarkhastResponse _item = GetDarkhastResponse();
-    _item.status = json["status"];
-    _item.message = json["message"];
-    return _item;
+    GetDarkhastResponse item = GetDarkhastResponse();
+    item.status = json["status"];
+    item.message = json["message"];
+    return item;
   }
 }
 

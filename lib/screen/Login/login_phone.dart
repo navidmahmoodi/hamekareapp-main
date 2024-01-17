@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hamekare_app/controller/login_contoller.dart';
-import 'package:hamekare_app/controller/main_controller.dart';
 import 'package:hamekare_app/screen/Login/information_screen.dart';
 import 'package:hamekare_app/screen/home.dart';
 
@@ -11,7 +10,6 @@ class LoginScreen extends StatelessWidget {
   final _controller = TextEditingController();
   final _loginController = Get.put(LoginController());
   final _mobilecontroller = TextEditingController();
-  final MainController _mainController = Get.find();
 
   LoginScreen({Key? key}) : super(key: key);
 
@@ -86,7 +84,7 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     Container(
                       margin: const EdgeInsets.only(top: 10, bottom: 10),
-                      child: Text(
+                      child: const Text(
                         "ورود",
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 30),
@@ -157,8 +155,7 @@ class LoginScreen extends StatelessWidget {
                                 _controller.text, _mobilecontroller.text);
 
                             await _loginController.getToken();
-                            print(_mainController.token);
-                            Get.to(Home());
+                            Get.to(() => const HomeScreen());
 
                             ShowMSG().showSnackBar(
                                 _loginController.loginResponse.message);
@@ -167,6 +164,20 @@ class LoginScreen extends StatelessWidget {
                                 _loginController.loginResponse.message);
                           }
                         },
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              side: BorderSide(
+                                color: MyThemes.primaryColor,
+                                width: 2.7,
+                              ),
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                          ),
+                          backgroundColor:
+                              MaterialStateProperty.all(MyThemes.secondryColor),
+                        ),
                         child: Obx(() {
                           if (_loginController.loginResponse.isloading) {
                             return Container(
@@ -184,20 +195,6 @@ class LoginScreen extends StatelessWidget {
                             ),
                           );
                         }),
-                        style: ButtonStyle(
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              side: BorderSide(
-                                color: MyThemes.primaryColor,
-                                width: 2.7,
-                              ),
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                          ),
-                          backgroundColor:
-                              MaterialStateProperty.all(MyThemes.secondryColor),
-                        ),
                       ),
                     ),
                     SizedBox(

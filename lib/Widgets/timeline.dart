@@ -39,7 +39,7 @@ class TimeLine extends StatelessWidget {
                 child: PageView.builder(
                     controller: _controller,
                     pageSnapping: true,
-                    physics: BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                     itemCount: _list.length,
                     onPageChanged: (i) {
                       dayController.changeTime(i);

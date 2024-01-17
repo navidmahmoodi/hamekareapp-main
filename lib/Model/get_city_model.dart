@@ -9,10 +9,10 @@ class GetCityModel extends BaseResponseModel {
   }
 
   factory GetCityModel.withError(Map<String, dynamic> json) {
-    GetCityModel _item = GetCityModel();
-    _item.status = json["status"];
-    _item.message = json["message"];
-    return _item;
+    GetCityModel item = GetCityModel();
+    item.status = json["status"];
+    item.message = json["message"];
+    return item;
   }
 }
 

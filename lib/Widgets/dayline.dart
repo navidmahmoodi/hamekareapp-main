@@ -38,7 +38,7 @@ class DayLine extends StatelessWidget {
       child: ListView.builder(
           itemCount: 15,
           shrinkWrap: true,
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           itemBuilder: (c, i) {
             return Obx(() {
@@ -52,9 +52,6 @@ class DayLine extends StatelessWidget {
                 child: TextButton(
                   onPressed: () {
                     dayController.changeDay(i);
-
-
-                    print(date.addDays(i).cDate(7));
                   },
                   child: Container(
                     child:

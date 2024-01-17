@@ -1,4 +1,5 @@
 class TimeLineModel {
   String time;
-  TimeLineModel({required this.time});
+  int hour;
+  TimeLineModel({required this.time, required this.hour});
 }

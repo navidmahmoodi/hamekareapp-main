@@ -99,18 +99,6 @@ class CartFullDetail extends StatelessWidget {
                             onPressed: () {
                               // _controller.pay(item.iD);
                             },
-                            child: Container(
-                              margin: const EdgeInsets.symmetric(
-                                vertical: 5,
-                              ),
-                              child: Text(
-                                "پرداخت",
-                                style: TextStyle(
-                                    color: MyThemes.primaryColor,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.normal),
-                              ),
-                            ),
                             style: ButtonStyle(
                               shape: MaterialStateProperty.all<
                                   RoundedRectangleBorder>(
@@ -125,6 +113,18 @@ class CartFullDetail extends StatelessWidget {
                               backgroundColor:
                                   MaterialStateProperty.all(MyThemes.green),
                             ),
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(
+                                vertical: 5,
+                              ),
+                              child: Text(
+                                "پرداخت",
+                                style: TextStyle(
+                                    color: MyThemes.primaryColor,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.normal),
+                              ),
+                            ),
                           ),
                         )
                       ],
@@ -134,16 +134,6 @@ class CartFullDetail extends StatelessWidget {
               ),
             ));
           },
-          child: Container(
-            margin: const EdgeInsets.symmetric(vertical: 5),
-            child: Text(
-              "پرداخت",
-              style: TextStyle(
-                  color: MyThemes.primaryColor,
-                  fontSize: 20,
-                  fontWeight: FontWeight.normal),
-            ),
-          ),
           style: ButtonStyle(
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
@@ -155,6 +145,16 @@ class CartFullDetail extends StatelessWidget {
               ),
             ),
             backgroundColor: MaterialStateProperty.all(MyThemes.green),
+          ),
+          child: Container(
+            margin: const EdgeInsets.symmetric(vertical: 5),
+            child: Text(
+              "پرداخت",
+              style: TextStyle(
+                  color: MyThemes.primaryColor,
+                  fontSize: 20,
+                  fontWeight: FontWeight.normal),
+            ),
           ),
         ),
       ),
@@ -290,14 +290,14 @@ class CartFullDetail extends StatelessWidget {
                                 fit: BoxFit.fill,
                               ),
                             ),
-                            Text(
+                            const Text(
                               "item.mUserName",
                               style: TextStyle(
                                   overflow: TextOverflow.ellipsis,
                                   fontSize: 13,
                                   fontWeight: FontWeight.bold),
                             ),
-                            Text(
+                            const Text(
                               "item.mTakhasos",
                               style: TextStyle(
                                   overflow: TextOverflow.ellipsis,
@@ -473,7 +473,7 @@ class CartFullDetail extends StatelessWidget {
                                 border: Border.all(
                                     color: MyThemes.secondryColor, width: 2),
                               ),
-                              child: Row(
+                              child: const Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 mainAxisSize: MainAxisSize.max,
                                 children: [

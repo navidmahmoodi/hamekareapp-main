@@ -1,40 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hamekare_app/Model/timelinemodel.dart';
 import 'package:hamekare_app/controller/darkhast_controller.dart';
 import 'package:hamekare_app/tools/tools.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shamsi_date/shamsi_date.dart';
 import 'package:persian/persian.dart';
 
-// ignore: must_be_immutable
-class DetailPage extends StatelessWidget {
-  DetailPage({
-    Key? key,
+class DetailPageModel {
+  DetailPageModel({
     required this.adress,
-    required this.name,
-    required this.phoneNumber,
-    required this.reqhour,
+    required this.selectedTime,
     required this.reqname,
-    required this.roz,
-    required this.tarikh,
+    required this.date,
     required this.tozih,
     required this.titleid,
-  }) : super(key: key);
-
-  final _controller = Get.put(DarkhastController());
+  });
 
   String adress;
-  String name;
   String reqname;
-  String reqhour;
+  TimeLineModel selectedTime;
   String tozih;
-  String phoneNumber;
-  int roz;
+  DateTime date;
   int titleid;
-  int tarikh;
+}
+
+// ignore: must_be_immutable
+class DetailPage extends StatelessWidget {
+  DetailPage({Key? key, required this.model}) : super(key: key);
+
+  final DetailPageModel model;
+  final _controller = Get.put(DarkhastController());
+
   @override
   Widget build(BuildContext context) {
-    var date = Jalali.now();
+    // var date = Jalali.now();
     // var now1 = DateFormat.jm().toString();
     DateTime now = DateTime.now();
     DateTime dateOnly = now.getDateOnly();
@@ -65,18 +65,16 @@ class DetailPage extends StatelessWidget {
             Expanded(
               child: ElevatedButton(
                 onPressed: () async {
-                  print(now.hour.toString() + ":" + now.minute.toString());
-                  print(dateOnly);
                   _controller.postdarkhast(
-                      reqhour,
-                      "${now.hour.toString() + ":" + now.minute.toString()}",
-                      titleid,
+                      model.selectedTime.time,
+                      "${now.hour}:${now.minute}",
+                      model.titleid,
                       _controller.mainController.cityid,
-                      tozih,
-                      adress,
+                      model.tozih,
+                      model.adress,
                       dateOnly);
                   // _controller.postDarkhast.addres = adress;
-                  // _controller.postDarkhast.azTaSat = reqhour;
+                  // _controller.postDarkhast.azTaSat = selectedHour;
                   // _controller.postDarkhast.discription = tozih;
                   // _controller.postDarkhast.mobile = phoneNumber;
                   // _controller.postDarkhast.roz =
@@ -150,16 +148,6 @@ class DetailPage extends StatelessWidget {
                     // );
                   }
                 },
-                child: Container(
-                  margin: const EdgeInsets.symmetric(vertical: 2),
-                  child: Text(
-                    "تایید",
-                    style: TextStyle(
-                        color: MyThemes.primaryColor,
-                        fontSize: 25,
-                        fontWeight: FontWeight.normal),
-                  ),
-                ),
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
@@ -173,6 +161,16 @@ class DetailPage extends StatelessWidget {
                   backgroundColor:
                       MaterialStateProperty.all(MyThemes.secondryColor),
                 ),
+                child: Container(
+                  margin: const EdgeInsets.symmetric(vertical: 2),
+                  child: Text(
+                    "تایید",
+                    style: TextStyle(
+                        color: MyThemes.primaryColor,
+                        fontSize: 25,
+                        fontWeight: FontWeight.normal),
+                  ),
+                ),
               ),
             ),
             const SizedBox(width: 5),
@@ -182,16 +180,6 @@ class DetailPage extends StatelessWidget {
                   Get.back();
                   Get.back();
                 },
-                child: Container(
-                  margin: const EdgeInsets.symmetric(vertical: 2),
-                  child: Text(
-                    "انصراف",
-                    style: TextStyle(
-                        color: MyThemes.primaryColor,
-                        fontSize: 25,
-                        fontWeight: FontWeight.normal),
-                  ),
-                ),
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
@@ -203,6 +191,16 @@ class DetailPage extends StatelessWidget {
                     ),
                   ),
                   backgroundColor: MaterialStateProperty.all(Colors.white),
+                ),
+                child: Container(
+                  margin: const EdgeInsets.symmetric(vertical: 2),
+                  child: Text(
+                    "انصراف",
+                    style: TextStyle(
+                        color: MyThemes.primaryColor,
+                        fontSize: 25,
+                        fontWeight: FontWeight.normal),
+                  ),
                 ),
               ),
             ),
@@ -222,7 +220,7 @@ class DetailPage extends StatelessWidget {
                 children: [
                   Container(
                     height: 250,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(35),
@@ -239,32 +237,6 @@ class DetailPage extends StatelessWidget {
                               fit: BoxFit.fill,
                               alignment: Alignment.center,
                             )),
-                      ],
-                    ),
-                  ),
-                  const Text("نام و نام خانوادگی"),
-                  Container(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    margin: const EdgeInsets.only(top: 5),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.5),
-                          spreadRadius: 1,
-                          offset: const Offset(1, 1),
-                          blurRadius: 4,
-                        ),
-                      ],
-                      borderRadius: BorderRadius.circular(15),
-                      border:
-                          Border.all(color: MyThemes.primaryColor, width: 2),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Text(name.toString()),
                       ],
                     ),
                   ),
@@ -316,7 +288,7 @@ class DetailPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Text(reqname),
+                        Text(model.reqname),
                       ],
                     ),
                   ),
@@ -342,7 +314,7 @@ class DetailPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Text(reqhour),
+                        Text(model.selectedTime.time),
                       ],
                     ),
                   ),
@@ -368,33 +340,10 @@ class DetailPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Text((date).addDays(roz).cDate(7).withPersianNumbers()),
-                      ],
-                    ),
-                  ),
-                  const Text("شماره موبایل"),
-                  Container(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    margin: const EdgeInsets.only(top: 5),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.5),
-                          spreadRadius: 1,
-                          offset: const Offset(1, 1),
-                          blurRadius: 4,
-                        ),
-                      ],
-                      borderRadius: BorderRadius.circular(15),
-                      border:
-                          Border.all(color: MyThemes.primaryColor, width: 2),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Text(phoneNumber.toString().withPersianNumbers()),
+                        Text(model.date
+                            .toJalali()
+                            .cDate(7)
+                            .withPersianNumbers()),
                       ],
                     ),
                   ),
@@ -418,7 +367,7 @@ class DetailPage extends StatelessWidget {
                           Border.all(color: MyThemes.primaryColor, width: 2),
                     ),
                     child: Text(
-                      adress.toString(),
+                      model.adress.toString(),
                       overflow: TextOverflow.clip,
                       textAlign: TextAlign.center,
                     ),
@@ -443,7 +392,7 @@ class DetailPage extends StatelessWidget {
                           Border.all(color: MyThemes.primaryColor, width: 2),
                     ),
                     child: Text(
-                      tozih.toString(),
+                      model.tozih.toString(),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -459,6 +408,6 @@ class DetailPage extends StatelessWidget {
 
 extension MyDateExtension on DateTime {
   DateTime getDateOnly() {
-    return DateTime(this.year, this.month, this.day);
+    return DateTime(year, month, day);
   }
 }

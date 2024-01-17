@@ -16,10 +16,10 @@ class OtpModel extends BaseResponseModel{
     message = json['message'];
   }
    factory OtpModel.withError(Map<String, dynamic> json) {
-    OtpModel _item = OtpModel();
-    _item.status = json["status"];
-    _item.message = json["message"];
-    return _item;
+    OtpModel item = OtpModel();
+    item.status = json["status"];
+    item.message = json["message"];
+    return item;
   }
 }
 

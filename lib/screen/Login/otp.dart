@@ -180,6 +180,20 @@ class OtpScreen extends StatelessWidget {
                                     textEditingController.dispose();
                                     Get.back();
                                   },
+                                  style: ButtonStyle(
+                                    shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                        side: BorderSide(
+                                          color: MyThemes.primaryColor,
+                                          width: 2.7,
+                                        ),
+                                        borderRadius: BorderRadius.circular(50),
+                                      ),
+                                    ),
+                                    backgroundColor: MaterialStateProperty.all(
+                                        MyThemes.secondryColor),
+                                  ),
                                   child: Container(
                                     margin:
                                         const EdgeInsets.symmetric(vertical: 4),
@@ -194,20 +208,6 @@ class OtpScreen extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  style: ButtonStyle(
-                                    shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                        side: BorderSide(
-                                          color: MyThemes.primaryColor,
-                                          width: 2.7,
-                                        ),
-                                        borderRadius: BorderRadius.circular(50),
-                                      ),
-                                    ),
-                                    backgroundColor: MaterialStateProperty.all(
-                                        MyThemes.secondryColor),
                                   ),
                                 ),
                               ),
@@ -276,18 +276,6 @@ class OtpScreen extends StatelessWidget {
                                 onPressed: () {
                                   Get.back();
                                 },
-                                child: Container(
-                                  margin:
-                                      const EdgeInsets.symmetric(vertical: 4),
-                                  child: Text(
-                                    "تغییر اطلاعات",
-                                    style: TextStyle(
-                                      color: MyThemes.primaryColor,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                  ),
-                                ),
                                 style: ButtonStyle(
                                   shape: MaterialStateProperty.all<
                                       RoundedRectangleBorder>(
@@ -301,6 +289,18 @@ class OtpScreen extends StatelessWidget {
                                   ),
                                   backgroundColor: MaterialStateProperty.all(
                                       MyThemes.secondryColor),
+                                ),
+                                child: Container(
+                                  margin:
+                                      const EdgeInsets.symmetric(vertical: 4),
+                                  child: Text(
+                                    "تغییر اطلاعات",
+                                    style: TextStyle(
+                                      color: MyThemes.primaryColor,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -330,7 +330,6 @@ class OtpScreen extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () async {
-                      print(textEditingController.text);
                       if (textEditingController.text == "1234") {
                         await _loginController.postOtp(
                             textEditingController.text, phone);
@@ -350,6 +349,19 @@ class OtpScreen extends StatelessWidget {
                         ));
                       }
                     },
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          side: BorderSide(
+                            color: MyThemes.primaryColor,
+                            width: 2.7,
+                          ),
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                      ),
+                      backgroundColor:
+                          MaterialStateProperty.all(MyThemes.secondryColor),
+                    ),
                     child: Obx(() {
                       if (_loginController.isloading) {
                         return Container(
@@ -368,19 +380,6 @@ class OtpScreen extends StatelessWidget {
                         ),
                       );
                     }),
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          side: BorderSide(
-                            color: MyThemes.primaryColor,
-                            width: 2.7,
-                          ),
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                      ),
-                      backgroundColor:
-                          MaterialStateProperty.all(MyThemes.secondryColor),
-                    ),
                   ),
                 ),
               ],

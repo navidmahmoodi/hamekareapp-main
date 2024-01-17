@@ -10,10 +10,10 @@ class CategoryModel extends BaseResponseModel{
     data = List.from(json['data']).map((e)=>Data.fromJson(e)).toList();
   }
     factory CategoryModel.withError(Map<String, dynamic> json) {
-    CategoryModel _item = CategoryModel();
-    _item.status = json["status"];
-    _item.message = json["message"];
-    return _item;
+    CategoryModel item = CategoryModel();
+    item.status = json["status"];
+    item.message = json["message"];
+    return item;
   }
 }
 

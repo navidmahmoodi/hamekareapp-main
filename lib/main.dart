@@ -24,51 +24,48 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(MainController());
     // Get.put(()=> LoginController());
-
-
-          return GetMaterialApp(
-            title: 'Hamekare',
-
-            debugShowCheckedModeBanner: false,
-            localizationsDelegates: const [
-              localized.GlobalMaterialLocalizations.delegate,
-              localized.GlobalWidgetsLocalizations.delegate,
-              localized.GlobalCupertinoLocalizations.delegate,
-            ],
-            getPages: [
-              GetPage(name: '/home', page: () => const Home()),
-              GetPage(name: '/intro', page: () => IntroScreen()),
-              GetPage(name: '/splash', page: () => Splash()),
-              // GetPage(name: '/login', page: () => PhoneNumber()),
-              // GetPage(name: '/otp', page: () => OtpScreen()),
-              GetPage(name: '/cart', page: () => CartPage()),
-              GetPage(name: '/setting', page: () => SettingScreen()),
-              GetPage(name: '/profile', page: () => ProfileScreen()),
-              GetPage(name: '/video', page: () => VideoScreen()),
-              GetPage(name: '/city', page: () => CityScreen()),
-              GetPage(name: '/cartFullDetail', page: () => CartFullDetail()),
-            ],
-            theme: ThemeData(
-              // useMaterial3:true,
-              fontFamily: "iranrounded",
-              primarySwatch: Colors.blue,
-            ),
-            builder: (BuildContext context, Widget? child) {
-              return Directionality(
-                textDirection: TextDirection.rtl,
-                child: Builder(
-                  builder: (BuildContext context) {
-                    return MediaQuery(
-                      data:
-                          MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.0)),
-                      child: child ?? Container(),
-                    );
-                  },
-                ),
+    return GetMaterialApp(
+      title: 'Hamekare',
+      debugShowCheckedModeBanner: false,
+      localizationsDelegates: const [
+        localized.GlobalMaterialLocalizations.delegate,
+        localized.GlobalWidgetsLocalizations.delegate,
+        localized.GlobalCupertinoLocalizations.delegate,
+      ],
+      getPages: [
+        GetPage(name: '/home', page: () => const HomeScreen()),
+        GetPage(name: '/intro', page: () => IntroScreen()),
+        GetPage(name: '/splash', page: () => Splash()),
+        // GetPage(name: '/login', page: () => PhoneNumber()),
+        // GetPage(name: '/otp', page: () => OtpScreen()),
+        GetPage(name: '/cart', page: () => CartPage()),
+        GetPage(name: '/setting', page: () => SettingScreen()),
+        GetPage(name: '/profile', page: () => ProfileScreen()),
+        GetPage(name: '/video', page: () => const VideoScreen()),
+        GetPage(name: '/city', page: () => CityScreen()),
+        GetPage(name: '/cartFullDetail', page: () => CartFullDetail()),
+      ],
+      theme: ThemeData(
+        // useMaterial3:true,
+        fontFamily: "iranrounded",
+        primarySwatch: Colors.blue,
+      ),
+      builder: (BuildContext context, Widget? child) {
+        return Directionality(
+          textDirection: TextDirection.rtl,
+          child: Builder(
+            builder: (BuildContext context) {
+              return MediaQuery(
+                data: MediaQuery.of(context)
+                    .copyWith(textScaler: const TextScaler.linear(1.0)),
+                child: child ?? Container(),
               );
             },
-            // initialRoute: "/",
-            home: Splash(),
-          );
+          ),
+        );
+      },
+      // initialRoute: "/",
+      home: Splash(),
+    );
   }
 }
