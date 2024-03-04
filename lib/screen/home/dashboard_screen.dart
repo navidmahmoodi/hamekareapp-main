@@ -14,32 +14,34 @@ class DashboardScreen extends StatelessWidget {
   final _controller = Get.put(SliderController());
   final MainController _mainController = Get.find();
   init() async {
-        WidgetsBinding.instance.addPostFrameCallback((_) async {
-    await _cityController.getCity();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await _cityController.getCity();
     });
   }
 
   init3() async {
-    if (_controller.sliderResponse.data!.isEmpty) {        WidgetsBinding.instance.addPostFrameCallback((_) async {
-    await _mainController.getCategory();
-    });
-      
+    if (_controller.sliderResponse.data!.isEmpty) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        await _mainController.getCategory();
+      });
     }
   }
 
-  init4() async{        WidgetsBinding.instance.addPostFrameCallback((_) async {
-    await _controller.getSlider();
-    });
-    
-  }
-
-  init5(int id) async{        WidgetsBinding.instance.addPostFrameCallback((_) async {
-   await _cityController.getSubCity(id);
+  init4() async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await _controller.getSlider();
     });
   }
 
-  init6() async{        WidgetsBinding.instance.addPostFrameCallback((_) async {
-   await _mainController.getProfile();
+  init5(int id) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await _cityController.getSubCity(id);
+    });
+  }
+
+  init6() async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await _mainController.getProfile();
     });
   }
 
@@ -474,11 +476,13 @@ class DashboardScreen extends StatelessWidget {
                                         const EdgeInsets.symmetric(vertical: 4),
                                     child: simpleLoading());
                               }
-                              if (_mainController.profileResponse.data!.cityName == null) {
-          return Center(
-            child: simpleLoading(),
-          );
-        }
+                              if (_mainController
+                                      .profileResponse.data?.cityName ==
+                                  null) {
+                                return Center(
+                                  child: simpleLoading(),
+                                );
+                              }
                               return Container(
                                 margin: const EdgeInsets.only(right: 5),
                                 child: Text(

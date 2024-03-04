@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:dio/dio.dart';
 // ignore: library_prefixes
 import 'package:get/get.dart' as GET;
@@ -50,6 +49,7 @@ class ServiceGenerator {
       return ResponseModel(status: false, errorCode: 0, message: msg);
     }
   }
+
   Future<SplashModel> getSplash() async {
     try {
       Response response = await _dio.get(ServerConfig.splash);
@@ -118,17 +118,24 @@ class ServiceGenerator {
     // Map<String, dynamic> body = {'expert': jsonEncode(data)};
     // print(body);
     try {
+      var params = {
+        "first_name": firstname,
+        "last_name": lastname,
+        "contact_number": mobile,
+        "username": username,
+        "password": password
+      };
+
+      if (email.isNotEmpty) {
+        params.addAll({
+          "email": email,
+        });
+      }
+
       Response response = await _dio.post(ServerConfig.register,
           // data: body,
           // options: Options(contentType: Headers.formUrlEncodedContentType)
-          data: {
-            "first_name": firstname,
-            "last_name": lastname,
-            "email": email,
-            "contact_number": mobile,
-            "username": username,
-            "password": password
-          });
+          data: params);
       return RegisterModel.fromJson(response.data);
     } catch (error, stacktrace) {
       loggerNoStack.e("Exception occured: $error stackTrace: $stacktrace");
@@ -205,18 +212,31 @@ class ServiceGenerator {
   // }
 
   Future<ResponseModel> postProfile(String name, String fname, String dname,
-      String email, String addres) async {
+      String email, String addres, XFile? file) async {
     try {
+
+      Map<String, dynamic> formData = {
+        "first_name": name,
+        "last_name": fname,
+        "display_name": dname,
+        "email": email,
+        "address": addres
+      };
+
+      if (file != null) {
+        formData.addAll({
+          "profile_image":
+              await MultipartFile.fromFile(file.path, filename: file.name)
+        });
+      }
+      
+      var param = FormData.fromMap(formData);
+
       Response response = await _dio.post(
         ServerConfig.profile,
-        data: {
-          "first_name": name,
-          "last_name": fname,
-          "display_name": dname,
-          "email": email,
-          "address": addres
-        },
+        data: param,
       );
+
       return ResponseModel.fromJson(response.data);
     } catch (error, stacktrace) {
       loggerNoStack.e("Exception occured: $error stackTrace: $stacktrace");
@@ -268,7 +288,7 @@ class ServiceGenerator {
         "service_id": id,
         "provider_id": 2,
       });
-      print(response);
+      // print(response);
       return PostDarkhast.fromJson(response.data);
     } catch (error, stacktrace) {
       loggerNoStack.e("Exception occured: $error stackTrace: $stacktrace");

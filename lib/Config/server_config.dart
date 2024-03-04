@@ -8,7 +8,7 @@ class ServerConfig {
   static const String reqotp = "request_otp";
   static const String otp = "confirm_otp";
   static const String getcity = "branch-list";
-  static const String getCategory = "service-list";
+  static const String getCategory = "category-list";
   static const String getSlider = "slider-list";
   static const String postBooking = "booking-save";
   static const String getCity = "state-list";

@@ -16,9 +16,10 @@ class Splash extends StatelessWidget {
 
   init() async {
     _mainController.init();
-    // toMain();
     await _splashController.getSplash();
-    if (_splashController.splashModel.id != null) {
+    // toMain();
+    if (_splashController.splashModel.id != null &&
+        _mainController.isUserLogin()) {
       Get.to(HomeScreen());
     } else {
       await Get.to(IntroScreen());

@@ -9,7 +9,7 @@ class LoginModel extends BaseResponseModel {
   LoginModel.fromJson(Map<String, dynamic> json) {
     status = json["status"] ?? true;
     message = json["message"] ?? "بروز خطا";
-    data = LoginDataModel.fromJson(json['data']);
+    if (json['data'] != null) data = LoginDataModel.fromJson(json['data']);
   }
 
   factory LoginModel.withError(ResponseModel response) {

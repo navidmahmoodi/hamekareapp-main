@@ -1,16 +1,18 @@
 import 'package:hamekare_app/Model/response_model.dart';
 
-class CategoryModel extends BaseResponseModel{
+class CategoryModel extends BaseResponseModel {
   CategoryModel({
-     this.data,
+    this.data,
   });
   late List<Data>? data;
-  
-  CategoryModel.fromJson(Map<String, dynamic> json){
-    data = List.from(json['data']).map((e)=>Data.fromJson(e)).toList();
+
+  CategoryModel.fromJson(Map<String, dynamic> json) {
+    if (json['data'] != null) {
+      data = List.from(json['data']).map((e) => Data.fromJson(e)).toList();
+    }
   }
 
-   factory CategoryModel.withError(Map<String, dynamic> json) {
+  factory CategoryModel.withError(Map<String, dynamic> json) {
     CategoryModel item = CategoryModel();
     item.status = json["status"];
     item.message = json["message"];
@@ -20,24 +22,24 @@ class CategoryModel extends BaseResponseModel{
 
 class Data {
   Data({
-   this.id,
-   this.name,
-   this.categoryImage,
-  required this.subCategories,
+    this.id,
+    this.name,
+    this.categoryImage,
+    required this.subCategories,
   });
   late int? id;
   late String? name;
   late String? categoryImage;
   late List<SubCategories> subCategories;
-  
-  Data.fromJson(Map<String, dynamic> json){
+
+  Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     categoryImage = json['category_image'];
-    subCategories = List.from(json['sub_categories']).map((e)=>SubCategories.fromJson(e)).toList();
+    subCategories = List.from(json['sub_categories'])
+        .map((e) => SubCategories.fromJson(e))
+        .toList();
   }
-
-
 }
 
 class SubCategories {
@@ -50,13 +52,11 @@ class SubCategories {
   late int? categoryId;
   late String? name;
   late String? categoryImage;
-  
-  SubCategories.fromJson(Map<String, dynamic> json){
+
+  SubCategories.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     categoryId = json['category_id'];
     name = json['name'];
     categoryImage = json['category_image'];
   }
-
-
 }

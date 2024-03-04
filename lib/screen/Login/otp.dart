@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hamekare_app/controller/main_controller.dart';
 import 'package:hamekare_app/screen/Login/city.dart';
-import 'package:hamekare_app/screen/Login/law_page.dart';
 import 'package:hamekare_app/tools/tools.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:persian/persian.dart';

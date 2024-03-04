@@ -74,7 +74,8 @@ class MainController extends GetxController {
       val!.isloading = true;
     });
 
-    await api.postProfile(name, fname, dname, email, addres);
+    await api.postProfile(
+        name, fname, dname, email, addres, profileResponse.image);
 
     _profileResponse.update((val) {
       val!.isloading = false;

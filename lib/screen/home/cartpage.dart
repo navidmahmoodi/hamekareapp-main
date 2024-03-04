@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:hamekare_app/Model/get_darkhast_model.dart';
 import 'package:hamekare_app/controller/canclereq_controller.dart';
 import 'package:hamekare_app/controller/darkhast_controller.dart';
-import 'package:hamekare_app/controller/main_controller.dart';
 
 import '../../controller/rate_req_controller.dart';
 import '../../tools/tools.dart';
@@ -279,7 +278,7 @@ class CartPage extends StatelessWidget {
                                   ? () {}
                                   : () {
                                       _cancelRequest(item.id!.toInt());
-                                      print(item.id);
+                                      // print(item.id);
                                     },
                               style: ButtonStyle(
                                   shape: MaterialStateProperty.all(

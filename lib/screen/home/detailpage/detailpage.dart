@@ -36,8 +36,8 @@ class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     // var date = Jalali.now();
     // var now1 = DateFormat.jm().toString();
-    DateTime now = DateTime.now();
-    DateTime dateOnly = now.getDateOnly();
+    // DateTime now = DateTime.now();
+    // DateTime dateOnly = now.getDateOnly();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -65,8 +65,8 @@ class DetailPage extends StatelessWidget {
             Expanded(
               child: ElevatedButton(
                 onPressed: () async {
-                  print(model.date);
-                  print(model.selectedTime.hour);
+                  // print(model.date);
+                  // print(model.selectedTime.hour);
                   await _controller.postdarkhast(
                     model.date.toString(),
                     model.titleid,

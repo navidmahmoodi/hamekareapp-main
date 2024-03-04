@@ -24,93 +24,96 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.transparent,
         child: Container(
-          margin: const EdgeInsets.only(bottom: 5, left: 5, right: 5),
-          decoration: BoxDecoration(boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              spreadRadius: 0.1,
-              blurRadius: 4,
-            ),
-          ]),
-          child: ElevatedButton(
-            onPressed: () async {
-              if (_mobileController.text.length < 11 ||
-                  _passwordController.text.length < 8) {
-                ShowMSG().showSnackBar("اطلاعات خود را صحیح وارد کنید !");
-              } else {
-                var response = await _controller.postSignUp(
-                    _namController.text,
-                    _khanevadegiController.text,
-                    _emailController.text,
-                    _mobileController.text,
-                    _passwordController.text,
-                    _usernameController.text);
+      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 5),
+      decoration: BoxDecoration(
+        color: MyThemes.secondryColor,
+        image: const DecorationImage(
+          image: AssetImage(
+            "assets/image/homebg.png",
+          ),
+          fit: BoxFit.fill,
+        ),
+      ),
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          title: Text(
+            "تکمیل اطلاعات کاربری",
+            style: TextStyle(color: MyThemes.primaryColor, fontSize: 22),
+          ),
+          centerTitle: true,
+        ),
+        bottomNavigationBar: BottomAppBar(
+          color: Colors.transparent,
+          child: Container(
+            margin: const EdgeInsets.only(bottom: 5, left: 5, right: 5),
+            decoration: BoxDecoration(boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                spreadRadius: 0.1,
+                blurRadius: 4,
+              ),
+            ]),
+            child: ElevatedButton(
+              onPressed: () async {
+                if (_mobileController.text.length < 11 ||
+                    _passwordController.text.length < 8) {
+                  ShowMSG().showSnackBar("اطلاعات خود را صحیح وارد کنید !");
+                } else if (_emailController.text.isNotEmpty &&
+                    !isEmail(_emailController.text)) {
+                  ShowMSG().showSnackBar("ایمیل را صحیح وارد کنید.");
+                } else {
+                  var response = await _controller.postSignUp(
+                      _namController.text,
+                      _khanevadegiController.text,
+                      _emailController.text,
+                      _mobileController.text,
+                      _passwordController.text,
+                      _usernameController.text);
 
-                ShowMSG()
-                    .showSnackBar(_controller.postExpertController.message);
+                  ShowMSG()
+                      .showSnackBar(_controller.postExpertController.message);
 
-                if (response.status) {
-                  Get.to(() => OtpScreen(phone: _mobileController.text));
+                  if (response.status) {
+                    Get.to(() => OtpScreen(phone: _mobileController.text));
+                  }
                 }
-              }
-            },
-            style: ButtonStyle(
-                shadowColor: MaterialStateProperty.all(MyThemes.primaryColor),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    side: BorderSide(
-                      color: MyThemes.primaryColor,
-                      width: 2,
+              },
+              style: ButtonStyle(
+                  shadowColor: MaterialStateProperty.all(MyThemes.primaryColor),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      side: BorderSide(
+                        color: MyThemes.primaryColor,
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    borderRadius: BorderRadius.circular(10),
                   ),
+                  backgroundColor:
+                      MaterialStateProperty.all(MyThemes.secondryColor)),
+              child: Container(
+                margin: const EdgeInsets.symmetric(vertical: 3),
+                child: Text(
+                  'تایید',
+                  style: TextStyle(color: MyThemes.primaryColor, fontSize: 20),
                 ),
-                backgroundColor:
-                    MaterialStateProperty.all(MyThemes.secondryColor)),
-            child: Container(
-              margin: const EdgeInsets.symmetric(vertical: 3),
-              child: Text(
-                'تایید',
-                style: TextStyle(color: MyThemes.primaryColor, fontSize: 20),
               ),
             ),
           ),
         ),
-      ),
-      body: Obx(() {
-        if (_controller.postExpertController.isloading) {
-          return Center(
-            child: Container(
-              margin: const EdgeInsets.symmetric(vertical: 5),
-              child: simpleLoading(),
-            ),
-          );
-        }
-        return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 5),
-          decoration: BoxDecoration(
-            color: MyThemes.secondryColor,
-            image: const DecorationImage(
-              image: AssetImage(
-                "assets/image/homebg.png",
+        body: Obx(() {
+          if (_controller.postExpertController.isloading) {
+            return Center(
+              child: Container(
+                margin: const EdgeInsets.symmetric(vertical: 5),
+                child: simpleLoading(),
               ),
-              fit: BoxFit.fill,
-            ),
-          ),
-          child: ListView(
+            );
+          }
+          return ListView(
             children: [
-              Container(
-                margin: const EdgeInsets.only(top: 15, bottom: 5),
-                child: Text(
-                  "تکمیل اطلاعات کاربری",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: MyThemes.primaryColor, fontSize: 22),
-                ),
-              ),
               Container(
                 margin: const EdgeInsets.only(bottom: 10),
                 child: Text.rich(
@@ -298,7 +301,7 @@ class RegisterScreen extends StatelessWidget {
               ),
               Container(
                 margin: const EdgeInsets.only(bottom: 3, right: 3),
-                child:const Text.rich(TextSpan(
+                child: const Text.rich(TextSpan(
                   text: "ایمیل",
                   // children: [
                   //   TextSpan(text: " *", style: TextStyle(color: MyThemes.red))
@@ -606,9 +609,9 @@ class RegisterScreen extends StatelessWidget {
               // expert_body(),
               // SizedBox(height: 10),
             ],
-          ),
-        );
-      }),
+          );
+        }),
+      ),
     ));
   }
 }

@@ -25,7 +25,7 @@ class HomeGridView extends StatelessWidget {
       }
       return GridView.builder(
         physics: const NeverScrollableScrollPhysics(),
-        itemCount: _controller.categoryResponse.data!.length,
+        itemCount: _controller.categoryResponse.data?.length ?? 0,
         shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 4,
