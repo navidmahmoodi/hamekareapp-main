@@ -123,13 +123,9 @@ class MainPageMainSlider extends StatelessWidget {
               enlargeStrategy: CenterPageEnlargeStrategy.scale,
               enableInfiniteScroll: true, enlargeCenterPage: true,
               pauseAutoPlayOnTouch: true,
-              // enlargeCenterPage: true,
-              // viewportFraction: 0.88,
-              // height: height,
               autoPlay: true,
               autoPlayCurve: Curves.easeIn,
               autoPlayAnimationDuration: const Duration(milliseconds: 1500),
-              // aspectRatio: 2.30,
             ),
           );
         }),

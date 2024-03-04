@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hamekare_app/Model/get_darkhast_model.dart';
+import 'package:hamekare_app/controller/main_controller.dart';
 import 'package:hamekare_app/tools/tools.dart';
 import 'package:persian/persian.dart';
 import 'package:shamsi_date/shamsi_date.dart';
@@ -8,6 +9,7 @@ import 'package:shamsi_date/shamsi_date.dart';
 class CartFullDetail extends StatelessWidget {
   CartFullDetail({Key? key}) : super(key: key);
   final GetDarkhastModel item = Get.arguments;
+  final _mainController = Get.put(MainController());
 
   Widget _badgeTitle(String value) {
     return Text(
@@ -368,15 +370,20 @@ class CartFullDetail extends StatelessWidget {
                       _badgeTitle("روز"),
                       _badgeBox(item.date!.toJalali().cDate(8)),
                       _badgeTitle("تاریخ"),
-                      _badgeBox(item.date!.toJalali().cDate(7)),
+                      _badgeBox(
+                          item.date!.toJalali().cDate(7).withPersianNumbers()),
                     ]),
                     _rowBox([
                       _badgeTitle("کار درخواستی"),
                       _badgeBox(item.serviceName!),
                       _badgeTitle("شماره تماس"),
-                      _badgeBox("item.mobile"),
+                      _badgeBox(_mainController
+                          .profileResponse.data!.contactNumber
+                          .toString()
+                          .withPersianNumbers()),
                       _badgeTitle("ساعت"),
-                      _badgeBox(item.date!.toJalali().cDate(9)),
+                      _badgeBox(
+                          item.date!.toJalali().cDate(9).withPersianNumbers()),
                     ]),
                   ],
                 ),

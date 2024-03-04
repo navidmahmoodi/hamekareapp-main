@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hamekare_app/controller/main_controller.dart';
+import 'package:hamekare_app/screen/Login/city.dart';
 import 'package:hamekare_app/screen/Login/law_page.dart';
 import 'package:hamekare_app/tools/tools.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -127,7 +128,7 @@ class OtpScreen extends StatelessWidget {
                           fieldHeight: 45,
                           fieldWidth: 35,
                           disabledColor: MyThemes.secondryColor,
-                          inactiveColor: Colors.white,
+                          inactiveColor: MyThemes.primaryColor,
                           inactiveFillColor: Colors.white,
                           selectedFillColor: Colors.white,
                           activeColor: MyThemes.secondryColor,
@@ -320,24 +321,15 @@ class OtpScreen extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () async {
-                      if (textEditingController.text == "1234") {
-                        await _loginController.postOtp(
-                            textEditingController.text, phone);
-                        await _loginController.getToken();
-                        Get.to(LawScreen());
-                        // if (!_loginController.loginResponse.checkotp.status ==
-                        //     true) {
-                        //   Get.toNamed("/infop");
-                        //   Get.showSnackbar(GetSnackBar(
-                        //     duration: const Duration(seconds: 2),
-                        //     message: _loginController.loginResponse.message,
-                        //   ));
-                      } else {
-                        Get.showSnackbar(const GetSnackBar(
-                          duration: Duration(seconds: 2),
-                          message: "رمز یکبار مصرف را 1234 وارد کنید",
-                        ));
-                      }
+                      // var response = await _loginController.postOtp(
+                      //     textEditingController.text, phone);
+                      // if (response.status) {
+                      Get.to(CityScreen());
+                      // } else if (response.errorCode == 406) {
+                      //   ShowMSG().error("خطا", "کد یکبار مصرف صحیح نمی باشد");
+                      // } else {
+                      //   ShowMSG().error("خطا", response.message);
+                      // }
                     },
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(

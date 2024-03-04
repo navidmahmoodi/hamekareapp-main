@@ -165,7 +165,27 @@ class CityScreen extends StatelessWidget {
                                                         .cities![i];
 
                                                     return ElevatedButton(
-                                                      onPressed: () {
+                                                      onPressed: () async {
+                                                        var response =
+                                                            await _cityController
+                                                                .postCity(item0
+                                                                    .id!
+                                                                    .toInt());
+
+                                                        // Get.to(LawScreen());
+                                                        if (response
+                                                                .errorCode ==
+                                                            406) {
+                                                          ShowMSG().error("خطا",
+                                                              "خطای داخلی");
+                                                        } else {
+                                                          ShowMSG().error("خطا",
+                                                              response.message);
+                                                        }
+                                                        Get.to(LawScreen());
+
+                                                        ShowMSG().showSnackBar(
+                                                            "شهر با موفقیت انتخاب شد");
                                                         _mainController
                                                             .setCityid(item0.id!
                                                                 .toInt());
@@ -173,8 +193,6 @@ class CityScreen extends StatelessWidget {
                                                             .setCityName(item0
                                                                 .name
                                                                 .toString());
-
-                                                        Get.to(LawScreen());
                                                       },
                                                       style: ButtonStyle(
                                                           shadowColor:

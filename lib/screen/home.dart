@@ -8,9 +8,14 @@ import 'package:hamekare_app/screen/home/dashboard_screen.dart';
 import 'package:hamekare_app/screen/home/settingscreen.dart';
 import 'package:hamekare_app/tools/tools.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final _controller = Get.put(HomeController());
 
   final List<Widget> _pages = [
@@ -18,14 +23,9 @@ class HomeScreen extends StatelessWidget {
     CartPage(),
     SettingScreen(),
   ];
+  int currentIndex = 0;
 
   // openDialPad(String phoneNumber) async {
-  //   Uri url = Uri(scheme: "tel", path: phoneNumber);
-  //   if (await canLaunchUrl(url)) {
-  //     await launchUrl(url);
-  //   }
-  // }
-
   bool onWillPop(bool v) {
     DateTime now = DateTime.now();
     if (_controller.currentBackPressTime == null ||
@@ -39,6 +39,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   final PageController pageController = PageController();
+
   void onAddButtonTapped(int index) {
     pageController.animateToPage(index,
         duration: const Duration(milliseconds: 250), curve: Curves.decelerate);
@@ -60,46 +61,43 @@ class HomeScreen extends StatelessWidget {
             ),
             child: const Icon(Icons.call)),
       ),
-      bottomNavigationBar: Obx(() {
-        return BottomNavyBar(
-          selectedIndex: _controller.currentIndex,
-          backgroundColor: MyThemes.primaryColor,
-          iconSize: 29,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          animationDuration: const Duration(milliseconds: 150),
-          curve: Curves.ease,
-          onItemSelected: (index) {
-            // setState(() {
-            //   currentIndex = index;
-            // });
-            _controller.currentIndex = index;
-            onAddButtonTapped(index);
-          },
-          items: <BottomNavyBarItem>[
-            BottomNavyBarItem(
-              icon: const Icon(Icons.home),
-              title: const Text('خانه'),
-              activeColor: MyThemes.secondryColor,
-              textAlign: TextAlign.center,
-              inactiveColor: Colors.white,
-            ),
-            BottomNavyBarItem(
-              icon: const Icon(Icons.shopping_cart_rounded),
-              textAlign: TextAlign.center,
-              title: const Text('سفارشات شما'),
-              activeColor: MyThemes.secondryColor,
-              inactiveColor: Colors.white,
-            ),
-            BottomNavyBarItem(
-              icon: const Icon(Icons.person),
-              title: const Text('ناحیه کاربری'),
-              textAlign: TextAlign.center,
-              activeColor: MyThemes.secondryColor,
-              inactiveColor: Colors.white,
-            ),
-          ],
-        );
-      }),
+      bottomNavigationBar: BottomNavyBar(
+        selectedIndex: currentIndex,
+        backgroundColor: MyThemes.primaryColor,
+        iconSize: 29,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        animationDuration: const Duration(milliseconds: 150),
+        curve: Curves.ease,
+        onItemSelected: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+          onAddButtonTapped(index);
+        },
+        items: <BottomNavyBarItem>[
+          BottomNavyBarItem(
+            icon: const Icon(Icons.home),
+            title: const Text('خانه'),
+            activeColor: MyThemes.secondryColor,
+            textAlign: TextAlign.center,
+            inactiveColor: Colors.white,
+          ),
+          BottomNavyBarItem(
+            icon: const Icon(Icons.shopping_cart_rounded),
+            textAlign: TextAlign.center,
+            title: const Text('سفارشات شما'),
+            activeColor: MyThemes.secondryColor,
+            inactiveColor: Colors.white,
+          ),
+          BottomNavyBarItem(
+            icon: const Icon(Icons.person),
+            title: const Text('ناحیه کاربری'),
+            textAlign: TextAlign.center,
+            activeColor: MyThemes.secondryColor,
+            inactiveColor: Colors.white,
+          ),
+        ],
+      ),
       body: PopScope(
         onPopInvoked: onWillPop,
         child: Stack(

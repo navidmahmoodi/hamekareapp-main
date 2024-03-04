@@ -65,88 +65,73 @@ class DetailPage extends StatelessWidget {
             Expanded(
               child: ElevatedButton(
                 onPressed: () async {
-                  _controller.postdarkhast(
-                      model.selectedTime.time,
-                      "${now.hour}:${now.minute}",
-                      model.titleid,
-                      _controller.mainController.cityid,
-                      model.tozih,
-                      model.adress,
-                      dateOnly);
-                  // _controller.postDarkhast.addres = adress;
-                  // _controller.postDarkhast.azTaSat = selectedHour;
-                  // _controller.postDarkhast.discription = tozih;
-                  // _controller.postDarkhast.mobile = phoneNumber;
-                  // _controller.postDarkhast.roz =
-                  //     getWDbyIndex(date.addDays(roz).weekDay);
-                  // _controller.postDarkhast.title = titleid;
-                  // _controller.postDarkhast.tarikh =
-                  //     date.addDays(tarikh).cDate(7);
-                  // await _controller.postdarkhast();
-                  if (_controller.postDarkhast.status == false) {
-                    // Get.offAllNamed("/home");
-                    //  Get.offNamedUntil('/home', (route) => false);
-                    Get.back();
-                    Get.back();
-
-                    // WidgetsBinding.instance.addPostFrameCallback((_) {
-                    //   Get.toNamed(() => const Home());
-                    // });
-
-                    ShowMSG().showSnackBar(
-                        "سفارش شما با موفقیت ثبت شد, سفارش خود را میتوانید از صفحه سفارشات ببینید");
-                    // Get.dialog(
-                    // Container(
-                    // decoration: BoxDecoration(
-                    //     color: Colors.white,
-                    //     borderRadius: BorderRadius.circular(20)),
-                    // margin: const EdgeInsets.symmetric(
-                    //     vertical: 200, horizontal: 15),
-                    // child:
-                    // Column(
-                    //   children: [
-                    // Container(
-                    //   child: Lottie.asset(
-                    //     "assets/lottie/Tick.json",
-                    //   ),
-                    // ),
-                    // Text(
-                    //   "سفارش شما با موفقیت ثبت شد",
-                    //   textAlign: TextAlign.center,
-                    //   style: TextStyle(
-                    //       color: MyThemes.primaryColor, fontSize: 24),
-                    // ),
-                    // Text(
-                    //   "میتوانید سفارش خود را از قسمت سفارشات بررسی کنید",
-                    //   textAlign: TextAlign.center,
-                    //   style: TextStyle(
-                    //       color: MyThemes.primaryColor, fontSize: 16),
-                    // ),
-                    // Container(
-                    //   margin: const EdgeInsets.only(top: 10),
-                    //   padding:
-                    //       const EdgeInsets.symmetric(horizontal: 15),
-                    //   child: ElevatedButton(
-                    //     style: ButtonStyle(
-                    //       backgroundColor: MaterialStateProperty.all(
-                    //           MyThemes.secondryColor),
-                    //     ),
-                    //     onPressed: () {
-                    //       Get.back();
-                    //     },
-                    //     child: Text(
-                    //       "رفتن به خانه",
-                    //       style:
-                    //           TextStyle(color: MyThemes.primaryColor),
-                    //     ),
-                    //   ),
-                    // ),
-                    //   ],
-                    // ),
-                    // ),
-                    // barrierColor: Colors.red,
-                    // );
+                  print(model.date);
+                  print(model.selectedTime.hour);
+                  await _controller.postdarkhast(
+                    model.date.toString(),
+                    model.titleid,
+                    model.tozih,
+                    model.adress,
+                  );
+                  if (!_controller.postDarkhast.isLoading) {
+                    ShowMSG().showSnackBar(_controller.postDarkhast.message);
+                    Get.offAllNamed("/home");
+                  } else {
+                    ShowMSG().showSnackBar("رزرو انجام نشد");
                   }
+
+                  // Get.dialog(
+                  // Container(
+                  // decoration: BoxDecoration(
+                  //     color: Colors.white,
+                  //     borderRadius: BorderRadius.circular(20)),
+                  // margin: const EdgeInsets.symmetric(
+                  //     vertical: 200, horizontal: 15),
+                  // child:
+                  // Column(
+                  //   children: [
+                  // Container(
+                  //   child: Lottie.asset(
+                  //     "assets/lottie/Tick.json",
+                  //   ),
+                  // ),
+                  // Text(
+                  //   "سفارش شما با موفقیت ثبت شد",
+                  //   textAlign: TextAlign.center,
+                  //   style: TextStyle(
+                  //       color: MyThemes.primaryColor, fontSize: 24),
+                  // ),
+                  // Text(
+                  //   "میتوانید سفارش خود را از قسمت سفارشات بررسی کنید",
+                  //   textAlign: TextAlign.center,
+                  //   style: TextStyle(
+                  //       color: MyThemes.primaryColor, fontSize: 16),
+                  // ),
+                  // Container(
+                  //   margin: const EdgeInsets.only(top: 10),
+                  //   padding:
+                  //       const EdgeInsets.symmetric(horizontal: 15),
+                  //   child: ElevatedButton(
+                  //     style: ButtonStyle(
+                  //       backgroundColor: MaterialStateProperty.all(
+                  //           MyThemes.secondryColor),
+                  //     ),
+                  //     onPressed: () {
+                  //       Get.back();
+                  //     },
+                  //     child: Text(
+                  //       "رفتن به خانه",
+                  //       style:
+                  //           TextStyle(color: MyThemes.primaryColor),
+                  //     ),
+                  //   ),
+                  // ),
+                  //   ],
+                  // ),
+                  // ),
+                  // barrierColor: Colors.red,
+                  // );
+                  // }
                 },
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:hamekare_app/Model/get_darkhast_model.dart';
 import 'package:hamekare_app/controller/canclereq_controller.dart';
 import 'package:hamekare_app/controller/darkhast_controller.dart';
+import 'package:hamekare_app/controller/main_controller.dart';
 
 import '../../controller/rate_req_controller.dart';
 import '../../tools/tools.dart';
@@ -47,7 +48,9 @@ class CartPage extends StatelessWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                color: MyThemes.secondryColor,
+                color: item.status == "cancelled" || item.status == "rejected"
+                    ? MyThemes.red.withOpacity(0.7)
+                    : MyThemes.secondryColor,
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(17),
                   topRight: Radius.circular(17),
@@ -65,7 +68,9 @@ class CartPage extends StatelessWidget {
             ),
             Divider(color: MyThemes.primaryColor, thickness: 1, height: 0),
             Container(
-              color: Colors.white,
+              color: item.status == "cancelled" || item.status == "rejected"
+                  ? MyThemes.red.withOpacity(0.8)
+                  : Colors.white,
               child: Row(
                 children: [
                   Expanded(
@@ -236,15 +241,22 @@ class CartPage extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(
                                 vertical: 0, horizontal: 2.5),
                             child: ElevatedButton(
-                              onPressed: () => _setRating(item),
+                              onPressed: item.status == "cancelled" ||
+                                      item.status == "rejected"
+                                  ? () {}
+                                  : () => _setRating(item),
                               style: ButtonStyle(
                                   shape: MaterialStateProperty.all(
                                     RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15),
                                     ),
                                   ),
-                                  backgroundColor: MaterialStateProperty.all(
-                                      MyThemes.secondryColor)),
+                                  backgroundColor: item.status == "cancelled" ||
+                                          item.status == "rejected"
+                                      ? MaterialStateProperty.all(
+                                          MyThemes.red.withOpacity(0.45))
+                                      : MaterialStateProperty.all(
+                                          MyThemes.secondryColor)),
                               child: FittedBox(
                                 child: Text(
                                   "امتیاز دهی",
@@ -262,14 +274,24 @@ class CartPage extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(
                                 vertical: 0, horizontal: 2.5),
                             child: ElevatedButton(
-                              onPressed: _cancelRequest,
+                              onPressed: item.status == "cancelled" ||
+                                      item.status == "rejected"
+                                  ? () {}
+                                  : () {
+                                      _cancelRequest(item.id!.toInt());
+                                      print(item.id);
+                                    },
                               style: ButtonStyle(
                                   shape: MaterialStateProperty.all(
                                       RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(15))),
-                                  backgroundColor:
-                                      MaterialStateProperty.all(MyThemes.red)),
+                                  backgroundColor: item.status == "cancelled" ||
+                                          item.status == "rejected"
+                                      ? MaterialStateProperty.all(
+                                          MyThemes.red.withOpacity(0.45))
+                                      : MaterialStateProperty.all(
+                                          MyThemes.red)),
                               child: Text(
                                 "انصراف",
                                 style: TextStyle(
@@ -356,7 +378,7 @@ class CartPage extends StatelessWidget {
     );
   }
 
-  void _cancelRequest() async {
+  void _cancelRequest(int id) async {
     Get.dialog(Dialog(
       backgroundColor: Colors.transparent,
       child: Column(
@@ -388,14 +410,11 @@ class CartPage extends StatelessWidget {
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () async {
-                            // await _cancleController.cancleReq(item.iD);
-                            // if (!_cancleController.cancleReqController.status) {
-                            //   Get.back();
-                            //   ShowMSG().showSnackBar("موفقیت آمیز");
-                            //   init();
-                            // } else {
-                            //   ShowMSG().showSnackBar("خطا!");
-                            // }
+                            await _controller.updateDarkhsat(id, "cancelled");
+                            Get.back();
+                            init();
+                            ShowMSG().showSnackBar(
+                                _controller.updateResponse.message);
                           },
                           style: ButtonStyle(
                             shape: MaterialStateProperty.all<

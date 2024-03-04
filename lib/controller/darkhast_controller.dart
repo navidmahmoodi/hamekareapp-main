@@ -11,21 +11,21 @@ class DarkhastController extends GetxController {
   GetDarkhastResponse get getDarkhast => _getDarkhast.value;
   final mainController = Get.put(MainController());
 
-  Future<PostDarkhast> postdarkhast(String startDateTime, String time , int service , int branchId, String note,String adress,DateTime date) async {
+  Future<PostDarkhast> postdarkhast(
+      String date, int id, String desc, String adress) async {
     _postDarkhast.update((val) {
       val!.isloading = true;
     });
 
     _postDarkhast.value = await mainController.api.postDarkhast(
-      startDateTime,
-      date,
-      time,
-      service,
+      date.toString(),
       adress,
-      note,
-      branchId
+      desc,
+      id,
     );
-
+    _postDarkhast.update((val) {
+      val!.isloading = false;
+    });
     return _postDarkhast.value;
   }
 
@@ -41,10 +41,21 @@ class DarkhastController extends GetxController {
     return _getDarkhast.value;
   }
 
-  final _payResponse = ResponseModel().obs;
-  ResponseModel get payResponse => _payResponse.value;
-  bool get isloading => payResponse.isloading;
-  set isloading(bool v) => _payResponse.update((val) => val!.isloading = v);
+    final _updateResponse = ResponseModel().obs;
+  ResponseModel get updateResponse => _updateResponse.value;
+   Future<ResponseModel> updateDarkhsat(int id , String status) async {
+    _updateResponse.update((val) {
+      val!.isloading = true;
+    });
+
+    _updateResponse.value = await mainController.api.updateDarkhsat(id,status);
+    _updateResponse.update((val) {
+      val!.isloading = false;
+    });
+    return _updateResponse.value;
+  }
+  // bool get isloading => payResponse.isloading;
+  // set isloading(bool v) => _payResponse.update((val) => val!.isloading = v);
 
   // Future<ResponseModel> pay(int id) async {
   //   isloading = true;

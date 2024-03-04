@@ -108,7 +108,7 @@ class LoginScreen extends StatelessWidget {
                             color: MyThemes.primaryColor, fontSize: 17),
                         keyboardType: TextInputType.number,
                         textAlign: TextAlign.center,
-                        maxLength: 35,
+                        maxLength: 11,
                         decoration: const InputDecoration(
                             counterText: "",
                             contentPadding: EdgeInsets.only(top: 2),
@@ -135,7 +135,6 @@ class LoginScreen extends StatelessWidget {
                         style: TextStyle(
                             color: MyThemes.primaryColor, fontSize: 17),
                         textAlign: TextAlign.center,
-                        maxLength: 11,
                         decoration: const InputDecoration(
                             counterText: "",
                             contentPadding: EdgeInsets.only(top: 2),

@@ -2,18 +2,27 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hamekare_app/controller/main_controller.dart';
 import 'package:hamekare_app/controller/splash_controller.dart';
+import 'package:hamekare_app/screen/Intro/intro.dart';
+import 'package:hamekare_app/screen/home.dart';
 import 'package:hamekare_app/tools/tools.dart';
 
 class Splash extends StatelessWidget {
   Splash({Key? key}) : super(key: key);
 
   final _splashController = Get.put(SplashController());
+  final _mainController = Get.put(MainController());
 
   init() async {
+    _mainController.init();
+    // toMain();
     await _splashController.getSplash();
-    toMain();
-
+    if (_splashController.splashModel.id != null) {
+      Get.to(HomeScreen());
+    } else {
+      await Get.to(IntroScreen());
+    }
     // if (_splashController.splashResponse.isError) {
     //   Get.offNamed("/intro");
     // } else {
@@ -23,7 +32,7 @@ class Splash extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // init();
+    init();
 
     return SafeArea(
       child: Scaffold(
@@ -42,10 +51,7 @@ class Splash extends StatelessWidget {
             const Spacer(),
             Container(
                 margin: const EdgeInsets.only(bottom: 130),
-                child: Center(
-                  child: ElevatedButton(
-                      onPressed: init, child: const Text("ادامه")),
-                ))
+                child: simpleLoading())
           ],
         ),
       ),

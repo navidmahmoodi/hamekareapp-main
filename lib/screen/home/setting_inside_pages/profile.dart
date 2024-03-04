@@ -125,6 +125,8 @@ class ProfileScreen extends StatelessWidget {
           ]),
           child: ElevatedButton(
             onPressed: () async {
+              // await _controller.api.postImage();
+
               await _controller.postPofile(
                 namecontroller.text,
                 fnamecontroller.text,

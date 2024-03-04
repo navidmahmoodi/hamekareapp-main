@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hamekare_app/controller/main_controller.dart';
+import 'package:hamekare_app/screen/home/service/service_page.dart';
 import 'package:hamekare_app/tools/tools.dart';
 
 import '../screen/home/choosetimepage/choosetime.dart';
@@ -38,14 +39,14 @@ class HomeGridView extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
-                  // if (_item.subCategories.isNotEmpty) {
-                  //   Get.to(() => ServicePage(sub: _item.subCategories));
-                  // } else {
-                  Get.to(() => ChooseTime(
-                        reqName: item.name.toString(),
-                        id: item.id!,
-                      ));
-                  // }
+                  if (item.subCategories.isNotEmpty) {
+                    Get.to(() => ServicePage(sub: item.subCategories));
+                  } else {
+                    Get.to(() => ChooseTime(
+                          reqName: item.name.toString(),
+                          id: item.id!,
+                        ));
+                  }
                 },
                 child: Container(
                   padding:

@@ -13,10 +13,12 @@ import 'package:hamekare_app/Model/register_model.dart';
 import 'package:hamekare_app/Model/response_model.dart';
 import 'package:hamekare_app/Model/check_otp_model.dart';
 import 'package:hamekare_app/Model/login_model.dart';
+import 'package:hamekare_app/Model/splash_model.dart';
 import 'package:hamekare_app/Service/error.dart';
 import 'package:hamekare_app/controller/main_controller.dart';
 import 'package:hamekare_app/response/slider_response.dart';
 import 'package:hamekare_app/tools/logger.dart';
+import 'package:image_picker/image_picker.dart';
 import '../Service/logging_interceptor.dart';
 
 final _mainController = GET.Get.put(MainController());
@@ -46,6 +48,15 @@ class ServiceGenerator {
           message: handleError(error));
     } else {
       return ResponseModel(status: false, errorCode: 0, message: msg);
+    }
+  }
+  Future<SplashModel> getSplash() async {
+    try {
+      Response response = await _dio.get(ServerConfig.splash);
+      return SplashModel.fromJson(response.data);
+    } catch (error, stacktrace) {
+      loggerNoStack.e("Exception occured: $error stackTrace: $stacktrace");
+      return SplashModel.withError(_getError(error).toJson());
     }
   }
 
@@ -147,6 +158,19 @@ class ServiceGenerator {
     }
   }
 
+  Future<ProfileResponse> postCity(int id) async {
+    try {
+      Response response =
+          await _dio.post(ServerConfig.postCity, data: {"city_id": id});
+      return ProfileResponse.fromJson(
+        response.data,
+      );
+    } catch (error, stacktrace) {
+      loggerNoStack.e("Exception occured: $error stackTrace: $stacktrace");
+      return ProfileResponse.withError(_getError(error).toJson());
+    }
+  }
+
   // Future<SplashModel> splash(String token, int appId) async {
   //   try {
   //     Response response = await _dio
@@ -200,6 +224,26 @@ class ServiceGenerator {
     }
   }
 
+  // Future<ResponseModel> postImage() async {
+  //   final _controller = GET.Get.put(ProfileResponse());
+
+  //   FormData formData = FormData.fromMap({
+  //     "profile_image": await MultipartFile.fromFile(_controller.image!.path,
+  //         filename: "fileName"),
+  //   });
+
+  //   try {
+  //     Response response = await _dio.post(
+  //       ServerConfig.profile,
+  //       data: formData,
+  //     );
+  //     return ResponseModel.fromJson(response.data);
+  //   } catch (error, stacktrace) {
+  //     loggerNoStack.e("Exception occured: $error stackTrace: $stacktrace");
+  //     return ResponseModel.withError(_getError(error).toJson());
+  //   }
+  // }
+
   Future<ProfileResponse> getProfile() async {
     try {
       Response response = await _dio.post(ServerConfig.profile);
@@ -211,24 +255,20 @@ class ServiceGenerator {
   }
 
   Future<PostDarkhast> postDarkhast(
-    String startDateTime,
-    DateTime date,
-    String time,
-    int services,
-    String adress,
-    String note,
-    int branchId,
+    String date,
+    String address,
+    String desc,
+    int id,
   ) async {
     try {
       Response response = await _dio.post(ServerConfig.postBooking, data: {
-        "start_date_time": startDateTime,
-        "date": json.encode(date),
-        "time": time,
-        "services": services,
-        "adress": adress,
-        "note": note,
-        "branch_id": branchId,
+        "date": date,
+        "address": address,
+        "description": desc,
+        "service_id": id,
+        "provider_id": 2,
       });
+      print(response);
       return PostDarkhast.fromJson(response.data);
     } catch (error, stacktrace) {
       loggerNoStack.e("Exception occured: $error stackTrace: $stacktrace");
@@ -271,6 +311,17 @@ class ServiceGenerator {
     try {
       Response response =
           await _dio.post(ServerConfig.urlPostRating, data: param);
+      return ResponseModel.fromJson(response.data);
+    } catch (error, stacktrace) {
+      loggerNoStack.e("Exception occured: $error stackTrace: $stacktrace");
+      return ResponseModel.withError(_getError(error).toJson());
+    }
+  }
+
+  Future<ResponseModel> updateDarkhsat(int id, String status) async {
+    try {
+      Response response = await _dio.post(ServerConfig.updateDartkhast,
+          data: {"id": id, "status": status, "payment_status": ""});
       return ResponseModel.fromJson(response.data);
     } catch (error, stacktrace) {
       loggerNoStack.e("Exception occured: $error stackTrace: $stacktrace");

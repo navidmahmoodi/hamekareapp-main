@@ -1,19 +1,14 @@
 import 'package:hamekare_app/Model/response_model.dart';
 import 'package:image_picker/image_picker.dart';
 
-
-
-
-
-class ProfileResponse extends BaseResponseModel{
+class ProfileResponse extends BaseResponseModel {
   ProfileResponse({
-     this.data,
+    this.data,
   });
   late ProfileModel? data;
   XFile? image;
-  
-  
-  ProfileResponse.fromJson(Map<String, dynamic> json){
+
+  ProfileResponse.fromJson(Map<String, dynamic> json) {
     data = ProfileModel.fromJson(json['data']);
     message = json['message'];
   }
@@ -44,8 +39,9 @@ class ProfileModel {
   late String? address;
   late String? displayName;
   late String? profileImage;
-  
-  ProfileModel.fromJson(Map<String, dynamic> json){
+  late String? cityName;
+
+  ProfileModel.fromJson(Map<String, dynamic> json) {
     firstName = json['first_name'];
     lastName = json['last_name'];
     email = json['email'];
@@ -53,7 +49,6 @@ class ProfileModel {
     address = json['address'];
     displayName = json['display_name'];
     profileImage = json['profile_image'];
+    cityName = json['city_name'];
   }
-
-
 }

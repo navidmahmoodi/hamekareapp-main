@@ -298,11 +298,11 @@ class RegisterScreen extends StatelessWidget {
               ),
               Container(
                 margin: const EdgeInsets.only(bottom: 3, right: 3),
-                child: Text.rich(TextSpan(
+                child:const Text.rich(TextSpan(
                   text: "ایمیل",
-                  children: [
-                    TextSpan(text: " *", style: TextStyle(color: MyThemes.red))
-                  ],
+                  // children: [
+                  //   TextSpan(text: " *", style: TextStyle(color: MyThemes.red))
+                  // ],
                 )),
               ),
               Container(

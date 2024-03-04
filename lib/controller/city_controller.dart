@@ -2,6 +2,7 @@
 import 'package:get/get.dart';
 import 'package:hamekare_app/Model/get_city_model.dart';
 import 'package:hamekare_app/Model/get_subcity.dart';
+import 'package:hamekare_app/Model/profile_model.dart';
 import 'package:hamekare_app/controller/main_controller.dart';
 
 class CityController extends GetxController {
@@ -38,7 +39,23 @@ class CityController extends GetxController {
     return _getSubcityModel.value;
   }
 
+  final _postCityResponse = ProfileResponse().obs;
+  ProfileResponse get postcityResponse => _postCityResponse.value;
 
+
+
+  Future<ProfileResponse> postCity(int city) async {
+    _postCityResponse.update((val) {
+      val!.isloading = true;
+    });
+
+  _postCityResponse.value =  await _mainController.api.postCity(city);
+
+    _postCityResponse.update((val) {
+      val!.isloading = false;
+    });
+    return _postCityResponse.value;
+  }
 
   // void updateExpanded(int i, bool isExpanded) {
   //   _getcityModel.update((val) {

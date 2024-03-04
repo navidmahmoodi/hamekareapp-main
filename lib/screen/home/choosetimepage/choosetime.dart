@@ -19,8 +19,6 @@ class ChooseTime extends StatelessWidget {
 
   int currentday = Jalali.now().weekDay;
   int monthday = Jalali.now().day;
-  final _nameController = TextEditingController();
-  final _mobileController = TextEditingController();
   final _tozihController = TextEditingController();
   final _adressController = TextEditingController();
 
@@ -43,10 +41,8 @@ class ChooseTime extends StatelessWidget {
               Expanded(
                 child: ElevatedButton(
                   onPressed: () {
-                    if (_adressController.text.isEmpty ||
-                        _mobileController.text.length <= 10 ||
-                        _nameController.text.isEmpty) {
-                      ShowMSG().showSnackBar("اطلاعات خود را درست وارد کنید");
+                    if (_adressController.text.isEmpty) {
+                      ShowMSG().showSnackBar("آدرس خود را وارد کنید");
                     } else {
                       DetailPageModel model = DetailPageModel(
                           adress: _adressController.text,
@@ -264,70 +260,6 @@ class ChooseTime extends StatelessWidget {
                       style: TextStyle(
                         color: MyThemes.primaryColor,
                         fontSize: 19,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 10),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.5),
-                          spreadRadius: 1,
-                          offset: const Offset(1, 1),
-                          blurRadius: 4,
-                        ),
-                      ],
-                      borderRadius: BorderRadius.circular(15),
-                      border:
-                          Border.all(color: MyThemes.primaryColor, width: 2),
-                    ),
-                    child: TextField(
-                      controller: _nameController,
-                      style:
-                          TextStyle(color: MyThemes.primaryColor, fontSize: 18),
-                      keyboardType: TextInputType.name,
-                      textAlign: TextAlign.center,
-                      // readOnly: true,
-                      decoration: const InputDecoration(
-                        counterText: "",
-                        contentPadding: EdgeInsets.only(top: 0),
-                        border: InputBorder.none,
-                        hintText: "نام و نام خانوادگی",
-                        hintStyle: TextStyle(fontSize: 17),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 20),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.5),
-                          spreadRadius: 1,
-                          offset: const Offset(1, 1),
-                          blurRadius: 4,
-                        ),
-                      ],
-                      borderRadius: BorderRadius.circular(15),
-                      border:
-                          Border.all(color: MyThemes.primaryColor, width: 2),
-                    ),
-                    child: TextField(
-                      controller: _mobileController,
-                      maxLength: 11,
-                      style:
-                          TextStyle(color: MyThemes.primaryColor, fontSize: 18),
-                      keyboardType: TextInputType.number,
-                      textAlign: TextAlign.center,
-                      decoration: const InputDecoration(
-                        counterText: "",
-                        contentPadding: EdgeInsets.only(top: 0),
-                        border: InputBorder.none,
-                        hintText: "شماره موبایل",
-                        hintStyle: TextStyle(fontSize: 17),
                       ),
                     ),
                   ),

@@ -145,6 +145,7 @@ class MainController extends GetxController {
 
   initToken() {
     token = prefs.getString("token") ?? "";
+    headers["Authorization"] = token;
     cityid = prefs.getInt("cityid") ?? 1;
     cityname = prefs.getString("cityname") ?? "1";
     setToken(token);

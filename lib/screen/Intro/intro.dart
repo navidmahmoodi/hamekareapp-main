@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:hamekare_app/Model/intro_slider_model.dart';
 import 'package:hamekare_app/Model/temp/introslidertemp.dart';
 import 'package:hamekare_app/controller/main_controller.dart';
+import 'package:hamekare_app/screen/Login/login_phone.dart';
 import 'package:hamekare_app/tools/tools.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -137,7 +138,8 @@ class IntroScreen extends StatelessWidget {
               decoration: const BoxDecoration(),
               child: ElevatedButton(
                 onPressed: () {
-                  toMain();
+                  // toMain();
+                  Get.to(LoginScreen());
                 },
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(

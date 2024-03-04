@@ -14,27 +14,40 @@ class DashboardScreen extends StatelessWidget {
   final _controller = Get.put(SliderController());
   final MainController _mainController = Get.find();
   init() async {
+        WidgetsBinding.instance.addPostFrameCallback((_) async {
     await _cityController.getCity();
+    });
   }
 
   init3() async {
-    if (_controller.sliderResponse.data!.isEmpty) {
-      await _mainController.getCategory();
+    if (_controller.sliderResponse.data!.isEmpty) {        WidgetsBinding.instance.addPostFrameCallback((_) async {
+    await _mainController.getCategory();
+    });
+      
     }
   }
 
-  init4() {
-    _controller.getSlider();
+  init4() async{        WidgetsBinding.instance.addPostFrameCallback((_) async {
+    await _controller.getSlider();
+    });
+    
   }
 
-  init5(int id) {
-    _cityController.getSubCity(id);
+  init5(int id) async{        WidgetsBinding.instance.addPostFrameCallback((_) async {
+   await _cityController.getSubCity(id);
+    });
+  }
+
+  init6() async{        WidgetsBinding.instance.addPostFrameCallback((_) async {
+   await _mainController.getProfile();
+    });
   }
 
   final _cityController = Get.put(CityController());
   final _postcityController = Get.put(PostCityController());
   @override
   Widget build(BuildContext context) {
+    init6();
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Container(
@@ -225,15 +238,35 @@ class DashboardScreen extends StatelessWidget {
 
                                                                   return ElevatedButton(
                                                                     onPressed:
-                                                                        () {
-                                                                      _mainController.setCityid(item0
-                                                                          .id!
-                                                                          .toInt());
-                                                                      _mainController.setCityName(item0
-                                                                          .name
-                                                                          .toString());
-                                                                      Get.back();
-                                                                      Get.back();
+                                                                        () async {
+                                                                      var response =
+                                                                          await _cityController.postCity(item0
+                                                                              .id!
+                                                                              .toInt());
+
+                                                                      if (response
+                                                                              .errorCode ==
+                                                                          406) {
+                                                                        ShowMSG().error(
+                                                                            "خطا",
+                                                                            "نام کاربری یا رمز عبور صحیح نمی باشد");
+                                                                      } else {
+                                                                        _mainController.setCityid(item0
+                                                                            .id!
+                                                                            .toInt());
+                                                                        _mainController.setCityName(item0
+                                                                            .name
+                                                                            .toString());
+                                                                        Get.back();
+                                                                        Get.back();
+                                                                        init();
+                                                                        init3();
+                                                                        init4();
+                                                                        init6();
+                                                                        ShowMSG().showSnackBar(_cityController
+                                                                            .postcityResponse
+                                                                            .message);
+                                                                      }
                                                                     },
                                                                     style: ButtonStyle(
                                                                         shadowColor: MaterialStateProperty.all(MyThemes.primaryColor),
@@ -441,10 +474,16 @@ class DashboardScreen extends StatelessWidget {
                                         const EdgeInsets.symmetric(vertical: 4),
                                     child: simpleLoading());
                               }
+                              if (_mainController.profileResponse.data!.cityName == null) {
+          return Center(
+            child: simpleLoading(),
+          );
+        }
                               return Container(
                                 margin: const EdgeInsets.only(right: 5),
                                 child: Text(
-                                  _mainController.cityname,
+                                  _mainController.profileResponse.data!.cityName
+                                      .toString(),
                                   style: const TextStyle(
                                     color: Colors.white,
                                   ),
