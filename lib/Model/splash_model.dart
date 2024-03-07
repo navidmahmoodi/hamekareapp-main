@@ -8,14 +8,18 @@ class SplashModel extends BaseResponseModel {
     this.firstName,
     this.lastName,
     this.email,
+    this.isSuccess
   });
   late int? id;
+  late bool? isSuccess;
   late String? username;
   late String? firstName;
   late String? lastName;
   late String? email;
 
   SplashModel.fromJson(Map<String, dynamic> json) {
+    isSuccess = json['isSuccess'];
+    
     id = json['id'];
     username = json['username'];
     firstName = json['first_name'];
