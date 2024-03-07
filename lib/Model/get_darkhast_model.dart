@@ -62,7 +62,7 @@ class GetDarkhastModel {
     customerId = json['customer_id'];
     serviceId = json['service_id'];
     providerId = json['provider_id'];
-    date = DateTime.tryParse(json['date']);
+    // date = DateTime.tryParse(json['date']);
     price = json['price'];
     type = json['type'];
     status = json['status'];

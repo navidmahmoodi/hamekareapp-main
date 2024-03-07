@@ -336,7 +336,7 @@ class CartPage extends StatelessWidget {
               margin: const EdgeInsets.symmetric(vertical: 5),
               child: simpleLoading());
         }
-        if (_controller.getDarkhast.data!.isEmpty) {
+        if (_controller.getDarkhast.data != null) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,

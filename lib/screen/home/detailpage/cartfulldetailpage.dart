@@ -367,11 +367,11 @@ class CartFullDetail extends StatelessWidget {
                     _rowBox([
                       _badgeTitle("ثبت کننده درخواست"),
                       _badgeBox(item.customerName.toString()),
-                      _badgeTitle("روز"),
-                      _badgeBox(item.date!.toJalali().cDate(8)),
-                      _badgeTitle("تاریخ"),
-                      _badgeBox(
-                          item.date!.toJalali().cDate(7).withPersianNumbers()),
+                      // _badgeTitle("روز"),
+                      // _badgeBox(item.date!.toJalali().cDate(8)),
+                      // _badgeTitle("تاریخ"),
+                      // _badgeBox(
+                      //     item.date!.toJalali().cDate(7).withPersianNumbers()),
                     ]),
                     _rowBox([
                       _badgeTitle("کار درخواستی"),

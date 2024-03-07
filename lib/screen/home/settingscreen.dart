@@ -432,139 +432,147 @@ class SettingScreen extends StatelessWidget {
                           RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)))),
                   onPressed: () {
-                    Get.dialog(Material(
-                      color: Colors.transparent,
-                      child: Center(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 5),
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              decoration: BoxDecoration(
-                                  color: MyThemes.secondryColor,
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Text(
-                                    "ایمیل",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: MyThemes.primaryColor,
-                                        fontSize: 23),
-                                  ),
-                                  Container(
-                                      margin: const EdgeInsets.only(
-                                          top: 10, bottom: 10),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color:
-                                                Colors.black.withOpacity(0.5),
-                                            spreadRadius: 1,
-                                            offset: const Offset(1, 1),
-                                            blurRadius: 4,
-                                          ),
-                                        ],
-                                        borderRadius: BorderRadius.circular(15),
-                                        border: Border.all(
-                                            color: MyThemes.primaryColor,
-                                            width: 2),
-                                      ),
-                                      child: TextFormField(
-                                        controller: mailSubject,
-                                        maxLines: 1,
-                                        maxLength: 150,
-                                        style: TextStyle(
-                                            color: MyThemes.primaryColor,
-                                            fontSize: 18),
-                                        keyboardType: TextInputType.multiline,
-                                        textAlign: TextAlign.center,
-                                        decoration: const InputDecoration(
-                                          counterText: "",
-                                          contentPadding: EdgeInsets.zero,
-                                          border: InputBorder.none,
-                                          hintText: "موضوع",
-                                          hintStyle: TextStyle(
-                                            fontSize: 17,
-                                          ),
-                                        ),
-                                      )),
-                                  Container(
-                                      margin: const EdgeInsets.only(bottom: 5),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color:
-                                                Colors.black.withOpacity(0.5),
-                                            spreadRadius: 1,
-                                            offset: const Offset(1, 1),
-                                            blurRadius: 4,
-                                          ),
-                                        ],
-                                        borderRadius: BorderRadius.circular(15),
-                                        border: Border.all(
-                                            color: MyThemes.primaryColor,
-                                            width: 2),
-                                      ),
-                                      child: TextFormField(
-                                        controller: mailBody,
-                                        maxLines: 5,
-                                        maxLength: 1000,
-                                        style: TextStyle(
-                                            color: MyThemes.primaryColor,
-                                            fontSize: 18),
-                                        keyboardType: TextInputType.multiline,
-                                        textAlign: TextAlign.center,
-                                        decoration: const InputDecoration(
-                                          counterText: "",
-                                          contentPadding:
-                                              EdgeInsets.only(top: 3),
-                                          border: InputBorder.none,
-                                          hintText: "توضیحات",
-                                          hintStyle: TextStyle(
-                                            fontSize: 17,
-                                          ),
-                                        ),
-                                      )),
-                                  ElevatedButton(
-                                      style: ButtonStyle(
-                                          backgroundColor:
-                                              MaterialStateProperty.all(
-                                                  MyThemes.secondryColor),
-                                          shape: MaterialStateProperty.all(
-                                              RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                            side: BorderSide(
-                                              color: MyThemes.primaryColor,
-                                              width: 2.0,
+                    Get.dialog(Dialog(
+                      surfaceTintColor: Colors.transparent,
+                      backgroundColor: Colors.transparent,
+                      child: Material(
+                        color: Colors.transparent,
+                        child: Center(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 5),
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                decoration: BoxDecoration(
+                                    color: MyThemes.secondryColor,
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    Text(
+                                      "ایمیل",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: MyThemes.primaryColor,
+                                          fontSize: 23),
+                                    ),
+                                    Container(
+                                        margin: const EdgeInsets.only(
+                                            top: 10, bottom: 10),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color:
+                                                  Colors.black.withOpacity(0.5),
+                                              spreadRadius: 1,
+                                              offset: const Offset(1, 1),
+                                              blurRadius: 4,
                                             ),
-                                          ))),
-                                      onPressed: () {
-                                        mail(mailSubject.text, mailBody.text);
-                                        Get.back();
-                                      },
-                                      child: Container(
-                                        margin: const EdgeInsets.symmetric(
-                                            vertical: 2),
-                                        child: Text(
-                                          "ارسال",
+                                          ],
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          border: Border.all(
+                                              color: MyThemes.primaryColor,
+                                              width: 2),
+                                        ),
+                                        child: TextFormField(
+                                          controller: mailSubject,
+                                          maxLines: 1,
+                                          maxLength: 150,
                                           style: TextStyle(
                                               color: MyThemes.primaryColor,
-                                              fontSize: 17),
+                                              fontSize: 18),
+                                          keyboardType: TextInputType.multiline,
+                                          textAlign: TextAlign.center,
+                                          decoration: const InputDecoration(
+                                            counterText: "",
+                                            contentPadding: EdgeInsets.zero,
+                                            border: InputBorder.none,
+                                            hintText: "موضوع",
+                                            hintStyle: TextStyle(
+                                              fontSize: 17,
+                                            ),
+                                          ),
+                                        )),
+                                    Container(
+                                        margin:
+                                            const EdgeInsets.only(bottom: 5),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color:
+                                                  Colors.black.withOpacity(0.5),
+                                              spreadRadius: 1,
+                                              offset: const Offset(1, 1),
+                                              blurRadius: 4,
+                                            ),
+                                          ],
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          border: Border.all(
+                                              color: MyThemes.primaryColor,
+                                              width: 2),
                                         ),
-                                      )),
-                                ],
+                                        child: TextFormField(
+                                          controller: mailBody,
+                                          maxLines: 5,
+                                          maxLength: 1000,
+                                          style: TextStyle(
+                                              color: MyThemes.primaryColor,
+                                              fontSize: 18),
+                                          keyboardType: TextInputType.multiline,
+                                          textAlign: TextAlign.center,
+                                          decoration: const InputDecoration(
+                                            counterText: "",
+                                            contentPadding:
+                                                EdgeInsets.only(top: 3),
+                                            border: InputBorder.none,
+                                            hintText: "توضیحات",
+                                            hintStyle: TextStyle(
+                                              fontSize: 17,
+                                            ),
+                                          ),
+                                        )),
+                                    ElevatedButton(
+                                        style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty.all(
+                                                    MyThemes.secondryColor),
+                                            shape: MaterialStateProperty.all(
+                                                RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                              side: BorderSide(
+                                                color: MyThemes.primaryColor,
+                                                width: 2.0,
+                                              ),
+                                            ))),
+                                        onPressed: () {
+                                          mail(mailSubject.text, mailBody.text);
+                                          Get.back();
+                                        },
+                                        child: Container(
+                                          margin: const EdgeInsets.symmetric(
+                                              vertical: 2),
+                                          child: Text(
+                                            "ارسال",
+                                            style: TextStyle(
+                                                color: MyThemes.primaryColor,
+                                                fontSize: 17),
+                                          ),
+                                        )),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ));
