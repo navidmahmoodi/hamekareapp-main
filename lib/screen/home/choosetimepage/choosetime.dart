@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:expandable/expandable.dart';
+import 'package:hamekare_app/Model/service_model.dart';
 import 'package:hamekare_app/Widgets/dayline.dart';
 import 'package:hamekare_app/Widgets/timeline.dart';
 import 'package:hamekare_app/controller/reserve_controller.dart';
@@ -12,10 +13,12 @@ import 'package:shamsi_date/shamsi_date.dart';
 import 'package:hamekare_app/tools/tools.dart';
 
 class ChooseTime extends StatelessWidget {
-  ChooseTime({Key? key, required this.id, required this.reqName})
-      : super(key: key);
-  int id;
-  String reqName;
+  ChooseTime({Key? key, required this.service}) : super(key: key);
+
+  final ServiceDataModel service;
+  int get id => service.id;
+  int get providerId => service.providerId;
+  String get reqName => service.name;
 
   int currentday = Jalali.now().weekDay;
   int monthday = Jalali.now().day;
@@ -50,7 +53,8 @@ class ChooseTime extends StatelessWidget {
                           reqname: reqName,
                           date: dayController.selectedDateTime,
                           tozih: _tozihController.text,
-                          titleid: id);
+                          titleid: id,
+                          providerID: providerId);
 
                       Get.to(() => DetailPage(model: model));
                     }

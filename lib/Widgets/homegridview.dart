@@ -4,8 +4,6 @@ import 'package:hamekare_app/controller/main_controller.dart';
 import 'package:hamekare_app/screen/home/service/service_page.dart';
 import 'package:hamekare_app/tools/tools.dart';
 
-import '../screen/home/choosetimepage/choosetime.dart';
-
 class HomeGridView extends StatelessWidget {
   // List<HomeGridViewModel> get _list => homegridviewtemp;
   HomeGridView({Key? key}) : super(key: key);
@@ -39,14 +37,14 @@ class HomeGridView extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
-                  if (item.subCategories.isNotEmpty) {
-                    Get.to(() => ServicePage(sub: item.subCategories));
-                  } else {
-                    Get.to(() => ChooseTime(
-                          reqName: item.name.toString(),
-                          id: item.id!,
-                        ));
-                  }
+                  Get.to(() => ServicePage(catIndex: i));
+                  // if (item.subCategories.isNotEmpty) {
+                  // } else {
+                  //   Get.to(() => ChooseTime(
+                  //         reqName: item.name.toString(),
+                  //         id: item.id!,
+                  //       ));
+                  // }
                 },
                 child: Container(
                   padding:
@@ -63,10 +61,9 @@ class HomeGridView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(width: 1, color: Colors.black),
                   ),
-                  child: Image.asset(
-                    imagePath("1.png"),
-                    // scale: 12,
-                  ),
+                  child: item.categoryImage == null
+                      ? Image.asset(imagePath("1.png"))
+                      : Image.network(item.categoryImage!),
                 ),
               ),
               Container(

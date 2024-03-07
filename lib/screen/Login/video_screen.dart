@@ -33,7 +33,7 @@ class _VideoScreenState extends State<VideoScreen> {
     videoPlayerController.addListener(() {
       if (videoPlayerController.value.position ==
           videoPlayerController.value.duration) {
-        Get.offAll(() => HomeScreen());
+        Get.offAll(() => const HomeScreen());
       }
     });
 

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hamekare_app/Model/category_model.dart';
 import 'package:hamekare_app/Model/profile_model.dart';
+import 'package:hamekare_app/Model/service_model.dart';
 import 'package:hamekare_app/Service/service_generator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -47,10 +48,10 @@ class MainController extends GetxController {
     isInitRunning = false;
   }
 
-  final _categoryResponse = CategoryModel().obs;
-  CategoryModel get categoryResponse => _categoryResponse.value;
+  final _categoryResponse = CategoryResponse().obs;
+  CategoryResponse get categoryResponse => _categoryResponse.value;
 
-  Future<CategoryModel> getCategory() async {
+  Future<CategoryResponse> getCategory() async {
     _categoryResponse.update((val) {
       val!.isloading = true;
     });
@@ -175,5 +176,34 @@ class MainController extends GetxController {
 
   Future doneIntro() async {
     await prefs.setBool("intro", false);
+  }
+
+  void changeSelectedSub(int catIndex, int index) {
+    _categoryResponse.update((val) {
+      for (var i = 0; i < val!.data![catIndex].subCategories.length; i++) {
+        val.data![catIndex].subCategories[i].selected = i == index;
+      }
+    });
+  }
+
+  final _servicesObs = ServiceResponse().obs;
+  ServiceResponse get servicesResponse => _servicesObs.value;
+
+  List<ServiceDataModel> get services => servicesResponse.services;
+
+  bool get isloadingService => servicesResponse.isLoading;
+  set isloadingService(bool v) =>
+      _servicesObs.update((val) => val!.isLoading = v);
+
+  Future<ServiceResponse> getServices(int id) async {
+    isloadingService = true;
+    _servicesObs.update((val) {
+      val!.services = [];
+    });
+
+    _servicesObs.value = await api.getServices(id);
+
+    isloadingService = false;
+    return servicesResponse;
   }
 }

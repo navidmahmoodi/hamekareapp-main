@@ -7,7 +7,6 @@ class GetDarkhastResponse extends BaseResponseModel {
   late List<GetDarkhastModel>? data;
 
   GetDarkhastResponse.fromJson(Map<String, dynamic> json) {
-    
     data = List.from(json['data'])
         .map((e) => GetDarkhastModel.fromJson(e))
         .toList();
@@ -45,7 +44,7 @@ class GetDarkhastModel {
   late int? serviceId;
   late int? providerId;
   late int? price;
-  late DateTime? date;
+  DateTime? date = DateTime.now();
   late String? type;
   late String? status;
   late String? statusLabel;

@@ -9,7 +9,7 @@ import 'package:hamekare_app/screen/home/settingscreen.dart';
 import 'package:hamekare_app/tools/tools.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();

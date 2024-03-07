@@ -19,4 +19,5 @@ class ServerConfig {
   static const String getDartkhast = "booking-list";
   static const String updateDartkhast = "booking-update";
   static const String urlPostRating = "save-booking-rating";
+  static const String urlGetServices = "service-list";
 }

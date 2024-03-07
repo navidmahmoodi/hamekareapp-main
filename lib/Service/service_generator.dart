@@ -12,6 +12,7 @@ import 'package:hamekare_app/Model/register_model.dart';
 import 'package:hamekare_app/Model/response_model.dart';
 import 'package:hamekare_app/Model/check_otp_model.dart';
 import 'package:hamekare_app/Model/login_model.dart';
+import 'package:hamekare_app/Model/service_model.dart';
 import 'package:hamekare_app/Model/splash_model.dart';
 import 'package:hamekare_app/Service/error.dart';
 import 'package:hamekare_app/controller/main_controller.dart';
@@ -60,14 +61,25 @@ class ServiceGenerator {
     }
   }
 
-  Future<CategoryModel> getCategory(String token) async {
+  Future<CategoryResponse> getCategory(String token) async {
     try {
       Response response = await _dio.get(ServerConfig.getCategory,
           data: {"branch_id": _mainController.cityid});
-      return CategoryModel.fromJson(response.data);
+      return CategoryResponse.fromJson(response.data);
     } catch (error, stacktrace) {
       loggerNoStack.e("Exception occured: $error stackTrace: $stacktrace");
-      return CategoryModel.withError(_getError(error).toJson());
+      return CategoryResponse.withError(_getError(error).toJson());
+    }
+  }
+
+  Future<ServiceResponse> getServices(int id) async {
+    try {
+      Response response = await _dio
+          .get(ServerConfig.urlGetServices, data: {"subcategory_id": id});
+      return ServiceResponse.fromJson(response.data);
+    } catch (error, stacktrace) {
+      loggerNoStack.e("Exception occured: $error stackTrace: $stacktrace");
+      return ServiceResponse.withError(_getError(error).toJson());
     }
   }
 
@@ -214,7 +226,6 @@ class ServiceGenerator {
   Future<ResponseModel> postProfile(String name, String fname, String dname,
       String email, String addres, XFile? file) async {
     try {
-
       Map<String, dynamic> formData = {
         "first_name": name,
         "last_name": fname,
@@ -229,7 +240,7 @@ class ServiceGenerator {
               await MultipartFile.fromFile(file.path, filename: file.name)
         });
       }
-      
+
       var param = FormData.fromMap(formData);
 
       Response response = await _dio.post(
@@ -279,6 +290,7 @@ class ServiceGenerator {
     String address,
     String desc,
     int id,
+    int providerID,
   ) async {
     try {
       Response response = await _dio.post(ServerConfig.postBooking, data: {
@@ -286,7 +298,7 @@ class ServiceGenerator {
         "address": address,
         "description": desc,
         "service_id": id,
-        "provider_id": 2,
+        "provider_id": providerID,
       });
       // print(response);
       return PostDarkhast.fromJson(response.data);

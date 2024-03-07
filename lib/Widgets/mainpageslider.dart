@@ -2,15 +2,16 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hamekare_app/controller/main_slider_controller.dart';
-import 'package:hamekare_app/screen/home/choosetimepage/choosetime.dart';
 import 'package:hamekare_app/tools/tools.dart';
 
 class MainPageMainSlider extends StatelessWidget {
-  MainPageMainSlider({Key? key,}) : super(key: key);
+  MainPageMainSlider({
+    Key? key,
+  }) : super(key: key);
   final _controller = Get.put(SliderController());
   init() async {
     // if (_controller.sliderResponse.data!.isEmpty) {
-      await _controller.getSlider();
+    await _controller.getSlider();
     // }
   }
 
@@ -33,12 +34,12 @@ class MainPageMainSlider extends StatelessWidget {
               var item = _controller.sliderResponse.data![index];
 
               return InkWell(
-                onTap: () {
-                  Get.to( () => ChooseTime(
-                        reqName: item.title.toString(),
-                        id: item.id!.toInt(),
-                      ));
-                },
+                // onTap: () {
+                //   Get.to( () => ChooseTime(
+                //         reqName: item.title.toString(),
+                //         id: item.id!.toInt(),
+                //       ));
+                // },
                 child: Container(
                   margin:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 7),
@@ -64,7 +65,8 @@ class MainPageMainSlider extends StatelessWidget {
                               topLeft: Radius.circular(20),
                               topRight: Radius.circular(20),
                             ),
-                            child: Image.network(item.sliderImage.toString(),
+                            child: Image.network(
+                              item.sliderImage.toString(),
                               fit: BoxFit.fill,
                               width: size,
                             ),
@@ -121,7 +123,8 @@ class MainPageMainSlider extends StatelessWidget {
             },
             options: CarouselOptions(
               enlargeStrategy: CenterPageEnlargeStrategy.scale,
-              enableInfiniteScroll: true, enlargeCenterPage: true,
+              enableInfiniteScroll: true,
+              enlargeCenterPage: true,
               pauseAutoPlayOnTouch: true,
               autoPlay: true,
               autoPlayCurve: Curves.easeIn,

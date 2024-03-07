@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       //   localized.GlobalCupertinoLocalizations.delegate,
       // ],
       getPages: [
-        GetPage(name: '/home', page: () => HomeScreen()),
+        GetPage(name: '/home', page: () => const HomeScreen()),
         GetPage(name: '/intro', page: () => IntroScreen()),
         GetPage(name: '/splash', page: () => Splash()),
         GetPage(name: '/login', page: () => LoginScreen()),

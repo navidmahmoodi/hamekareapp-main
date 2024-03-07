@@ -12,7 +12,7 @@ class DarkhastController extends GetxController {
   final mainController = Get.put(MainController());
 
   Future<PostDarkhast> postdarkhast(
-      String date, int id, String desc, String adress) async {
+      String date, int id, String desc, String adress, int providerID) async {
     _postDarkhast.update((val) {
       val!.isloading = true;
     });
@@ -22,6 +22,7 @@ class DarkhastController extends GetxController {
       adress,
       desc,
       id,
+      providerID,
     );
     _postDarkhast.update((val) {
       val!.isloading = false;
@@ -41,14 +42,14 @@ class DarkhastController extends GetxController {
     return _getDarkhast.value;
   }
 
-    final _updateResponse = ResponseModel().obs;
+  final _updateResponse = ResponseModel().obs;
   ResponseModel get updateResponse => _updateResponse.value;
-   Future<ResponseModel> updateDarkhsat(int id , String status) async {
+  Future<ResponseModel> updateDarkhsat(int id, String status) async {
     _updateResponse.update((val) {
       val!.isloading = true;
     });
 
-    _updateResponse.value = await mainController.api.updateDarkhsat(id,status);
+    _updateResponse.value = await mainController.api.updateDarkhsat(id, status);
     _updateResponse.update((val) {
       val!.isloading = false;
     });

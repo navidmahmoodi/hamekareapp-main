@@ -15,6 +15,7 @@ class DetailPageModel {
     required this.date,
     required this.tozih,
     required this.titleid,
+    required this.providerID,
   });
 
   String adress;
@@ -23,6 +24,7 @@ class DetailPageModel {
   String tozih;
   DateTime date;
   int titleid;
+  int providerID = 0;
 }
 
 // ignore: must_be_immutable
@@ -72,6 +74,7 @@ class DetailPage extends StatelessWidget {
                     model.titleid,
                     model.tozih,
                     model.adress,
+                    model.providerID,
                   );
                   if (!_controller.postDarkhast.isLoading) {
                     ShowMSG().showSnackBar(_controller.postDarkhast.message);
