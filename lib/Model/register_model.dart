@@ -4,12 +4,17 @@ class RegisterModel extends BaseResponseModel {
   RegisterModel({
     this.data,
   });
-  late bool isSuccess;
+  bool? isSuccess;
   RegisterDataModel? data;
 
   RegisterModel.fromJson(Map<String, dynamic> json) {
-    data = RegisterDataModel.fromJson(json['data']);
-    status = true;
+    if (json['data'] != null) data = RegisterDataModel.fromJson(json['data']);
+
+    if (isSuccess = json['isSuccess'] != null) {
+      isSuccess = json['isSuccess'];
+    } else {
+      isSuccess = true;
+    }
     message = json['message'];
   }
   factory RegisterModel.withError(Map<String, dynamic> json) {

@@ -54,8 +54,8 @@ class DayLine extends StatelessWidget {
                     dayController.changeDay(i);
                   },
                   child: Container(
-                    child:
-                        dayBox(date.addDays(i).day, date.addDays(i).weekDay, i),
+                    child: dayBox(date.addDays(i + 1).day,
+                        date.addDays(i + 1).weekDay, i),
                   ),
                 ),
               );

@@ -10,7 +10,10 @@ class HomeGridView extends StatelessWidget {
   final MainController _controller = Get.find();
   init() async {
     //  if (_controller.categoryResponse.result.isEmpty) {
-    _controller.getCategory();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      _controller.getCategory();
+    });
     // }
   }
 

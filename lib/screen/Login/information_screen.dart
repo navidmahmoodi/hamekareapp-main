@@ -74,8 +74,8 @@ class RegisterScreen extends StatelessWidget {
 
                   ShowMSG()
                       .showSnackBar(_controller.postExpertController.message);
-
-                  if (response.status) {
+                  print(response.isSuccess);
+                  if (response.isSuccess == true) {
                     Get.to(() => OtpScreen(phone: _mobileController.text));
                   }
                 }
@@ -254,49 +254,6 @@ class RegisterScreen extends StatelessWidget {
                     hintStyle: const TextStyle(fontSize: 16),
                   ),
                   onChanged: (value) {},
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(bottom: 3, right: 3),
-                child: Text.rich(
-                  TextSpan(
-                    text: "نام کاربری",
-                    children: [
-                      TextSpan(
-                          text: " *", style: TextStyle(color: MyThemes.red))
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(left: 5, right: 5, bottom: 7),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.5),
-                      spreadRadius: 1,
-                      offset: const Offset(1, 1),
-                      blurRadius: 4,
-                    ),
-                  ],
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: MyThemes.primaryColor, width: 1.3),
-                ),
-                child: TextField(
-                  controller: _usernameController,
-                  style: TextStyle(color: MyThemes.primaryColor, fontSize: 17),
-                  textAlign: TextAlign.right,
-                  decoration: InputDecoration(
-                    counterText: "",
-                    contentPadding: const EdgeInsets.only(right: 5),
-                    border: InputBorder.none,
-                    hintTextDirection: TextDirection.ltr,
-                    hintText: "نام کاربری".withPersianNumbers(),
-                    hintStyle: const TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
                 ),
               ),
               Container(

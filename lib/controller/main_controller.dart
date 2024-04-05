@@ -69,14 +69,14 @@ class MainController extends GetxController {
   set profileImage(XFile? v) =>
       _profileResponse.update((val) => val!.image = v);
 
-  Future<ProfileResponse> postPofile(String name, String fname, String dname,
+  Future<ProfileResponse> postPofile(String name, String fname,
       String email, String addres) async {
     _profileResponse.update((val) {
       val!.isloading = true;
     });
 
     await api.postProfile(
-        name, fname, dname, email, addres, profileResponse.image);
+        name, fname, email, addres, profileResponse.image);
 
     _profileResponse.update((val) {
       val!.isloading = false;
@@ -167,7 +167,6 @@ class MainController extends GetxController {
     token = t;
     await prefs.setString("token", t);
     headers["Authorization"] = "Bearer $t";
-    headers["token"] = t;
   }
 
   bool showIntro() {

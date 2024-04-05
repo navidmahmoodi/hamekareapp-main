@@ -14,19 +14,21 @@ class CartPage extends StatelessWidget {
   CartPage({Key? key}) : super(key: key);
 
   final _controller = Get.put(DarkhastController());
-  final _cancleController = Get.put(CancleReqController());
   final _rateReqController = Get.put(RateReqController());
   final _nazarController = TextEditingController();
 
   init() async {
-    await _controller.getDarkhsat();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await _controller.getDarkhsat();
+    });
   }
 
   void toDetailPage(GetDarkhastModel item) {
     toPage("/cartFullDetail", argument: item);
   }
 
-  Widget _itemBox(GetDarkhastModel item) {
+  Widget _itemBox(GetDarkhastModel item, List<Handyman> handymanItem) {
+    var handyManitem = handymanItem;
     return Container(
       margin: const EdgeInsets.only(
         top: 10,
@@ -59,7 +61,7 @@ class CartPage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(item.status.toString(),
+                  Text(item.statusLabel.toString(),
                       style: TextStyle(
                           color: MyThemes.primaryColor, fontSize: 16.5)),
                 ],
@@ -158,34 +160,90 @@ class CartPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Column(
-                    children: [
-                      Container(
-                        clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        margin:
-                            const EdgeInsets.only(left: 30, right: 30, top: 5),
-                        child: Image.network(
-                          "https://galm.ir/images/user/user.png",
-                          height: 130,
-                          width: 90,
-                          // scale: 9,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      const Text(
-                        "item.mUserName",
-                        style: TextStyle(
-                            fontSize: 13, fontWeight: FontWeight.bold),
-                      ),
-                      const Text(
-                        "item.mTakhasos",
-                        style: TextStyle(fontSize: 12.5),
-                      ),
-                    ],
-                  )
+                  Container(
+                      width: 135,
+                      height: 200,
+                      child: item.handyman == []
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.5),
+                                          spreadRadius: 1,
+                                          offset: const Offset(1, 1),
+                                          blurRadius: 4,
+                                        ),
+                                      ],
+                                      border: Border.all(
+                                          color: MyThemes.secondryColor,
+                                          width: 2),
+                                    ),
+                                    clipBehavior: Clip.hardEdge,
+                                    margin: const EdgeInsets.only(
+                                        left: 20, right: 20, top: 22),
+                                    child: Image.network(
+                                      "https://galm.ir/images/user/user.png",
+                                      height: 120,
+                                      width: 100,
+                                    )),
+                                const Text(
+                                  "بدون متخصص",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      overflow: TextOverflow.ellipsis,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const Text(
+                                  "بدون شماره تماس",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      overflow: TextOverflow.ellipsis,
+                                      fontSize: 12.5),
+                                ),
+                              ],
+                            )
+                          : ListView.builder(
+                              itemCount: handyManitem.length,
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemBuilder: (c, i) {
+                                var handy = handyManitem[i];
+                                return Column(
+                                  children: [
+                                    Container(
+                                      clipBehavior: Clip.hardEdge,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      margin: const EdgeInsets.only(
+                                          left: 20, right: 20, top: 5),
+                                      child: Image.network(
+                                        handy.profileImage.toString(),
+                                        height: 120,
+                                        width: 100,
+                                        // scale: 9,
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                    Text(
+                                      handy.displayname.toString(),
+                                      style: const TextStyle(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      handy.contactNumber.toString(),
+                                      style: const TextStyle(fontSize: 12.5),
+                                    ),
+                                  ],
+                                );
+                              }))
                 ],
               ),
             ),
@@ -326,16 +384,6 @@ class CartPage extends StatelessWidget {
       ),
       // backgroundColor: Colors.redAccent,
       body: Obx(() {
-        if (_controller.getDarkhast.isloading) {
-          return Container(
-              margin: const EdgeInsets.symmetric(vertical: 5),
-              child: simpleLoading());
-        }
-        if (_cancleController.cancleReqController.isloading) {
-          return Container(
-              margin: const EdgeInsets.symmetric(vertical: 5),
-              child: simpleLoading());
-        }
         if (_controller.getDarkhast.data == null) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -356,6 +404,16 @@ class CartPage extends StatelessWidget {
             ],
           );
         }
+        // if (_controller.getDarkhast.isloading) {
+        //   return Container(
+        //       margin: const EdgeInsets.symmetric(vertical: 5),
+        //       child: simpleLoading());
+        // }
+        // if (_cancleController.cancleReqController.isloading) {
+        //   return Container(
+        //       margin: const EdgeInsets.symmetric(vertical: 5),
+        //       child: simpleLoading());
+        // }
         return Container(
           margin: const EdgeInsets.only(bottom: 10),
           child: RefreshIndicator(
@@ -369,7 +427,8 @@ class CartPage extends StatelessWidget {
                 // physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (c, i) {
                   var item = _controller.getDarkhast.data![i];
-                  return _itemBox(item);
+                  var handyManItem = item.handyman;
+                  return _itemBox(item, handyManItem!.toList());
                 }),
           ),
         );
@@ -582,25 +641,13 @@ class CartPage extends StatelessWidget {
                           "service_id": item.serviceId,
                           "customer_id": item.customerId,
                         });
-                        // await _rateReqController.rateReqApp(
-                        //     _nazarController.text,
-                        //     item.iD,
-                        //     rating1.toInt());
-                        // if (!_rateReqController
-                        //     .rateReqController
-                        //     .status) {
-                        //   Get.back();
-                        //   ShowMSG()
-                        //       .showSnackBar("عملیات با موفقیت انجام شد");
-                        //   _nazarController
-                        //       .clear();
-                        // } else {
-                        //   Get.back();
-                        //   ShowMSG()
-                        //       .showSnackBar("خطا!");
-                        //   _nazarController
-                        //       .clear();
-                        // }
+                        if (response.status == true) {
+                          Get.back();
+                          ShowMSG().showSnackBar("نظر شما با موفقیت ثبت شد.");
+                        } else {
+                          Get.back();
+                          ShowMSG().showSnackBar("لطفا دقایقی دیگر تلاش کنید");
+                        }
                       },
                       style: ButtonStyle(
                         shape:

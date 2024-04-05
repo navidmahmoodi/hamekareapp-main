@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart' as GET;
 import 'package:hamekare_app/Config/server_config.dart';
 import 'package:hamekare_app/Model/category_model.dart';
+import 'package:hamekare_app/Model/forget_pass_model.dart';
 import 'package:hamekare_app/Model/get_subcity.dart';
 import 'package:hamekare_app/Model/profile_model.dart';
 import 'package:hamekare_app/Model/darkhast_model.dart';
@@ -18,6 +19,7 @@ import 'package:hamekare_app/Service/error.dart';
 import 'package:hamekare_app/controller/main_controller.dart';
 import 'package:hamekare_app/response/slider_response.dart';
 import 'package:hamekare_app/tools/logger.dart';
+import 'package:hamekare_app/tools/tools.dart';
 import 'package:image_picker/image_picker.dart';
 import '../Service/logging_interceptor.dart';
 
@@ -223,13 +225,12 @@ class ServiceGenerator {
   //   }
   // }
 
-  Future<ResponseModel> postProfile(String name, String fname, String dname,
+  Future<ResponseModel> postProfile(String name, String fname,
       String email, String addres, XFile? file) async {
     try {
       Map<String, dynamic> formData = {
         "first_name": name,
         "last_name": fname,
-        "display_name": dname,
         "email": email,
         "address": addres
       };
@@ -328,14 +329,35 @@ class ServiceGenerator {
   //     return ResponseModel.withError(_getError(error).toJson());
   //   }
   // }
-  Future<ResponseModel> changePassword(String old, String neww) async {
+  Future<ForgetPasswordModel> changePasswordRequest(String phone) async {
     try {
-      Response response = await _dio.post(ServerConfig.changePassword,
-          data: {"old_password": old, "new_password": neww});
-      return ResponseModel.fromJson(response.data);
+      Response response = await _dio.post(ServerConfig.changePasswordRequest,
+          queryParameters: {"mobile": phone});
+      return ForgetPasswordModel.fromJson(response.data);
     } catch (error, stacktrace) {
       loggerNoStack.e("Exception occured: $error stackTrace: $stacktrace");
-      return ResponseModel.withError(_getError(error).toJson());
+      return ForgetPasswordModel.withError(_getError(error).toJson());
+    }
+  }
+
+  Future<ForgetPasswordModel> changePasswordConfimation(
+    String otp,
+    String phone,
+    String pas1,
+    String pas2,
+  ) async {
+    try {
+      Response response = await _dio
+          .post(ServerConfig.changePasswordConfirmation, data: {
+        "otp": otp,
+        "mobile": phone,
+        "password": pas1,
+        "password_confirmation": pas2
+      });
+      return ForgetPasswordModel.fromJson(response.data);
+    } catch (error, stacktrace) {
+      loggerNoStack.e("Exception occured: $error stackTrace: $stacktrace");
+      return ForgetPasswordModel.withError(_getError(error).toJson());
     }
   }
 

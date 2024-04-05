@@ -12,11 +12,15 @@ class RateReqController extends GetxController {
       _rateReqController.update((val) => val!.isLoading = v);
 
   Future<ResponseModel> rateReqApp(param) async {
-    isloading = true;
+     _rateReqController.update((val) {
+      val!.isloading = true;
+    });
 
     var response = await _mainController.api.rateReqApp(param);
 
-    isloading = false;
+ _rateReqController.update((val) {
+      val!.isloading = false;
+    });
     return response;
   }
 }

@@ -171,7 +171,7 @@ class CartFullDetail extends StatelessWidget {
                                 vertical: 5,
                               ),
                               child: Text(
-                                "پرداخت",
+                                "مشاهده تعرفه",
                                 style: TextStyle(
                                     color: MyThemes.primaryColor,
                                     fontSize: 20,
@@ -295,7 +295,7 @@ class CartFullDetail extends StatelessWidget {
                         width: Get.width,
                         margin: const EdgeInsets.only(top: 5),
                         child: Text(
-                          item.status.toString(),
+                          item.statusLabel.toString(),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -313,52 +313,127 @@ class CartFullDetail extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        margin:
-                            const EdgeInsets.only(top: 0, right: 10, left: 10),
-                        child: Column(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.5),
-                                    spreadRadius: 1,
-                                    offset: const Offset(1, 1),
-                                    blurRadius: 4,
+                          height: 270,
+                          width: Get.width / 1.5,
+                          margin: const EdgeInsets.only(
+                              top: 0, right: 10, left: 10),
+                          child: item.handyman == []
+                              ? ListView.builder(
+                                  itemCount: item.handyman!.length,
+                                  shrinkWrap: true,
+                                  itemBuilder: (c, i) {
+                                    var handy = item.handyman![i];
+                                    return Column(
+                                      children: [
+                                        Container(
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.black
+                                                      .withOpacity(0.5),
+                                                  spreadRadius: 1,
+                                                  offset: const Offset(1, 1),
+                                                  blurRadius: 4,
+                                                ),
+                                              ],
+                                              border: Border.all(
+                                                  color: MyThemes.secondryColor,
+                                                  width: 2),
+                                            ),
+                                            clipBehavior: Clip.hardEdge,
+                                            margin: const EdgeInsets.only(
+                                                left: 20, right: 20, top: 5),
+                                            child: Image.network(
+                                              handy.profileImage.toString(),
+                                              height: 190,
+                                              width: 130,
+                                              // scale: 9,
+                                              fit: BoxFit.fill,
+                                            )),
+                                        Container(
+                                          margin:
+                                              const EdgeInsets.only(top: 10),
+                                          child: Text(
+                                            handy.displayname.toString(),
+                                            style: const TextStyle(
+                                                overflow: TextOverflow.ellipsis,
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                        Container(
+                                          margin:
+                                              const EdgeInsets.only(top: 10),
+                                          child: Text(
+                                            handy.contactNumber.toString(),
+                                            style: const TextStyle(
+                                                overflow: TextOverflow.ellipsis,
+                                                fontSize: 12.5),
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  })
+                              : SizedBox(
+                                  height: 270,
+                                  width: 100,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      Container(
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.black
+                                                    .withOpacity(0.5),
+                                                spreadRadius: 1,
+                                                offset: const Offset(1, 1),
+                                                blurRadius: 4,
+                                              ),
+                                            ],
+                                            border: Border.all(
+                                                color: MyThemes.secondryColor,
+                                                width: 2),
+                                          ),
+                                          clipBehavior: Clip.hardEdge,
+                                          margin: const EdgeInsets.only(
+                                              left: 20, right: 20, top: 5),
+                                          child: Image.network(
+                                            "https://galm.ir/images/user/user.png",
+                                            height: 190,
+                                            width: 130,
+                                          )),
+                                      Container(
+                                        margin: const EdgeInsets.only(top: 10),
+                                        child: const Text(
+                                          "بدون متخصص",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              overflow: TextOverflow.ellipsis,
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                      Container(
+                                        margin: const EdgeInsets.only(top: 10),
+                                        child: const Text(
+                                          "بدون شماره تماس",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              overflow: TextOverflow.ellipsis,
+                                              fontSize: 12.5),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                                border: Border.all(
-                                    color: MyThemes.secondryColor, width: 2),
-                              ),
-                              clipBehavior: Clip.hardEdge,
-                              margin: const EdgeInsets.only(
-                                  left: 20, right: 20, top: 5),
-                              child: Image.network(
-                                "https://galm.ir/images/user/user.png",
-                                height: 200,
-                                width: 160,
-                                // scale: 9,
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                            const Text(
-                              "item.mUserName",
-                              style: TextStyle(
-                                  overflow: TextOverflow.ellipsis,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            const Text(
-                              "item.mTakhasos",
-                              style: TextStyle(
-                                  overflow: TextOverflow.ellipsis,
-                                  fontSize: 12.5),
-                            ),
-                          ],
-                        ),
-                      )
+                                ))
                     ],
                   ),
                 ),
@@ -367,11 +442,10 @@ class CartFullDetail extends StatelessWidget {
                     _rowBox([
                       _badgeTitle("ثبت کننده درخواست"),
                       _badgeBox(item.customerName.toString()),
-                      // _badgeTitle("روز"),
-                      // _badgeBox(item.date!.toJalali().cDate(8)),
-                      // _badgeTitle("تاریخ"),
-                      // _badgeBox(
-                      //     item.date!.toJalali().cDate(7).withPersianNumbers()),
+                      _badgeTitle("روز"),
+                      _badgeBox(item.date!.cDate(8)),
+                      _badgeTitle("تاریخ"),
+                      _badgeBox(item.date!.cDate(7).withPersianNumbers()),
                     ]),
                     _rowBox([
                       _badgeTitle("کار درخواستی"),
@@ -382,8 +456,7 @@ class CartFullDetail extends StatelessWidget {
                           .toString()
                           .withPersianNumbers()),
                       _badgeTitle("ساعت"),
-                      _badgeBox(
-                          item.date!.toJalali().cDate(9).withPersianNumbers()),
+                      _badgeBox(item.date!.cDate(9).withPersianNumbers()),
                     ]),
                   ],
                 ),

@@ -28,7 +28,7 @@ class SplashModel extends BaseResponseModel {
   }
   factory SplashModel.withError(Map<String, dynamic> json) {
     SplashModel item = SplashModel();
-    item.status = json["status"];
+    item.status = json["isSuccess"];
     item.message = json["message"];
     return item;
   }

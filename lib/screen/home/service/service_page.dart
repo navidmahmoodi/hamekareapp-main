@@ -68,7 +68,10 @@ class ServicePage extends StatelessWidget {
   }
 
   init(int id) async {
+    
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
     await _controller.getServices(id);
+    });
   }
 
   Widget _serviceBox(int index) {

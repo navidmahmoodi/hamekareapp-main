@@ -173,15 +173,15 @@ class CityScreen extends StatelessWidget {
                                                                     .toInt());
 
                                                         // Get.to(LawScreen());
-                                                        if (response
-                                                                .errorCode ==
-                                                            406) {
-                                                          ShowMSG().error("خطا",
-                                                              "خطای داخلی");
-                                                        } else {
-                                                          ShowMSG().error("خطا",
-                                                              response.message);
-                                                        }
+                                                        // if (response
+                                                        //         .errorCode ==
+                                                        //     406) {
+                                                        //   ShowMSG().error("خطا",
+                                                        //       "خطای داخلی");
+                                                        // } else {
+                                                        //   ShowMSG().error("خطا",
+                                                        //       response.message);
+                                                        // }
                                                         Get.to(LawScreen());
 
                                                         ShowMSG().showSnackBar(

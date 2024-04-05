@@ -24,7 +24,9 @@ class RegisterMoshtariController extends GetxController {
     _postExpertController.value = await _mainController.api
         .postSignUp(firstName, lastName, email, mobile, password, username);
 
-    _mainController.setToken(postExpertController.data!.apiToken!);
+    if (_postExpertController.value.isSuccess == true) {
+      _mainController.setToken(postExpertController.data!.apiToken!);
+    }
     _mainController.init();
     _mainController.initToken();
 

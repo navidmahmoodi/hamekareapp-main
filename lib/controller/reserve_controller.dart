@@ -15,7 +15,7 @@ class ReserveController extends GetxController {
   }
 
   // .update((val) => val != i);
-  int get day => reserveModel.value.selectedDay;
+  int get day => reserveModel.value.selectedDay + 1;
 
   final DateTime now = DateTime.now();
   DateTime get selectedDateTime => DateTime(now.year, now.month, now.day)

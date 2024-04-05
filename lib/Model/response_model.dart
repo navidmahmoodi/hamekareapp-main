@@ -12,7 +12,7 @@ class BaseResponseModel {
   });
   factory BaseResponseModel.fromJson(Map<String, dynamic> json) {
     return BaseResponseModel(
-      status: json["status"],
+      status: json["isSuccess"] ,
       message: json["message"],
     );
   }
@@ -33,18 +33,18 @@ class ResponseModel extends BaseResponseModel {
 
   factory ResponseModel.fromJson(Map<String, dynamic> json) {
     return ResponseModel(
-        status: json["status"] ?? true,
+        status: json["isSuccess"] ?? true,
         message: json["message"],
         errorCode: json["errorCode"] ?? 200);
   }
   factory ResponseModel.withError(Map<String, dynamic> json) {
     return ResponseModel(
-      status: json["status"],
+      status: json["isSuccess"],
       message: json["message"],
     );
   }
   Map<String, dynamic> toJson() => {
         "message": message,
-        "status": status,
+        "isSuccess": status,
       };
 }

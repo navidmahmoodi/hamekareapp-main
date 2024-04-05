@@ -50,12 +50,8 @@ class LoginController extends GetxController {
     _otpResponse.update((val) {
       val!.isloading = true;
     });
-    if (otp.length == 4) {
+    if (otp.length == 5) {
       _otpResponse.value = await _mainController.api.postOtp(mobile, otp);
-      _mainController.setToken(otpResponse.data!.apiToken.toString());
-      otpResponse.message = "احراز هویت شما موفقیت آمیز بود";
-    } else {
-      otpResponse.message = "رمز یکبار مصرف صحیح نمی باشد";
     }
     _otpResponse.update((val) {
       val!.isloading = false;

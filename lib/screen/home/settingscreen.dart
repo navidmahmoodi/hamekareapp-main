@@ -8,8 +8,10 @@ import 'package:hamekare_app/tools/tools.dart';
 import 'package:persian/persian.dart';
 
 class SettingScreen extends StatelessWidget {
-  final oldPassController = TextEditingController();
+  final phonecontroller = TextEditingController();
+  final otpcontroller = TextEditingController();
   final newPassController = TextEditingController();
+  final newPassControllercon = TextEditingController();
   final mailBody = TextEditingController();
   final mailSubject = TextEditingController();
   final MainController controller = Get.find();
@@ -278,8 +280,9 @@ class SettingScreen extends StatelessWidget {
                                       color: MyThemes.primaryColor, width: 2),
                                 ),
                                 child: TextFormField(
-                                  controller: oldPassController,
+                                  controller: phonecontroller,
                                   maxLines: 1,
+                                  keyboardType: TextInputType.number,
                                   maxLength: 1000,
                                   style: TextStyle(
                                       color: MyThemes.primaryColor,
@@ -289,42 +292,7 @@ class SettingScreen extends StatelessWidget {
                                     counterText: "",
                                     contentPadding: EdgeInsets.only(top: 3),
                                     border: InputBorder.none,
-                                    hintText: "رمز قدیمی",
-                                    hintStyle: TextStyle(
-                                      fontSize: 17,
-                                    ),
-                                  ),
-                                )),
-                            Container(
-                                margin:
-                                    const EdgeInsets.only(top: 5, bottom: 5),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(0.5),
-                                      spreadRadius: 1,
-                                      offset: const Offset(1, 1),
-                                      blurRadius: 4,
-                                    ),
-                                  ],
-                                  borderRadius: BorderRadius.circular(15),
-                                  border: Border.all(
-                                      color: MyThemes.primaryColor, width: 2),
-                                ),
-                                child: TextFormField(
-                                  controller: newPassController,
-                                  maxLines: 1,
-                                  maxLength: 1000,
-                                  style: TextStyle(
-                                      color: MyThemes.primaryColor,
-                                      fontSize: 18),
-                                  textAlign: TextAlign.center,
-                                  decoration: const InputDecoration(
-                                    counterText: "",
-                                    contentPadding: EdgeInsets.only(top: 3),
-                                    border: InputBorder.none,
-                                    hintText: "رمز جدید",
+                                    hintText: "شماره موبایل",
                                     hintStyle: TextStyle(
                                       fontSize: 17,
                                     ),
@@ -335,14 +303,290 @@ class SettingScreen extends StatelessWidget {
                                 Expanded(
                                   child: ElevatedButton(
                                     onPressed: () async {
-                                      await _passController.changePass(
-                                          oldPassController.text,
-                                          newPassController.text);
-                                      Get.back();
-                                      ShowMSG().showSnackBar(_passController
-                                          .passwordResponse.message);
-                                      oldPassController.clear();
-                                      newPassController.clear();
+                                      var reponse =
+                                          await _passController.changePassReq(
+                                        phonecontroller.text,
+                                      );
+                                      if (_passController
+                                              .passwordResponse.isSuccess ==
+                                          true) {
+                                        ShowMSG().showSnackBar(
+                                            "کد تایید به شماره شما ارسال شد");
+                                        Get.dialog(Dialog(
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 10, horizontal: 15),
+                                            decoration: BoxDecoration(
+                                              color: MyThemes.secondryColor,
+                                              border: Border.all(
+                                                  color: MyThemes.primaryColor,
+                                                  width: 2),
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                            ),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.stretch,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Container(
+                                                  margin: const EdgeInsets.only(
+                                                      top: 5, bottom: 7),
+                                                  child: Text(
+                                                    "تغییر رمز ورود",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                        color: MyThemes
+                                                            .primaryColor,
+                                                        fontSize: 20),
+                                                  ),
+                                                ),
+                                                Container(
+                                                    margin:
+                                                        const EdgeInsets.only(
+                                                            top: 20, bottom: 5),
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      boxShadow: [
+                                                        BoxShadow(
+                                                          color: Colors.black
+                                                              .withOpacity(0.5),
+                                                          spreadRadius: 1,
+                                                          offset: const Offset(
+                                                              1, 1),
+                                                          blurRadius: 4,
+                                                        ),
+                                                      ],
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15),
+                                                      border: Border.all(
+                                                          color: MyThemes
+                                                              .primaryColor,
+                                                          width: 2),
+                                                    ),
+                                                    child: TextFormField(
+                                                      controller: otpcontroller,
+                                                      maxLines: 1,
+                                                      maxLength: 1000,
+                                                      keyboardType:
+                                                          TextInputType.number,
+                                                      style: TextStyle(
+                                                          color: MyThemes
+                                                              .primaryColor,
+                                                          fontSize: 18),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      decoration:
+                                                          const InputDecoration(
+                                                        counterText: "",
+                                                        contentPadding:
+                                                            EdgeInsets.only(
+                                                                top: 3),
+                                                        border:
+                                                            InputBorder.none,
+                                                        hintText: "کد تایید",
+                                                        hintStyle: TextStyle(
+                                                          fontSize: 17,
+                                                        ),
+                                                      ),
+                                                    )),
+                                                Container(
+                                                    margin:
+                                                        const EdgeInsets.only(
+                                                            top: 5, bottom: 5),
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      boxShadow: [
+                                                        BoxShadow(
+                                                          color: Colors.black
+                                                              .withOpacity(0.5),
+                                                          spreadRadius: 1,
+                                                          offset: const Offset(
+                                                              1, 1),
+                                                          blurRadius: 4,
+                                                        ),
+                                                      ],
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15),
+                                                      border: Border.all(
+                                                          color: MyThemes
+                                                              .primaryColor,
+                                                          width: 2),
+                                                    ),
+                                                    child: TextFormField(
+                                                      controller:
+                                                          newPassController,
+                                                      maxLines: 1,
+                                                      maxLength: 1000,
+                                                      style: TextStyle(
+                                                          color: MyThemes
+                                                              .primaryColor,
+                                                          fontSize: 18),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      decoration:
+                                                          const InputDecoration(
+                                                        counterText: "",
+                                                        contentPadding:
+                                                            EdgeInsets.only(
+                                                                top: 3),
+                                                        border:
+                                                            InputBorder.none,
+                                                        hintText: "رمز جدید",
+                                                        hintStyle: TextStyle(
+                                                          fontSize: 17,
+                                                        ),
+                                                      ),
+                                                    )),
+                                                Container(
+                                                    margin:
+                                                        const EdgeInsets.only(
+                                                            top: 5, bottom: 5),
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      boxShadow: [
+                                                        BoxShadow(
+                                                          color: Colors.black
+                                                              .withOpacity(0.5),
+                                                          spreadRadius: 1,
+                                                          offset: const Offset(
+                                                              1, 1),
+                                                          blurRadius: 4,
+                                                        ),
+                                                      ],
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15),
+                                                      border: Border.all(
+                                                          color: MyThemes
+                                                              .primaryColor,
+                                                          width: 2),
+                                                    ),
+                                                    child: TextFormField(
+                                                      controller:
+                                                          newPassControllercon,
+                                                      maxLines: 1,
+                                                      maxLength: 1000,
+                                                      style: TextStyle(
+                                                          color: MyThemes
+                                                              .primaryColor,
+                                                          fontSize: 18),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      decoration:
+                                                          const InputDecoration(
+                                                        counterText: "",
+                                                        contentPadding:
+                                                            EdgeInsets.only(
+                                                                top: 3),
+                                                        border:
+                                                            InputBorder.none,
+                                                        hintText: "تایید رمز",
+                                                        hintStyle: TextStyle(
+                                                          fontSize: 17,
+                                                        ),
+                                                      ),
+                                                    )),
+                                                Row(
+                                                  children: [
+                                                    Expanded(
+                                                      child: ElevatedButton(
+                                                        onPressed: () async {
+                                                          await _passController.changePassConfirm(
+                                                              otpcontroller
+                                                                  .text,
+                                                              phonecontroller
+                                                                  .text,
+                                                              newPassController
+                                                                  .text,
+                                                              newPassControllercon
+                                                                  .text);
+                                                          if (_passController
+                                                                  .passwordResponse
+                                                                  .isSuccess ==
+                                                              true) {
+                                                            Get.back();
+                                                            Get.back();
+                                                            ShowMSG().showSnackBar(
+                                                                "رمز عبور شما با موفقیت تغییر کرد.");
+                                                          } else {
+                                                            ShowMSG().showSnackBar("کد را به درستی وارد کنید.");
+                                                          }
+                                                          phonecontroller
+                                                              .clear();
+                                                          otpcontroller.clear();
+                                                          newPassController
+                                                              .clear();
+                                                          newPassControllercon
+                                                              .clear();
+                                                        },
+                                                        style: ButtonStyle(
+                                                          shape: MaterialStateProperty
+                                                              .all<
+                                                                  RoundedRectangleBorder>(
+                                                            RoundedRectangleBorder(
+                                                              side: BorderSide(
+                                                                color: MyThemes
+                                                                    .primaryColor,
+                                                                width: 2.7,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          50),
+                                                            ),
+                                                          ),
+                                                          backgroundColor:
+                                                              MaterialStateProperty
+                                                                  .all(MyThemes
+                                                                      .secondryColor),
+                                                        ),
+                                                        child: Obx(() {
+                                                          if (_passController
+                                                              .passwordResponse
+                                                              .isLoading) {
+                                                            return Container(
+                                                                margin: const EdgeInsets
+                                                                    .symmetric(
+                                                                    vertical:
+                                                                        5),
+                                                                child:
+                                                                    simpleLoading());
+                                                          }
+                                                          return Container(
+                                                            margin:
+                                                                const EdgeInsets
+                                                                    .symmetric(
+                                                                    vertical:
+                                                                        2),
+                                                            child: Text(
+                                                              "تایید",
+                                                              style: TextStyle(
+                                                                  color: MyThemes
+                                                                      .primaryColor,
+                                                                  fontSize: 25,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal),
+                                                            ),
+                                                          );
+                                                        }),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ));
+                                      } else {
+                                        ShowMSG().showSnackBar(
+                                            "شماره شما ثبت نشده است.");
+                                      }
                                     },
                                     style: ButtonStyle(
                                       shape: MaterialStateProperty.all<
@@ -361,8 +605,8 @@ class SettingScreen extends StatelessWidget {
                                               MyThemes.secondryColor),
                                     ),
                                     child: Obx(() {
-                                      if (_mainController
-                                          .profileResponse.isloading) {
+                                      if (_passController
+                                          .passwordResponse.isLoading) {
                                         return Container(
                                             margin: const EdgeInsets.symmetric(
                                                 vertical: 5),
@@ -587,7 +831,7 @@ class SettingScreen extends StatelessWidget {
                             child: Icon(Icons.mail_outline,
                                 color: MyThemes.primaryColor)),
                         Text(
-                          "ایمیل",
+                          "ارتباط با ما",
                           style: TextStyle(color: MyThemes.primaryColor),
                         ),
                         const Spacer(),

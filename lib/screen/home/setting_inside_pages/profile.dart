@@ -12,7 +12,6 @@ class ProfileScreen extends StatelessWidget {
 
   final namecontroller = TextEditingController();
   final fnamecontroller = TextEditingController();
-  final dnamecontroller = TextEditingController();
   final mobilecontroller = TextEditingController();
   final mailcontroller = TextEditingController();
   final addrescontroller = TextEditingController();
@@ -23,7 +22,6 @@ class ProfileScreen extends StatelessWidget {
   init() {
     namecontroller.text = profile.firstName.toString();
     fnamecontroller.text = profile.lastName.toString();
-    dnamecontroller.text = profile.displayName.toString();
     mobilecontroller.text =
         profile.contactNumber.toString().withPersianLetters();
     mailcontroller.text = profile.email.toString();
@@ -130,9 +128,8 @@ class ProfileScreen extends StatelessWidget {
               await _controller.postPofile(
                 namecontroller.text,
                 fnamecontroller.text,
-                dnamecontroller.text,
                 mailcontroller.text,
-                addrescontroller.text,
+                addrescontroller.text
               );
               if (!_controller.profileResponse.status) {
                 _controller.getProfile();
@@ -241,10 +238,6 @@ class ProfileScreen extends StatelessWidget {
                       direction: TextAlign.right,
                       controller: fnamecontroller,
                       title: "نام خانوادگی"),
-                  _textField(
-                      direction: TextAlign.right,
-                      controller: dnamecontroller,
-                      title: "نام کاربری"),
                   _textField(
                       controller: mobilecontroller,
                       title: "شماره موبایل",

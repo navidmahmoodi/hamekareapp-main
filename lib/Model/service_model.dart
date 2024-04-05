@@ -41,7 +41,7 @@ class ServiceDataModel {
   String? categoryName;
   String? subcategoryName;
   int? totalReview;
-  int? totalRating;
+  double? totalRating;
   int? isFavourite;
   int? isSlot;
   List<String> attchments = [];

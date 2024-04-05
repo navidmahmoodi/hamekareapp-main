@@ -47,6 +47,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/image/
+    - assets/image/mmn.png
     - assets/image/nodata.png
     - assets/video/
     - assets/lottie/

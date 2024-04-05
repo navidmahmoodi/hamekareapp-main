@@ -1,21 +1,24 @@
-
 import 'package:hamekare_app/Model/response_model.dart';
 
-class OtpModel extends BaseResponseModel{
+class OtpModel extends BaseResponseModel {
   OtpModel({
     this.isSuccess,
     this.data,
   });
   late bool? isSuccess;
   late Data? data;
-  
-  OtpModel.fromJson(Map<String, dynamic> json){
-    status = json['status'];
-    isSuccess = json['isSuccess'];
-    data = Data.fromJson(json['data']);
+
+  OtpModel.fromJson(Map<String, dynamic> json) {
+    //TODO
+    // if (isSuccess = json['isSuccess'] != null) {
+    isSuccess = json['isSuccess'] ?? false;
+    // } else {
+    // isSuccess = true;
+    // }
+    // data = Data.fromJson(json['data']);
     message = json['message'];
   }
-   factory OtpModel.withError(Map<String, dynamic> json) {
+  factory OtpModel.withError(Map<String, dynamic> json) {
     OtpModel item = OtpModel();
     item.status = json["status"];
     item.message = json["message"];
@@ -46,8 +49,8 @@ class Data {
   late String? apiToken;
   late String? profileImage;
   late String? loginType;
-  
-  Data.fromJson(Map<String, dynamic> json){
+
+  Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     firstName = json['first_name'];
     lastName = json['last_name'];
@@ -59,6 +62,4 @@ class Data {
     profileImage = json['profileImage'];
     loginType = json['loginType'];
   }
-
-
 }

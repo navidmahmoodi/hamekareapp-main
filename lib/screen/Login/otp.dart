@@ -119,7 +119,7 @@ class OtpScreen extends StatelessWidget {
                         pastedTextStyle: const TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
-                        length: 4,
+                        length: 5,
                         animationType: AnimationType.scale,
                         pinTheme: PinTheme(
                           shape: PinCodeFieldShape.box,
@@ -202,54 +202,58 @@ class OtpScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            // Expanded(
-                            //   child: Container(
-                            //     margin: const EdgeInsets.only(left: 3),
-                            //     child: ElevatedButton(
-                            //       onPressed: () async {
-                            //         await _loginController.postLogin(password,phone);
-                            //         Get.showSnackbar(GetSnackBar(
-                            //           duration: const Duration(seconds: 2),
-                            //           message: "ورود کاربر با موفقیت.",
-                            //         ));
-                            //       },
-                            //       child: Container(
-                            //         margin:
-                            //             const EdgeInsets.symmetric(vertical: 4),
-                            //         child: Obx(() {
-                            //           if (_loginController.isloading) {
-                            //             return Container(
-                            //                 child: simpleLoading());
-                            //           }
-                            //           return FittedBox(
-                            //             child: Text(
-                            //               "ارسال کد",
-                            //               style: TextStyle(
-                            //                 color: MyThemes.primaryColor,
-                            //                 fontSize: 16,
-                            //                 fontWeight: FontWeight.normal,
-                            //               ),
-                            //             ),
-                            //           );
-                            //         }),
-                            //       ),
-                            //       style: ButtonStyle(
-                            //         shape: MaterialStateProperty.all<
-                            //             RoundedRectangleBorder>(
-                            //           RoundedRectangleBorder(
-                            //             side: BorderSide(
-                            //               color: MyThemes.primaryColor,
-                            //               width: 2.7,
-                            //             ),
-                            //             borderRadius: BorderRadius.circular(50),
-                            //           ),
-                            //         ),
-                            //         backgroundColor: MaterialStateProperty.all(
-                            //             MyThemes.secondryColor),
-                            //       ),
-                            //     ),
-                            //   ),
-                            // ),
+                            Expanded(
+                              child: Container(
+                                margin: const EdgeInsets.only(left: 3),
+                                child: ElevatedButton(
+                                  onPressed: () async {
+                                    var response =
+                                        await _mainController.api.reqOtp();
+                                    if (response.status == true) {
+                                      ShowMSG().showSnackBar(
+                                          "پیامک به شماره شما ارسال شد.");
+                                    } else {
+                                      ShowMSG().showSnackBar(
+                                          "پیامک قبلا به شماره شما ارسال شده است.");
+                                    }
+                                  },
+                                  style: ButtonStyle(
+                                    shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                        side: BorderSide(
+                                          color: MyThemes.primaryColor,
+                                          width: 2.7,
+                                        ),
+                                        borderRadius: BorderRadius.circular(50),
+                                      ),
+                                    ),
+                                    backgroundColor: MaterialStateProperty.all(
+                                        MyThemes.secondryColor),
+                                  ),
+                                  child: Container(
+                                    margin:
+                                        const EdgeInsets.symmetric(vertical: 4),
+                                    child: Obx(() {
+                                      if (_loginController.isloading) {
+                                        return Container(
+                                            child: simpleLoading());
+                                      }
+                                      return FittedBox(
+                                        child: Text(
+                                          "ارسال کد",
+                                          style: TextStyle(
+                                            color: MyThemes.primaryColor,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                        ),
+                                      );
+                                    }),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       );
@@ -320,15 +324,21 @@ class OtpScreen extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () async {
-                      // var response = await _loginController.postOtp(
-                      //     textEditingController.text, phone);
-                      // if (response.status) {
-                      Get.to(CityScreen());
-                      // } else if (response.errorCode == 406) {
-                      //   ShowMSG().error("خطا", "کد یکبار مصرف صحیح نمی باشد");
-                      // } else {
-                      //   ShowMSG().error("خطا", response.message);
-                      // }
+                      if (textEditingController.text.length == 5) {
+                        var response = await _loginController.postOtp(
+                            textEditingController.text, phone);
+                        _controller.otpResponse.isSuccess == true;
+                        print(response.isSuccess);
+                        if (response.isSuccess == true) {
+                          Get.to(CityScreen());
+                        } else if (response.errorCode == 406) {
+                          ShowMSG().error("خطا", "کد یکبار مصرف صحیح نمی باشد");
+                        } else {
+                          ShowMSG().error("خطا", response.message);
+                        }
+                      } else {
+                        ShowMSG().error("خطا", "کد یکبار باید 5 عدد باشد");
+                      }
                     },
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(

@@ -10,8 +10,10 @@ class MainPageMainSlider extends StatelessWidget {
   }) : super(key: key);
   final _controller = Get.put(SliderController());
   init() async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await _controller.getSlider();
+    });
     // if (_controller.sliderResponse.data!.isEmpty) {
-    await _controller.getSlider();
     // }
   }
 
