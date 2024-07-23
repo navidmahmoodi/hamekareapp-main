@@ -39,14 +39,14 @@ class CategoryModel {
     subCategories = List.from(json['sub_categories'])
         .map((e) => SubCategories.fromJson(e))
         .toList();
-    subCategories.insert(
-        0,
-        SubCategories(
-          id: id,
-          name: "همه",
-          categoryId: id,
-          selected: true,
-        ));
+    // subCategories.insert(
+    //     0,
+    //     SubCategories(
+    //       id: id,
+    //       name: "همه",
+    //       categoryId: id,
+    //       selected: true,
+    //     ));
   }
 }
 
