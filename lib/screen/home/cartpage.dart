@@ -332,7 +332,7 @@ class CartPage extends StatelessWidget {
                                 vertical: 0, horizontal: 2.5),
                             child: ElevatedButton(
                               onPressed: item.status == "cancelled" ||
-                                      item.status == "rejected"
+                                      item.status == "rejected" || item.status == "waiting"
                                   ? () {}
                                   : () {
                                       _cancelRequest(item.id!.toInt());
