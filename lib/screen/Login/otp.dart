@@ -171,7 +171,7 @@ class OtpScreen extends StatelessWidget {
                                     Get.back();
                                   },
                                   style: ButtonStyle(
-                                    shape: MaterialStateProperty.all<
+                                    shape: WidgetStateProperty.all<
                                         RoundedRectangleBorder>(
                                       RoundedRectangleBorder(
                                         side: BorderSide(
@@ -181,7 +181,7 @@ class OtpScreen extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(50),
                                       ),
                                     ),
-                                    backgroundColor: MaterialStateProperty.all(
+                                    backgroundColor: WidgetStateProperty.all(
                                         MyThemes.secondryColor),
                                   ),
                                   child: Container(
@@ -218,7 +218,7 @@ class OtpScreen extends StatelessWidget {
                                     }
                                   },
                                   style: ButtonStyle(
-                                    shape: MaterialStateProperty.all<
+                                    shape: WidgetStateProperty.all<
                                         RoundedRectangleBorder>(
                                       RoundedRectangleBorder(
                                         side: BorderSide(
@@ -228,7 +228,7 @@ class OtpScreen extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(50),
                                       ),
                                     ),
-                                    backgroundColor: MaterialStateProperty.all(
+                                    backgroundColor: WidgetStateProperty.all(
                                         MyThemes.secondryColor),
                                   ),
                                   child: Container(
@@ -271,7 +271,7 @@ class OtpScreen extends StatelessWidget {
                                   Get.back();
                                 },
                                 style: ButtonStyle(
-                                  shape: MaterialStateProperty.all<
+                                  shape: WidgetStateProperty.all<
                                       RoundedRectangleBorder>(
                                     RoundedRectangleBorder(
                                       side: BorderSide(
@@ -281,7 +281,7 @@ class OtpScreen extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(50),
                                     ),
                                   ),
-                                  backgroundColor: MaterialStateProperty.all(
+                                  backgroundColor: WidgetStateProperty.all(
                                       MyThemes.secondryColor),
                                 ),
                                 child: Container(
@@ -328,7 +328,7 @@ class OtpScreen extends StatelessWidget {
                         var response = await _loginController.postOtp(
                             textEditingController.text, phone);
                         _controller.otpResponse.isSuccess == true;
-                        print(response.isSuccess);
+                        // print(response.isSuccess);
                         if (response.isSuccess == true) {
                           Get.to(CityScreen());
                         } else if (response.errorCode == 406) {
@@ -341,7 +341,7 @@ class OtpScreen extends StatelessWidget {
                       }
                     },
                     style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           side: BorderSide(
                             color: MyThemes.primaryColor,
@@ -351,7 +351,7 @@ class OtpScreen extends StatelessWidget {
                         ),
                       ),
                       backgroundColor:
-                          MaterialStateProperty.all(MyThemes.secondryColor),
+                          WidgetStateProperty.all(MyThemes.secondryColor),
                     ),
                     child: Obx(() {
                       if (_loginController.isloading) {

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:hamekare_app/Model/get_darkhast_model.dart';
-import 'package:hamekare_app/controller/canclereq_controller.dart';
 import 'package:hamekare_app/controller/darkhast_controller.dart';
 
 import '../../controller/rate_req_controller.dart';
@@ -160,7 +159,7 @@ class CartPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Container(
+                  SizedBox(
                       width: 135,
                       height: 200,
                       child: item.handyman == []
@@ -276,12 +275,12 @@ class CartPage extends StatelessWidget {
                                 toDetailPage(item);
                               },
                               style: ButtonStyle(
-                                  shape: MaterialStateProperty.all(
+                                  shape: WidgetStateProperty.all(
                                     RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15),
                                     ),
                                   ),
-                                  backgroundColor: MaterialStateProperty.all(
+                                  backgroundColor: WidgetStateProperty.all(
                                       MyThemes.secondryColor)),
                               child: Text(
                                 "جزئیات",
@@ -303,16 +302,16 @@ class CartPage extends StatelessWidget {
                                   ? () {}
                                   : () => _setRating(item),
                               style: ButtonStyle(
-                                  shape: MaterialStateProperty.all(
+                                  shape: WidgetStateProperty.all(
                                     RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15),
                                     ),
                                   ),
                                   backgroundColor: item.status == "cancelled" ||
                                           item.status == "rejected"
-                                      ? MaterialStateProperty.all(
+                                      ? WidgetStateProperty.all(
                                           MyThemes.red.withOpacity(0.45))
-                                      : MaterialStateProperty.all(
+                                      : WidgetStateProperty.all(
                                           MyThemes.secondryColor)),
                               child: FittedBox(
                                 child: Text(
@@ -339,15 +338,15 @@ class CartPage extends StatelessWidget {
                                       // print(item.id);
                                     },
                               style: ButtonStyle(
-                                  shape: MaterialStateProperty.all(
+                                  shape: WidgetStateProperty.all(
                                       RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(15))),
                                   backgroundColor: item.status == "cancelled" ||
                                           item.status == "rejected"
-                                      ? MaterialStateProperty.all(
+                                      ? WidgetStateProperty.all(
                                           MyThemes.red.withOpacity(0.45))
-                                      : MaterialStateProperty.all(
+                                      : WidgetStateProperty.all(
                                           MyThemes.red)),
                               child: Text(
                                 "انصراف",
@@ -475,7 +474,7 @@ class CartPage extends StatelessWidget {
                                 _controller.updateResponse.message);
                           },
                           style: ButtonStyle(
-                            shape: MaterialStateProperty.all<
+                            shape: WidgetStateProperty.all<
                                 RoundedRectangleBorder>(
                               RoundedRectangleBorder(
                                 side: BorderSide(
@@ -486,7 +485,7 @@ class CartPage extends StatelessWidget {
                               ),
                             ),
                             backgroundColor:
-                                MaterialStateProperty.all(MyThemes.red),
+                                WidgetStateProperty.all(MyThemes.red),
                           ),
                           child: Container(
                             margin: const EdgeInsets.symmetric(vertical: 2),
@@ -509,7 +508,7 @@ class CartPage extends StatelessWidget {
                             Get.back();
                           },
                           style: ButtonStyle(
-                            shape: MaterialStateProperty.all<
+                            shape: WidgetStateProperty.all<
                                 RoundedRectangleBorder>(
                               RoundedRectangleBorder(
                                 side: BorderSide(
@@ -520,7 +519,7 @@ class CartPage extends StatelessWidget {
                               ),
                             ),
                             backgroundColor:
-                                MaterialStateProperty.all(Colors.white),
+                                WidgetStateProperty.all(Colors.white),
                           ),
                           child: Container(
                             margin: const EdgeInsets.symmetric(vertical: 2),
@@ -651,7 +650,7 @@ class CartPage extends StatelessWidget {
                       },
                       style: ButtonStyle(
                         shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                            WidgetStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                             side: BorderSide(
                               color: MyThemes.primaryColor,
@@ -661,7 +660,7 @@ class CartPage extends StatelessWidget {
                           ),
                         ),
                         backgroundColor:
-                            MaterialStateProperty.all(MyThemes.secondryColor),
+                            WidgetStateProperty.all(MyThemes.secondryColor),
                       ),
                       child: Obx(() {
                         if (_rateReqController.rateReqController.isloading) {

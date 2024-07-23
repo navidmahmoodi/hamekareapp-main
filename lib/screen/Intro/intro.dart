@@ -142,14 +142,14 @@ class IntroScreen extends StatelessWidget {
                   Get.to(LoginScreen());
                 },
                 style: ButtonStyle(
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       side: BorderSide(color: MyThemes.secondryColor, width: 2),
                       borderRadius: BorderRadius.circular(30),
                     ),
                   ),
                   backgroundColor:
-                      MaterialStateProperty.all(Colors.transparent),
+                      WidgetStateProperty.all(Colors.transparent),
                 ),
                 child: Text(
                   "ورود به برنامه",

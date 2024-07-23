@@ -4,7 +4,6 @@ import 'package:hamekare_app/Model/get_darkhast_model.dart';
 import 'package:hamekare_app/controller/main_controller.dart';
 import 'package:hamekare_app/tools/tools.dart';
 import 'package:persian/persian.dart';
-import 'package:shamsi_date/shamsi_date.dart';
 
 class CartFullDetail extends StatelessWidget {
   CartFullDetail({Key? key}) : super(key: key);
@@ -153,7 +152,7 @@ class CartFullDetail extends StatelessWidget {
                               // _controller.pay(item.iD);
                             },
                             style: ButtonStyle(
-                              shape: MaterialStateProperty.all<
+                              shape: WidgetStateProperty.all<
                                   RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                   side: BorderSide(
@@ -164,7 +163,7 @@ class CartFullDetail extends StatelessWidget {
                                 ),
                               ),
                               backgroundColor:
-                                  MaterialStateProperty.all(MyThemes.green),
+                                  WidgetStateProperty.all(MyThemes.green),
                             ),
                             child: Container(
                               margin: const EdgeInsets.symmetric(
@@ -188,7 +187,7 @@ class CartFullDetail extends StatelessWidget {
             ));
           },
           style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                 side: BorderSide(
                   color: MyThemes.primaryColor,
@@ -197,7 +196,7 @@ class CartFullDetail extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
-            backgroundColor: MaterialStateProperty.all(MyThemes.green),
+            backgroundColor: WidgetStateProperty.all(MyThemes.green),
           ),
           child: Container(
             margin: const EdgeInsets.symmetric(vertical: 5),

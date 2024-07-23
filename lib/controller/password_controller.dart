@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:hamekare_app/Model/forget_pass_model.dart';
-import 'package:hamekare_app/Model/response_model.dart';
 import 'package:hamekare_app/controller/main_controller.dart';
 
 class PasswordController extends GetxController {

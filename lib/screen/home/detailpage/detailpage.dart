@@ -137,7 +137,7 @@ class DetailPage extends StatelessWidget {
                   // }
                 },
                 style: ButtonStyle(
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       side: BorderSide(
                         color: MyThemes.primaryColor,
@@ -147,7 +147,7 @@ class DetailPage extends StatelessWidget {
                     ),
                   ),
                   backgroundColor:
-                      MaterialStateProperty.all(MyThemes.secondryColor),
+                      WidgetStateProperty.all(MyThemes.secondryColor),
                 ),
                 child: Container(
                   margin: const EdgeInsets.symmetric(vertical: 2),
@@ -169,7 +169,7 @@ class DetailPage extends StatelessWidget {
                   Get.back();
                 },
                 style: ButtonStyle(
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       side: BorderSide(
                         color: MyThemes.primaryColor,
@@ -178,7 +178,7 @@ class DetailPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(50),
                     ),
                   ),
-                  backgroundColor: MaterialStateProperty.all(Colors.white),
+                  backgroundColor: WidgetStateProperty.all(Colors.white),
                 ),
                 child: Container(
                   margin: const EdgeInsets.symmetric(vertical: 2),

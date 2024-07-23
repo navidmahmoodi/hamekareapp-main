@@ -19,7 +19,6 @@ import 'package:hamekare_app/Service/error.dart';
 import 'package:hamekare_app/controller/main_controller.dart';
 import 'package:hamekare_app/response/slider_response.dart';
 import 'package:hamekare_app/tools/logger.dart';
-import 'package:hamekare_app/tools/tools.dart';
 import 'package:image_picker/image_picker.dart';
 import '../Service/logging_interceptor.dart';
 

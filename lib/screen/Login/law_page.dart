@@ -45,7 +45,7 @@ class LawScreen extends StatelessWidget {
                       child: Obx(() {
                         return Checkbox(
                             checkColor: MyThemes.secondryColor,
-                            fillColor: MaterialStateProperty.all(
+                            fillColor: WidgetStateProperty.all(
                                 MyThemes.primaryColor),
                             // shape: RoundedRectangleBorder(
                             //     borderRadius: BorderRadius.circular(50)),
@@ -71,9 +71,9 @@ class LawScreen extends StatelessWidget {
                       },
                       style: ButtonStyle(
                           shadowColor:
-                              MaterialStateProperty.all(MyThemes.primaryColor),
+                              WidgetStateProperty.all(MyThemes.primaryColor),
                           shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                              WidgetStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                               side: BorderSide(
                                 color: MyThemes.primaryColor,
@@ -82,7 +82,7 @@ class LawScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                          backgroundColor: MaterialStateProperty.all(
+                          backgroundColor: WidgetStateProperty.all(
                               MyThemes.secondryColor)),
                       child: Container(
                         margin: const EdgeInsets.symmetric(vertical: 3),

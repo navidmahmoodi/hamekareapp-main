@@ -60,7 +60,7 @@ class ChooseTime extends StatelessWidget {
                     }
                   },
                   style: ButtonStyle(
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         side: BorderSide(
                           color: MyThemes.primaryColor,
@@ -70,7 +70,7 @@ class ChooseTime extends StatelessWidget {
                       ),
                     ),
                     backgroundColor:
-                        MaterialStateProperty.all(MyThemes.secondryColor),
+                        WidgetStateProperty.all(MyThemes.secondryColor),
                   ),
                   child: Container(
                     margin: const EdgeInsets.symmetric(vertical: 2),
@@ -123,8 +123,8 @@ class ChooseTime extends StatelessWidget {
                             },
                             style: ButtonStyle(
                               backgroundColor:
-                                  MaterialStateProperty.all(Colors.white),
-                              shape: MaterialStateProperty.all<
+                                  WidgetStateProperty.all(Colors.white),
+                              shape: WidgetStateProperty.all<
                                   RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -203,13 +203,13 @@ class ChooseTime extends StatelessWidget {
                         margin: const EdgeInsets.only(top: 30),
                         child: ElevatedButton(
                           style: ButtonStyle(
-                            shape: MaterialStateProperty.all<
+                            shape: WidgetStateProperty.all<
                                 RoundedRectangleBorder>(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(18.0),
                               ),
                             ),
-                            backgroundColor: MaterialStateProperty.all(
+                            backgroundColor: WidgetStateProperty.all(
                                 MyThemes.secondryColor),
                           ),
                           onPressed: () {

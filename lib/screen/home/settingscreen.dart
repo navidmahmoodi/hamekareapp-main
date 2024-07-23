@@ -131,8 +131,8 @@ class SettingScreen extends StatelessWidget {
                 margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.white),
-                    side: MaterialStateProperty.all<BorderSide>(
+                    backgroundColor: WidgetStateProperty.all(Colors.white),
+                    side: WidgetStateProperty.all<BorderSide>(
                       BorderSide.merge(
                         BorderSide(width: 2.5, color: MyThemes.secondryColor),
                         BorderSide.merge(
@@ -141,7 +141,7 @@ class SettingScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -178,8 +178,8 @@ class SettingScreen extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.white),
-                      side: MaterialStateProperty.all<BorderSide>(
+                      backgroundColor: WidgetStateProperty.all(Colors.white),
+                      side: WidgetStateProperty.all<BorderSide>(
                           BorderSide.merge(
                               BorderSide(
                                   width: 2.5, color: MyThemes.secondryColor),
@@ -189,7 +189,7 @@ class SettingScreen extends StatelessWidget {
                                   BorderSide(
                                       color: MyThemes.secondryColor,
                                       width: 0)))),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)))),
                   onPressed: () {},
@@ -222,8 +222,8 @@ class SettingScreen extends StatelessWidget {
                 ),
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.white),
-                      side: MaterialStateProperty.all<BorderSide>(
+                      backgroundColor: WidgetStateProperty.all(Colors.white),
+                      side: WidgetStateProperty.all<BorderSide>(
                           BorderSide.merge(
                               BorderSide(
                                   width: 2.5, color: MyThemes.secondryColor),
@@ -233,7 +233,7 @@ class SettingScreen extends StatelessWidget {
                                   BorderSide(
                                       color: MyThemes.secondryColor,
                                       width: 0)))),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)))),
                   onPressed: () {
@@ -303,7 +303,7 @@ class SettingScreen extends StatelessWidget {
                                 Expanded(
                                   child: ElevatedButton(
                                     onPressed: () async {
-                                      var reponse =
+                                      // var reponse =
                                           await _passController.changePassReq(
                                         phonecontroller.text,
                                       );
@@ -525,7 +525,7 @@ class SettingScreen extends StatelessWidget {
                                                               .clear();
                                                         },
                                                         style: ButtonStyle(
-                                                          shape: MaterialStateProperty
+                                                          shape: WidgetStateProperty
                                                               .all<
                                                                   RoundedRectangleBorder>(
                                                             RoundedRectangleBorder(
@@ -541,7 +541,7 @@ class SettingScreen extends StatelessWidget {
                                                             ),
                                                           ),
                                                           backgroundColor:
-                                                              MaterialStateProperty
+                                                              WidgetStateProperty
                                                                   .all(MyThemes
                                                                       .secondryColor),
                                                         ),
@@ -589,7 +589,7 @@ class SettingScreen extends StatelessWidget {
                                       }
                                     },
                                     style: ButtonStyle(
-                                      shape: MaterialStateProperty.all<
+                                      shape: WidgetStateProperty.all<
                                           RoundedRectangleBorder>(
                                         RoundedRectangleBorder(
                                           side: BorderSide(
@@ -601,7 +601,7 @@ class SettingScreen extends StatelessWidget {
                                         ),
                                       ),
                                       backgroundColor:
-                                          MaterialStateProperty.all(
+                                          WidgetStateProperty.all(
                                               MyThemes.secondryColor),
                                     ),
                                     child: Obx(() {
@@ -661,8 +661,8 @@ class SettingScreen extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.white),
-                      side: MaterialStateProperty.all<BorderSide>(
+                      backgroundColor: WidgetStateProperty.all(Colors.white),
+                      side: WidgetStateProperty.all<BorderSide>(
                           BorderSide.merge(
                               BorderSide(
                                   width: 2.5, color: MyThemes.secondryColor),
@@ -672,7 +672,7 @@ class SettingScreen extends StatelessWidget {
                                   BorderSide(
                                       color: MyThemes.secondryColor,
                                       width: 0)))),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)))),
                   onPressed: () {
@@ -787,9 +787,9 @@ class SettingScreen extends StatelessWidget {
                                     ElevatedButton(
                                         style: ButtonStyle(
                                             backgroundColor:
-                                                MaterialStateProperty.all(
+                                                WidgetStateProperty.all(
                                                     MyThemes.secondryColor),
-                                            shape: MaterialStateProperty.all(
+                                            shape: WidgetStateProperty.all(
                                                 RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(15),
@@ -859,14 +859,14 @@ class SettingScreen extends StatelessWidget {
                 ),
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.white),
-                    side: MaterialStateProperty.all<BorderSide>(
+                    backgroundColor: WidgetStateProperty.all(Colors.white),
+                    side: WidgetStateProperty.all<BorderSide>(
                         BorderSide.merge(
                             BorderSide(width: 2.5, color: MyThemes.grey),
                             BorderSide.merge(
                                 BorderSide(width: 0, color: MyThemes.grey),
                                 BorderSide(color: MyThemes.grey, width: 0)))),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -913,7 +913,7 @@ class SettingScreen extends StatelessWidget {
                                             toMain();
                                           },
                                           style: ButtonStyle(
-                                            shape: MaterialStateProperty.all<
+                                            shape: WidgetStateProperty.all<
                                                 RoundedRectangleBorder>(
                                               RoundedRectangleBorder(
                                                 side: BorderSide(
@@ -925,7 +925,7 @@ class SettingScreen extends StatelessWidget {
                                               ),
                                             ),
                                             backgroundColor:
-                                                MaterialStateProperty.all(
+                                                WidgetStateProperty.all(
                                                     MyThemes.secondryColor),
                                           ),
                                           child: Container(
@@ -951,7 +951,7 @@ class SettingScreen extends StatelessWidget {
                                             Get.back();
                                           },
                                           style: ButtonStyle(
-                                            shape: MaterialStateProperty.all<
+                                            shape: WidgetStateProperty.all<
                                                 RoundedRectangleBorder>(
                                               RoundedRectangleBorder(
                                                 side: BorderSide(
@@ -963,7 +963,7 @@ class SettingScreen extends StatelessWidget {
                                               ),
                                             ),
                                             backgroundColor:
-                                                MaterialStateProperty.all(
+                                                WidgetStateProperty.all(
                                                     Colors.white),
                                           ),
                                           child: Container(

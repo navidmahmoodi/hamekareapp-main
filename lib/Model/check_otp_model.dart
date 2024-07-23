@@ -9,7 +9,7 @@ class OtpModel extends BaseResponseModel {
   late Data? data;
 
   OtpModel.fromJson(Map<String, dynamic> json) {
-    //TODO
+    //TOD2O
     // if (isSuccess = json['isSuccess'] != null) {
     isSuccess = json['isSuccess'] ?? false;
     // } else {

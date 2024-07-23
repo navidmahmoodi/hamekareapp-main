@@ -138,8 +138,8 @@ class ProfileScreen extends StatelessWidget {
               ShowMSG().showSnackBar("اطلاعات شما با موفقیت ثبت شد");
             },
             style: ButtonStyle(
-              shadowColor: MaterialStateProperty.all(MyThemes.primaryColor),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              shadowColor: WidgetStateProperty.all(MyThemes.primaryColor),
+              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                   side: BorderSide(
                     color: MyThemes.primaryColor,
@@ -149,7 +149,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               backgroundColor:
-                  MaterialStateProperty.all(MyThemes.secondryColor),
+                  WidgetStateProperty.all(MyThemes.secondryColor),
             ),
             child: Container(
               margin: const EdgeInsets.symmetric(vertical: 3),

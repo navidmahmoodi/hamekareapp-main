@@ -74,15 +74,15 @@ class RegisterScreen extends StatelessWidget {
 
                   ShowMSG()
                       .showSnackBar(_controller.postExpertController.message);
-                  print(response.isSuccess);
+                  // print(response.isSuccess);
                   if (response.isSuccess == true) {
                     Get.to(() => OtpScreen(phone: _mobileController.text));
                   }
                 }
               },
               style: ButtonStyle(
-                  shadowColor: MaterialStateProperty.all(MyThemes.primaryColor),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  shadowColor: WidgetStateProperty.all(MyThemes.primaryColor),
+                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       side: BorderSide(
                         color: MyThemes.primaryColor,
@@ -92,7 +92,7 @@ class RegisterScreen extends StatelessWidget {
                     ),
                   ),
                   backgroundColor:
-                      MaterialStateProperty.all(MyThemes.secondryColor)),
+                      WidgetStateProperty.all(MyThemes.secondryColor)),
               child: Container(
                 margin: const EdgeInsets.symmetric(vertical: 3),
                 child: Text(

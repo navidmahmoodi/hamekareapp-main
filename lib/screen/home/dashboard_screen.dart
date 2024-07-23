@@ -88,8 +88,8 @@ class DashboardScreen extends StatelessWidget {
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all(MyThemes.brown),
-                          shape: MaterialStateProperty.all(
+                              WidgetStateProperty.all(MyThemes.brown),
+                          shape: WidgetStateProperty.all(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
@@ -271,8 +271,8 @@ class DashboardScreen extends StatelessWidget {
                                                                       }
                                                                     },
                                                                     style: ButtonStyle(
-                                                                        shadowColor: MaterialStateProperty.all(MyThemes.primaryColor),
-                                                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                                                        shadowColor: WidgetStateProperty.all(MyThemes.primaryColor),
+                                                                        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                                                                           RoundedRectangleBorder(
                                                                             side:
                                                                                 BorderSide(
@@ -283,7 +283,7 @@ class DashboardScreen extends StatelessWidget {
                                                                                 BorderRadius.circular(10),
                                                                           ),
                                                                         ),
-                                                                        backgroundColor: MaterialStateProperty.all(MyThemes.secondryColor)),
+                                                                        backgroundColor: WidgetStateProperty.all(MyThemes.secondryColor)),
                                                                     child:
                                                                         Container(
                                                                       margin: const EdgeInsets
@@ -315,11 +315,11 @@ class DashboardScreen extends StatelessWidget {
                                               },
                                               style: ButtonStyle(
                                                   shadowColor:
-                                                      MaterialStateProperty.all(
+                                                      WidgetStateProperty.all(
                                                           MyThemes
                                                               .primaryColor),
                                                   shape:
-                                                      MaterialStateProperty.all<
+                                                      WidgetStateProperty.all<
                                                           RoundedRectangleBorder>(
                                                     RoundedRectangleBorder(
                                                       side: BorderSide(
@@ -333,7 +333,7 @@ class DashboardScreen extends StatelessWidget {
                                                     ),
                                                   ),
                                                   backgroundColor:
-                                                      MaterialStateProperty.all(
+                                                      WidgetStateProperty.all(
                                                           MyThemes
                                                               .secondryColor)),
                                               child: Container(

@@ -159,12 +159,12 @@ class LoginScreen extends StatelessWidget {
                             var response = await _loginController.postLogin(
                                 _controller.text, _mobilecontroller.text);
                             if (response.status == true) {
-                              print(response.status);
+                              // print(response.status);
                               Get.to(() => const HomeScreen());
 
                               // ShowMSG().showSnackBar(response.message);
                             } else {
-                              print("no");
+                              // print("no");
                               ShowMSG()
                                   .showSnackBar("اطلاعات شما صحیح نمی باشد.");
                             }
@@ -175,7 +175,7 @@ class LoginScreen extends StatelessWidget {
                         },
                         style: ButtonStyle(
                           shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                              WidgetStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                               side: BorderSide(
                                 color: MyThemes.primaryColor,
@@ -185,7 +185,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ),
                           backgroundColor:
-                              MaterialStateProperty.all(MyThemes.secondryColor),
+                              WidgetStateProperty.all(MyThemes.secondryColor),
                         ),
                         child: Obx(() {
                           if (_loginController.loginResponse.isloading) {
@@ -212,7 +212,7 @@ class LoginScreen extends StatelessWidget {
                       child: TextButton(
                           style: ButtonStyle(
                               padding:
-                                  MaterialStateProperty.all(EdgeInsets.zero)),
+                                  WidgetStateProperty.all(EdgeInsets.zero)),
                           onPressed: () {
                             Get.dialog(forgetPass());
                           },
@@ -225,16 +225,16 @@ class LoginScreen extends StatelessWidget {
                           )),
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: ElevatedButton(
                         onPressed: () {
                           Get.to(RegisterScreen());
                         },
                         style: ButtonStyle(
-                            shape: MaterialStatePropertyAll(
+                            shape: WidgetStatePropertyAll(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10))),
-                            backgroundColor: MaterialStatePropertyAll(
+                            backgroundColor: WidgetStatePropertyAll(
                                 MyThemes.secondryColor)),
                         child: Text(
                           "حساب کاربری ندارید؟ ثبت نام کنید",
@@ -312,7 +312,8 @@ class LoginScreen extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () async {
-                      var reponse = await _passController.changePassReq(
+                      // var reponse = 
+                      await _passController.changePassReq(
                         phonecontroller.text,
                       );
                       if (_passController.passwordResponse.isSuccess == true) {
@@ -481,7 +482,7 @@ class LoginScreen extends StatelessWidget {
                                           newPassControllercon.clear();
                                         },
                                         style: ButtonStyle(
-                                          shape: MaterialStateProperty.all<
+                                          shape: WidgetStateProperty.all<
                                               RoundedRectangleBorder>(
                                             RoundedRectangleBorder(
                                               side: BorderSide(
@@ -493,7 +494,7 @@ class LoginScreen extends StatelessWidget {
                                             ),
                                           ),
                                           backgroundColor:
-                                              MaterialStateProperty.all(
+                                              WidgetStateProperty.all(
                                                   MyThemes.secondryColor),
                                         ),
                                         child: Obx(() {
@@ -531,7 +532,7 @@ class LoginScreen extends StatelessWidget {
                       }
                     },
                     style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           side: BorderSide(
                             color: MyThemes.primaryColor,
@@ -541,7 +542,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                       backgroundColor:
-                          MaterialStateProperty.all(MyThemes.secondryColor),
+                          WidgetStateProperty.all(MyThemes.secondryColor),
                     ),
                     child: Obx(() {
                       if (_passController.passwordResponse.isLoading) {
